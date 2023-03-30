@@ -44,27 +44,28 @@ class NCCToken {
         }
     }
 
-    public static async getInstance(address: string, algonaut: Algonaut): Promise<NCCToken> {
+    public static async getInstance(algonaut: Algonaut): Promise<NCCToken> {
         if (!NCCToken.instance) {
             NCCToken.instance = new NCCToken();
         }
 
         NCCToken.instance.algonaut = algonaut;
-        NCCToken.instance.address = address;
+        NCCToken.instance.address = algonaut.address;
+        if (algonaut.address) {
+            // check if opted into nccToken
+            const optedNCC = await algonaut.isOptedIntoAsset({
+                account: algonaut.address,
+                assetId: NCC_TOKEN_INDEX
+            });
+            if (optedNCC) {
+                const nccBal = await algonaut.getTokenBalance(
+                    algonaut.address,
+                    NCC_TOKEN_INDEX
+                );
+                NCCToken.instance.nccTokenBal = nccBal;
+            }
 
-        // check if opted into nccToken
-        const optedNCC = await algonaut.isOptedIntoAsset({
-            account: address,
-            assetId: NCC_TOKEN_INDEX
-        });
-        if (optedNCC) {
-            const nccBal = await algonaut.getTokenBalance(
-                address,
-                NCC_TOKEN_INDEX
-            );
-            NCCToken.instance.nccTokenBal = nccBal;
         }
-
         return NCCToken.instance;
     }
 

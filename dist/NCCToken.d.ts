@@ -32,7 +32,7 @@ declare class NCCToken {
     nccTokenBal: number;
     private constructor();
     static destroy(): void;
-    static getInstance(address: string, algonaut: Algonaut): Promise<NCCToken>;
+    static getInstance(algonaut: Algonaut): Promise<NCCToken>;
     getAccessToken(): Promise<{
         accessToken: string;
         tokenExpires: number;
