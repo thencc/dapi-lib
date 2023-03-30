@@ -21,5 +21,6 @@ export default class NCChappyDapi {
     };
     private constructor();
     static init(algonaut: Algonaut): Promise<NCChappyDapi>;
+    static destroyAll(): void;
     startServices(accessToken: string): void;
 }

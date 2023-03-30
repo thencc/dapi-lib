@@ -36,7 +36,18 @@ export default class NCChappyDapi {
     public static async init(algonaut: Algonaut) {
         // initialize ncc token
         const token = await NCCToken.getInstance(algonaut);
+        console.log('initializing NCC\'s happy dapi...');
         return new NCChappyDapi(algonaut, token);
+    }
+
+    public static destroyAll() {
+        NCCToken.destroy();
+        NCCUser.destroy();
+        NCCRodeo.destroy();
+        NCCTTM.destroy();
+        NCCLiNR.destroy();
+        NCCBricks.destroy();
+        console.log('destroyed all services');
     }
 
     startServices(accessToken: string) {
@@ -47,6 +58,7 @@ export default class NCChappyDapi {
             this.linr = NCCLiNR.getInstance(accessToken);
             this.ttm = NCCTTM.getInstance(accessToken, this.algonaut);
             this.user = NCCUser.getInstance(accessToken);
+            console.log('started services');
         }
     }
 }
