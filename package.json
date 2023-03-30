@@ -6,12 +6,6 @@
     "types": "dist/index.d.ts",
     "module": "dist/index.d.ts",
     "main": "dist/index.d.ts",
-    "exports": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.mjs",
-        "require": "./dist/index.cjs",
-        "node": "./dist/index.cjs"
-    },
     "files": [
         "dist/*",
         "LICENSE",
