@@ -10,12 +10,6 @@
 // 	message: string;
 // 	valid: boolean;
 // };;
-
-export const NCC_TOKEN_AUTH_APP_INDEX = 101209779;
-export const NCC_TOKEN_INDEX = 101088863;
-export const NCC_SLA_INDEX = 110525806;
-export const USDC_TOKEN_INDEX = 10458941;
-
 //
 // To hit the production machine
 const APIRootURI = 'https://nccdapi.web.app';
@@ -119,5 +113,3 @@ export const NCCdAPIs = {
 		}
 	}
 };
-
-export const NCCdAPI_DOCS = await NCCdAPIs.call('docs', {});
