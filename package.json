@@ -1,0 +1,121 @@
+{
+    "name": "@thencc/dapi-lib",
+    "version": "0.1.0",
+    "description": "This dAPI-lib is a friendly way to interface with the NCC dAPIs",
+    "type": "module",
+    "types": "dist/index.d.ts",
+    "module": "dist/index.mjs",
+    "main": "dist/index.cjs",
+    "browser": "dist/index.mjs",
+    "exports": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.mjs",
+        "require": "./dist/index.cjs",
+        "node": "./dist/index.cjs"
+    },
+    "files": [
+        "dist/*",
+        "LICENSE",
+        "README.md"
+    ],
+    "scripts": {
+        "build": "rm -rf dist && run-s build:*",
+        "build:cjs": "node ./esbuild.cjs.js",
+        "build:esm": "node ./esbuild.esm.js",
+        "build:types": "tsc --emitDeclarationOnly --outDir dist",
+        "build:docs": "npx typedoc",
+        "test": "jest",
+        "tests": "cd tests && task prepare-tests && task tests"
+    },
+    "keywords": [
+        "algo",
+        "algorand",
+        "algonaut",
+        "algosdk"
+    ],
+    "author": "NCC",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/thencc/algonautjs"
+    },
+    "dependencies": {
+        "@thencc/algonautjs": "0.3.10"
+    },
+    "optionalDependencies": {},
+    "devDependencies": {
+        "@jest/globals": "^29.4.3",
+        "@types/node": "^18.13.0",
+        "@typescript-eslint/eslint-plugin": "^5.13.0",
+        "@typescript-eslint/parser": "^5.13.0",
+        "dotenv": "^16.0.0",
+        "esbuild": "^0.14.27",
+        "eslint": "^8.10.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-config-typescript": "^3.0.0",
+        "eslint-plugin-import": "^2.25.4",
+        "eslint-plugin-prettier": "^4.0.0",
+        "jest": "^29.1.1",
+        "jsdom": "^20.0.0",
+        "node-stdlib-browser": "^1.2.0",
+        "node-testing-server": "^1.5.2",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^2.5.1",
+        "sass": "^1.55.0",
+        "ts-jest": "^29.0.2",
+        "ts-node": "^10.7.0",
+        "typedoc": "^0.23.16",
+        "typescript": "^4.6.2",
+        "vite": "^4.1.1"
+    },
+    "prettier": {
+        "singleQuote": true,
+        "useTabs": true,
+        "tabWidth": 2,
+        "semi": true,
+        "trailingComma": "none"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "eslint:recommended",
+            "typescript",
+            "prettier"
+        ],
+        "parserOptions": {
+            "ecmaVersion": 2020,
+            "sourceType": "module"
+        },
+        "globals": {
+            "Stream": true
+        },
+        "ignorePatterns": [
+            "tests"
+        ],
+        "rules": {
+            "quotes": [
+                "warn",
+                "single",
+                {
+                    "avoidEscape": true,
+                    "allowTemplateLiterals": false
+                }
+            ],
+            "indent": "off",
+            "@typescript-eslint/indent": [
+                "warn",
+                "tab"
+            ],
+            "semi": [
+                "warn",
+                "always"
+            ],
+            "no-any": 0,
+            "@typescript-eslint/no-explicit-any": 0,
+            "vue/no-v-model-argument": "off"
+        }
+    }
+}
