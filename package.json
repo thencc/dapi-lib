@@ -23,6 +23,7 @@
         "build:cjs": "node ./esbuild.cjs.js",
         "build:esm": "node ./esbuild.esm.js",
         "build:types": "tsc --emitDeclarationOnly --outDir dist",
+        "prepare": "npm run build",
         "test": "jest",
         "tests": "cd tests && task prepare-tests && task tests"
     },
