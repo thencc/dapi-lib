@@ -7,7 +7,7 @@ import NCCToken from "./NCCToken";
 import NCCTTM from "./NCCTTM";
 import NCCUser from "./NCCUser";
 
-export class NCChappyDapi {
+export default class NCChappyDapi {
     rodeo = NCCRodeo;
     bricks = NCCBricks;
     linr = NCCLiNR;
