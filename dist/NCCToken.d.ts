@@ -1,4 +1,5 @@
 import Algonaut from "@thencc/algonautjs";
+import { DapiResponse } from "./types";
 export type TokenResponse = {
     status: string;
     message: string;
@@ -33,6 +34,8 @@ declare class NCCToken {
     private constructor();
     static destroy(): void;
     static getInstance(algonaut: Algonaut): Promise<NCCToken>;
+    getNCCBalance(): Promise<number>;
+    isOptedNCC(): Promise<boolean>;
     getAccessToken(): Promise<{
         accessToken: string;
         tokenExpires: number;
@@ -40,6 +43,6 @@ declare class NCCToken {
     }>;
     refreshNCCBal(): Promise<void>;
     getNCCs(): Promise<TokenResponse>;
-    createUserContract(uuid: string): Promise<TokenResponse | null>;
+    createUserContract(uuid: string): Promise<DapiResponse | null>;
 }
 export default NCCToken;

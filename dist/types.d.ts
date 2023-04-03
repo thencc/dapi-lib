@@ -1,3 +1,9 @@
+export type DapiResponse = {
+    status: number;
+    message: string;
+    error: any;
+    result: any;
+};
 export type CreateProjectInput = {
     url: string;
     title: string;
