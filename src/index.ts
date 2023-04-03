@@ -35,6 +35,7 @@ export default class NCChappyDapi {
 
     public static async init(algonaut: Algonaut) {
         // initialize ncc token
+        console.log('getting NCC Token instance...');
         const token = await NCCToken.getInstance(algonaut);
         console.log('initializing NCC\'s happy dapi...');
         return new NCChappyDapi(algonaut, token);
