@@ -1,6 +1,7 @@
 import Algonaut, { signTransactions, utils } from "@thencc/algonautjs"
 import { NCC_TOKEN_INDEX, NCC_TOKEN_AUTH_APP_INDEX, NCC_SLA_INDEX, USDC_TOKEN_INDEX } from "./constants";
 import { NCCdAPIs } from "./NCCdAPIs";
+import { DapiResponse } from "./types";
 
 export type TokenResponse = {
     status: string;
@@ -51,22 +52,38 @@ class NCCToken {
 
         NCCToken.instance.algonaut = algonaut;
         NCCToken.instance.address = algonaut.address;
-        if (algonaut.address) {
-            // check if opted into nccToken
-            const optedNCC = await algonaut.isOptedIntoAsset({
-                account: algonaut.address,
-                assetId: NCC_TOKEN_INDEX
-            });
-            if (optedNCC) {
-                const nccBal = await algonaut.getTokenBalance(
-                    algonaut.address,
-                    NCC_TOKEN_INDEX
-                );
-                NCCToken.instance.nccTokenBal = nccBal;
-            }
+        // if (algonaut.address) {
+        //     // check if opted into nccToken
+        //     const optedNCC = await algonaut.isOptedIntoAsset({
+        //         account: algonaut.address,
+        //         assetId: NCC_TOKEN_INDEX
+        //     });
+        //     if (optedNCC) {
+        //         const nccBal = await algonaut.getTokenBalance(
+        //             algonaut.address,
+        //             NCC_TOKEN_INDEX
+        //         );
+        //         NCCToken.instance.nccTokenBal = nccBal;
+        //     }
 
-        }
+        // }
         return NCCToken.instance;
+    }
+
+    public async getNCCBalance() {
+        if (!this.algonaut) throw new Error('Invalid algonaut');
+        return await this.algonaut.getTokenBalance(
+            this.algonaut.address,
+            NCC_TOKEN_INDEX
+        );
+    }
+
+    public async isOptedNCC() {
+        if (!this.algonaut) throw new Error('Invalid algonaut');
+        return await this.algonaut.isOptedIntoAsset({
+            account: this.algonaut.address,
+            assetId: NCC_TOKEN_INDEX
+        });
     }
 
     public async getAccessToken() {
@@ -147,6 +164,19 @@ class NCCToken {
     public async createUserContract(uuid: string) {
         try {
             if (!this.algonaut) throw new Error('Invalid algonaut');
+            const isOpted = await this.isOptedNCC();
+            if (isOpted) {
+                return {
+                    status: 200,
+                    message: "Address already opted into NCCs",
+                    error: null,
+                    result: {
+                        address: this.algonaut.address,
+                        isOpted
+                    }
+                } as DapiResponse;
+            }
+
             const slaResult = await this.algonaut.sendTransaction([
                 await this.algonaut.atomicOptInApp({
                     appIndex: NCC_SLA_INDEX,
@@ -157,11 +187,20 @@ class NCCToken {
             ]);
 
             console.log(slaResult);
-
             const response = await this.getNCCs();
 
             console.log(response);
-            return response as TokenResponse;
+            return {
+                status: 200,
+                message: "Created SLA contract for address",
+                error: null,
+                result: {
+                    address: this.algonaut.address,
+                    slaResult,
+                    nccDropResult: response.txDetail
+                }
+            } as DapiResponse;
+            // return response as TokenResponse;
         } catch (err: any) {
             console.error('error in creating user contract: ', err);
             return null;
