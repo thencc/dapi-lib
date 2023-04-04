@@ -129,16 +129,22 @@ class NCCToken {
             if (!response) throw new Error('No access token response!');
             result.accessToken = response!.data.token;
             result.tokenExpires = response!.data.expires;
-        } catch (er: any) {
-            console.log('there was an error ', er);
-            if (typeof er == 'string') {
-                result.error = er;
-            } else if (typeof er == 'object') {
-                result.error = (er as Error).message;
+
+            return {
+                status: 200,
+                message: "Got access token",
+                error: null,
+                result
+            }
+        } catch (error: any) {
+            console.log('there was an error ', error);
+            return {
+                status: 500,
+                message: "Error getting access token",
+                error,
+                result: null
             }
         }
-        return result;
-
     }
 
     public async refreshNCCBal() {
@@ -200,7 +206,6 @@ class NCCToken {
                     nccDropResult: response.txDetail
                 }
             } as DapiResponse;
-            // return response as TokenResponse;
         } catch (err: any) {
             console.error('error in creating user contract: ', err);
             return null;

@@ -37,9 +37,19 @@ declare class NCCToken {
     getNCCBalance(): Promise<number>;
     isOptedNCC(): Promise<boolean>;
     getAccessToken(): Promise<{
-        accessToken: string;
-        tokenExpires: number;
-        error: string;
+        status: number;
+        message: string;
+        error: null;
+        result: {
+            accessToken: string;
+            tokenExpires: number;
+            error: string;
+        };
+    } | {
+        status: number;
+        message: string;
+        error: any;
+        result: null;
     }>;
     refreshNCCBal(): Promise<void>;
     getNCCs(): Promise<TokenResponse>;
