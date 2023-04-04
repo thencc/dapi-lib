@@ -1,4 +1,4 @@
-import Algonaut, { signTransactions, utils } from "@thencc/algonautjs"
+import Algonaut, { utils } from "@thencc/algonautjs"
 import { NCC_TOKEN_INDEX, NCC_TOKEN_AUTH_APP_INDEX, NCC_SLA_INDEX, USDC_TOKEN_INDEX } from "./constants";
 import { NCCdAPIs } from "./NCCdAPIs";
 import { DapiResponse } from "./types";
@@ -112,7 +112,7 @@ class NCCToken {
 
             if (!this.algonaut.AnyWalletState.enabledWallets?.inkey) throw new Error('No valid inkey wallet');
 
-            const signedTxns = await signTransactions([txnArr]);
+            const signedTxns = await this.algonaut.AnyWalletState.activeWallet.signTransactions([txnArr]);
             console.log(signedTxns);
 
             const b64encoded = utils.txnBuffToB64(signedTxns[0]);
@@ -135,7 +135,7 @@ class NCCToken {
                 message: "Got access token",
                 error: null,
                 result
-            }
+            } as DapiResponse;
         } catch (error: any) {
             console.log('there was an error ', error);
             return {
@@ -143,7 +143,7 @@ class NCCToken {
                 message: "Error getting access token",
                 error,
                 result: null
-            }
+            } as DapiResponse;
         }
     }
 

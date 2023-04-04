@@ -36,21 +36,7 @@ declare class NCCToken {
     static getInstance(algonaut: Algonaut): Promise<NCCToken>;
     getNCCBalance(): Promise<number>;
     isOptedNCC(): Promise<boolean>;
-    getAccessToken(): Promise<{
-        status: number;
-        message: string;
-        error: null;
-        result: {
-            accessToken: string;
-            tokenExpires: number;
-            error: string;
-        };
-    } | {
-        status: number;
-        message: string;
-        error: any;
-        result: null;
-    }>;
+    getAccessToken(): Promise<DapiResponse>;
     refreshNCCBal(): Promise<void>;
     getNCCs(): Promise<TokenResponse>;
     createUserContract(uuid: string): Promise<DapiResponse | null>;
