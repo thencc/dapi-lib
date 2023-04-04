@@ -112,6 +112,7 @@ class NCCToken {
 
             if (!this.algonaut.AnyWalletState.enabledWallets?.inkey) throw new Error('No valid inkey wallet');
 
+            console.log('hello this is me: ', this.algonaut);
             const signedTxns = await this.algonaut.AnyWalletState.enabledWallets.inkey.signTransactions([txnArr]);
             console.log(signedTxns);
 
