@@ -9,36 +9,28 @@ import NCCUser from "./NCCUser";
 import Algonaut from "@thencc/algonautjs";
 
 export default class NCChappyDapi {
-    rodeo: NCCRodeo | null;
-    bricks: NCCBricks | null;
-    linr: NCCLiNR | null;
-    ttm: NCCTTM | null;
-    user: NCCUser | null;
+    rodeo: NCCRodeo | null = null;
+    bricks: NCCBricks | null = null;
+    linr: NCCLiNR | null = null;
+    ttm: NCCTTM | null = null;
+    user: NCCUser | null = null;
 
-    token: NCCToken | null;
+    token: NCCToken | null = null;
 
-    algonaut: Algonaut;
+    algonaut: Algonaut | null = null;
 
     docs = NCCdAPIs.call('docs', {});
     dAPI = NCCdAPIs;
 
-    private constructor(algonaut: Algonaut, token: NCCToken | null) {
-        this.algonaut = algonaut;
-        this.token = token;
+    public constructor() { }
 
-        this.rodeo = null;
-        this.bricks = null;
-        this.linr = null;
-        this.ttm = null;
-        this.user = null;
-    }
-
-    public static async init(algonaut: Algonaut) {
+    public async init(algonaut: Algonaut) {
         // initialize ncc token
         console.log('getting NCC Token instance...');
         const token = await NCCToken.getInstance(algonaut);
         console.log('initializing NCC\'s happy dapi...');
-        return new NCChappyDapi(algonaut, token);
+        this.algonaut = algonaut;
+        this.token = token;
     }
 
     public static destroyAll() {
@@ -51,8 +43,9 @@ export default class NCChappyDapi {
         console.log('destroyed all services');
     }
 
-    startServices(accessToken: string) {
+    public startServices(accessToken: string) {
         // if valid config, start all
+        if (!this.algonaut) return false;
         if (this.algonaut.address && accessToken.length) {
             this.rodeo = NCCRodeo.getInstance(accessToken);
             this.bricks = NCCBricks.getInstance(accessToken);
@@ -60,7 +53,9 @@ export default class NCChappyDapi {
             this.ttm = NCCTTM.getInstance(accessToken, this.algonaut);
             this.user = NCCUser.getInstance(accessToken);
             console.log('started services');
+            return true;
         }
+        return false;
     }
 }
 

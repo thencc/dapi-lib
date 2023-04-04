@@ -12,15 +12,15 @@ export default class NCChappyDapi {
     ttm: NCCTTM | null;
     user: NCCUser | null;
     token: NCCToken | null;
-    algonaut: Algonaut;
+    algonaut: Algonaut | null;
     docs: Promise<any>;
     dAPI: {
         call: (apiEndpoint: string, data: any, apiVersion?: string | undefined) => Promise<any>;
         requestToken(): void;
         fetch: (apiEndpoint: string, data: any, apiVersion?: string | undefined) => Promise<any>;
     };
-    private constructor();
-    static init(algonaut: Algonaut): Promise<NCChappyDapi>;
+    constructor();
+    init(algonaut: Algonaut): Promise<void>;
     static destroyAll(): void;
-    startServices(accessToken: string): void;
+    startServices(accessToken: string): boolean;
 }
