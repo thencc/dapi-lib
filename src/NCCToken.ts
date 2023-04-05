@@ -1,7 +1,7 @@
 import Algonaut, { utils } from "@thencc/algonautjs"
 import { NCC_TOKEN_INDEX, NCC_TOKEN_AUTH_APP_INDEX, NCC_SLA_INDEX, USDC_TOKEN_INDEX } from "./constants";
 import { NCCdAPIs } from "./NCCdAPIs";
-import { DapiResponse } from "./types";
+import { NCCApiResponse } from "./types";
 
 export type TokenResponse = {
     status: string;
@@ -52,21 +52,6 @@ class NCCToken {
 
         NCCToken.instance.algonaut = algonaut;
         NCCToken.instance.address = algonaut.address;
-        // if (algonaut.address) {
-        //     // check if opted into nccToken
-        //     const optedNCC = await algonaut.isOptedIntoAsset({
-        //         account: algonaut.address,
-        //         assetId: NCC_TOKEN_INDEX
-        //     });
-        //     if (optedNCC) {
-        //         const nccBal = await algonaut.getTokenBalance(
-        //             algonaut.address,
-        //             NCC_TOKEN_INDEX
-        //         );
-        //         NCCToken.instance.nccTokenBal = nccBal;
-        //     }
-
-        // }
         return NCCToken.instance;
     }
 
@@ -87,11 +72,6 @@ class NCCToken {
     }
 
     public async getAccessToken() {
-        let result = {
-            accessToken: '',
-            tokenExpires: -1,
-            error: 'none'
-        }
 
         try {
             if (!this.algonaut) throw new Error('Invalid algonaut');
@@ -122,29 +102,21 @@ class NCCToken {
                 address: this.address,
                 txId: txId,
                 signedTx: b64encoded
-            }) as AccessTokenResponse;
+            }) as NCCApiResponse;
 
             console.log('got response!');
             console.log(response);
 
             if (!response) throw new Error('No access token response!');
-            result.accessToken = response!.data.token;
-            result.tokenExpires = response!.data.expires;
-
-            return {
-                status: 200,
-                message: "Got access token",
-                error: null,
-                result
-            } as DapiResponse;
+            return response;
         } catch (error: any) {
             console.log('there was an error ', error);
             return {
-                status: 500,
+                status: 'fail',
                 message: "Error getting access token",
                 error,
                 result: null
-            } as DapiResponse;
+            } as NCCApiResponse;
         }
     }
 
@@ -165,23 +137,23 @@ class NCCToken {
         const response = await NCCdAPIs.call('get-nccs', {
             address: this.address
         });
-        return response as TokenResponse;
+        return response as NCCApiResponse;
     }
 
-    public async createUserContract(uuid: string) {
+    public async createUserSLA(uuid: string) {
         try {
             if (!this.algonaut) throw new Error('Invalid algonaut');
             const isOpted = await this.isOptedNCC();
             if (isOpted) {
                 return {
-                    status: 200,
+                    status: 'success',
                     message: "Address already opted into NCCs",
                     error: null,
                     result: {
                         address: this.algonaut.address,
                         isOpted
                     }
-                } as DapiResponse;
+                } as NCCApiResponse;
             }
 
             const slaResult = await this.algonaut.sendTransaction([
@@ -192,24 +164,33 @@ class NCCToken {
                 await this.algonaut.atomicOptInAsset(NCC_TOKEN_INDEX),
                 await this.algonaut.atomicOptInAsset(USDC_TOKEN_INDEX)
             ]);
+            if (slaResult.error) throw slaResult.error;
+            if (slaResult.status == 'fail') throw new Error('Failed to opt-in to NCC SLA app');
 
             console.log(slaResult);
             const response = await this.getNCCs();
+            if (response.error) throw response.error;
+            if (response.status == 'fail') throw new Error('Failed to get NCCs for user SLA');
 
             console.log(response);
             return {
-                status: 200,
+                status: 'success',
                 message: "Created SLA contract for address",
                 error: null,
                 result: {
                     address: this.algonaut.address,
                     slaResult,
-                    nccDropResult: response.txDetail
+                    nccDropResult: response.result
                 }
-            } as DapiResponse;
-        } catch (err: any) {
-            console.error('error in creating user contract: ', err);
-            return null;
+            } as NCCApiResponse;
+        } catch (error: any) {
+            console.error('error in creating SLA contract: ', error);
+            return {
+                status: 'fail',
+                message: 'Error in creating SLA contract',
+                error,
+                result: null
+            }
         }
     }
 }

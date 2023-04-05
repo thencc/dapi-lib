@@ -1,8 +1,8 @@
-export type DapiResponse = {
-    status: number;
-    message: string;
-    error: any;
+export type NCCApiResponse = {
+    status: 'success' | 'fail';
     result: any;
+    error: any;
+    message: string;
 };
 export type CreateProjectInput = {
     url: string;
