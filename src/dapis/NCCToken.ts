@@ -1,35 +1,8 @@
-import Algonaut, { utils } from "@thencc/algonautjs"
-import { NCC_TOKEN_INDEX, NCC_TOKEN_AUTH_APP_INDEX, NCC_SLA_INDEX, USDC_TOKEN_INDEX } from "./constants";
+import Algonaut from "@thencc/algonautjs"
+import { NCC_TOKEN_INDEX, NCC_TOKEN_AUTH_APP_INDEX, NCC_SLA_INDEX, USDC_TOKEN_INDEX } from "../constants";
+import { NCCApiResponse } from "../types";
 import { NCCdAPIs } from "./NCCdAPIs";
-import { NCCApiResponse } from "./types";
 
-export type TokenResponse = {
-    status: string;
-    message: string;
-    error: string;
-    txDetail: {
-        status: string;
-        message: string;
-        txId: string;
-    }
-};
-
-export type AccessTokenResponse = {
-    status: string;
-    message: string;
-    data: {
-        token: string;
-        expires: number;
-        validFor: number;
-    },
-    error: string;
-    confirmedInRound: {
-        status: string;
-        message: string;
-        txId: string;
-    },
-    dbUUID: string;
-};
 class NCCToken {
     private static instance: NCCToken | null;
 
@@ -51,22 +24,25 @@ class NCCToken {
         }
 
         NCCToken.instance.algonaut = algonaut;
-        NCCToken.instance.address = algonaut.address;
         return NCCToken.instance;
     }
 
+    // TODO: add the following as APIs
+
     public async getNCCBalance() {
         if (!this.algonaut) throw new Error('Invalid algonaut');
+        if (!this.algonaut.account) throw new Error('No user logged in');
         return await this.algonaut.getTokenBalance(
-            this.algonaut.address,
+            this.algonaut.account.address,
             NCC_TOKEN_INDEX
         );
     }
 
     public async isOptedNCC() {
         if (!this.algonaut) throw new Error('Invalid algonaut');
+        if (!this.algonaut.account) throw new Error('No user logged in');
         return await this.algonaut.isOptedIntoAsset({
-            account: this.algonaut.address,
+            account: this.algonaut.account.address,
             assetId: NCC_TOKEN_INDEX
         });
     }
@@ -86,17 +62,17 @@ class NCCToken {
             const txId = tx.transaction.txID().toString();
             console.log('trying to sign this tx: ', tx);
 
-            if (!this.algonaut.AnyWalletState.activeWallet) throw new Error('No valid active wallet');
+            if (!this.algonaut.walletState.activeWallet) throw new Error('No valid active wallet');
 
             const txnArr = tx.transaction.toByte();
 
-            if (!this.algonaut.AnyWalletState.enabledWallets?.inkey) throw new Error('No valid inkey wallet');
+            if (!this.algonaut.walletState.enabledWallets?.inkey) throw new Error('No valid inkey wallet');
 
             console.log('hello this is me: ', this.algonaut);
-            const signedTxns = await this.algonaut.AnyWalletState.enabledWallets.inkey.signTransactions([txnArr]);
+            const signedTxns = await this.algonaut.walletState.enabledWallets.inkey.signTransactions([txnArr]);
             console.log(signedTxns);
 
-            const b64encoded = utils.txnBuffToB64(signedTxns[0]);
+            const b64encoded = this.algonaut.txnBuffToB64(signedTxns[0]);
 
             const response = await NCCdAPIs.call('get-access-token', {
                 address: this.address,
@@ -143,6 +119,7 @@ class NCCToken {
     public async createUserSLA(uuid: string) {
         try {
             if (!this.algonaut) throw new Error('Invalid algonaut');
+            if (!this.algonaut.account) throw new Error('No user logged in');
             const isOpted = await this.isOptedNCC();
             if (isOpted) {
                 return {
@@ -150,7 +127,7 @@ class NCCToken {
                     message: "Address already opted into NCCs",
                     error: null,
                     result: {
-                        address: this.algonaut.address,
+                        address: this.algonaut.account.address,
                         isOpted
                     }
                 } as NCCApiResponse;
@@ -178,7 +155,7 @@ class NCCToken {
                 message: "Created SLA contract for address",
                 error: null,
                 result: {
-                    address: this.algonaut.address,
+                    address: this.algonaut.account.address,
                     slaResult,
                     nccDropResult: response.result
                 }

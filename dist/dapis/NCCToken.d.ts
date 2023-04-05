@@ -1,31 +1,5 @@
 import Algonaut from "@thencc/algonautjs";
-import { NCCApiResponse } from "./types";
-export type TokenResponse = {
-    status: string;
-    message: string;
-    error: string;
-    txDetail: {
-        status: string;
-        message: string;
-        txId: string;
-    };
-};
-export type AccessTokenResponse = {
-    status: string;
-    message: string;
-    data: {
-        token: string;
-        expires: number;
-        validFor: number;
-    };
-    error: string;
-    confirmedInRound: {
-        status: string;
-        message: string;
-        txId: string;
-    };
-    dbUUID: string;
-};
+import { NCCApiResponse } from "../types";
 declare class NCCToken {
     private static instance;
     private address;

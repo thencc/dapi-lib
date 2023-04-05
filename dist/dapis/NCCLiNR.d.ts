@@ -1,13 +1,4 @@
-export type LiNRResponse = {
-    status: string;
-    message: string;
-    error: string;
-    data: {
-        status: string;
-        engine: number;
-        content: string;
-    };
-};
+import { LiNRResponse } from "../types";
 declare class NCCLiNR {
     private static instance;
     private accessToken;

@@ -1,26 +1,7 @@
-// import * as admin from 'firebase-admin';
-// import { validator } from '../../../firebase/functions/src/_shared/tokenValidator';
-
-// export type NCCdApiResponse = {
-// 	txStatus?: TTMMessage[];
-// 	requestStatus: 'success' | 'fail';
-// 	requestError?: null | string;
-// 	requestErrorMessage?: null | string;
-// 	data: any;
-// 	message: string;
-// 	valid: boolean;
-// };;
-//
 // To hit the production machine
 const APIRootURI = 'https://nccdapi.web.app';
-//
 // or to hit Localhost emulator:
-//
-
 // const APIRootURI = 'http://localhost:5001/nccdapi/us-central1/NCCdAPIsV1';
-
-//
-//
 
 function sanityCheck(apiEndpoint: string, data: any) {
 	console.log('sanity check');
@@ -32,24 +13,6 @@ function sanityCheck(apiEndpoint: string, data: any) {
 		throw new Error('you must provide an api endpoint!');
 	}
 }
-
-// // TODO think of another way to validate accessToken for get requests
-// async function validateToken(data: any) {
-// 	console.log('HI I AM IN VALIDATE TOKEN');
-
-// 	const accessToken = data.accessToken;
-
-// 	// we probably don't want to make ourselves manage the expired token response
-// 	// the validator should probably respond directly to expired tokens and halt
-// 	const tokenIsValid = await validator.validate(db, accessToken);
-// 	if (!tokenIsValid) {
-// 		console.log('NCCdAPI error: Invalid Token, tourist');
-// 	//   res.status(401).json({ error: 'invalid token' });
-// 		return false;
-// 	}
-
-// 	return true;
-//   }
 
 export const NCCdAPIs = {
 	call: async function (apiEndpoint: string, data: any, apiVersion?: string) {
@@ -84,11 +47,6 @@ export const NCCdAPIs = {
 	requestToken() { },
 	fetch: async function (apiEndpoint: string, data: any, apiVersion?: string) {
 		sanityCheck(apiEndpoint, data);
-
-		// TODO think of another way to validate accessToken for get requests
-		// const tokenIsValidAndUserCanTransact = await validateToken(data);
-		// if (!tokenIsValidAndUserCanTransact) throw new Error('Invalid token or user cannot transact');
-
 		const version = apiVersion ? apiVersion : 'v1';
 		console.log(`running fetch to ${version}/${apiEndpoint}`);
 		let jsn = {} as any;

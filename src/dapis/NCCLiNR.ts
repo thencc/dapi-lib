@@ -1,15 +1,5 @@
+import { LiNRResponse } from "../types";
 import { NCCdAPIs } from "./NCCdAPIs";
-
-export type LiNRResponse = {
-    status: string;
-    message: string;
-    error: string;
-    data: {
-        status: string;
-        engine: number;
-        content: string;
-    }
-};
 
 class NCCLiNR {
     private static instance: NCCLiNR | null;

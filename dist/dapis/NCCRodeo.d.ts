@@ -1,4 +1,4 @@
-import { MintOrgInput, UpdateOrgInput, CreateOrgInput, CreateOrgResponse, OrgAllResponse, FetchOrgResponse, FetchAllProjectsResponse, FetchProjectResponse } from "./types";
+import { MintOrgInput, UpdateOrgInput, CreateOrgInput, CreateOrgResponse, OrgAllResponse, FetchOrgResponse, FetchAllProjectsResponse, FetchProjectResponse } from "../types";
 export default class NCCRodeo {
     private static instance;
     private accessToken;

@@ -1,21 +1,5 @@
 import Algonaut from "@thencc/algonautjs";
-export type TTMConfig = {
-    apiKey: string;
-    authDomain: string;
-    projectId: string;
-    storageBucket: string;
-    messagingSenderId: string;
-    appId: string;
-};
-export type TTMMessage = {
-    id: string;
-    messageType: string;
-    messageTokens: string[];
-    messageString: string;
-    messageRound: number;
-    createdAt: any;
-    status: number;
-};
+import { TTMConfig } from "../types";
 declare class NCCTTM {
     private static instance;
     private accessToken;

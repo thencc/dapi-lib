@@ -1,5 +1,6 @@
+import { MintOrgInput, UpdateOrgInput, CreateOrgInput, CreateOrgResponse, OrgAllResponse, FetchOrgResponse, FetchAllProjectsResponse, FetchProjectResponse } from "../types";
 import { NCCdAPIs } from "./NCCdAPIs";
-import { MintOrgInput, UpdateOrgInput, CreateOrgInput, CreateOrgResponse, OrgAllResponse, FetchOrgResponse, FetchAllProjectsResponse, FetchProjectResponse } from "./types";
+
 export default class NCCRodeo {
     private static instance: NCCRodeo | null;
 

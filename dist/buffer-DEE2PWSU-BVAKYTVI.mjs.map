@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../node_modules/@thencc/algonautjs/dist/buffer-DEE2PWSU.mjs"],
-  "sourcesContent": ["import{i as a}from\"./chunk-ENGTMBWY.mjs\";export default a();\n//# sourceMappingURL=buffer-DEE2PWSU.mjs.map\n"],
-  "mappings": "gDAAAA,IAAyC,IAAOC,EAAQC,EAAE",
-  "names": ["init_shim", "buffer_DEE2PWSU_default", "or"]
-}

@@ -1,5 +1,18 @@
 import Algonaut from "@thencc/algonautjs";
 
+export enum NCCDapiTypes {
+    Rodeo = 'rodeo',
+    TTM = 'ttm',
+    LiNR = 'linr',
+    Bricks = 'bricks',
+    Peels = 'peels'
+}
+
+export type NCCDapiConfig = {
+    algonaut: Algonaut,
+    excludes?: NCCDapiTypes[]
+}
+
 export type NCCApiResponse = {
     status: 'success' | 'fail';
     result: any;
@@ -144,3 +157,116 @@ export type FetchProjectResponse = {
     route: string;
     result: ProjectGlobalState;
 }
+
+
+export type UserResponse = {
+    data: any;
+    message: string;
+    status: string;
+}
+
+export type RegisterResponse = {
+    status: string;
+    message: string;
+    contractId: number;
+    contractAddress: string;
+    result: {
+        status: string;
+        message: string;
+        txId: string;
+        createdIndex: number;
+        meta: any;
+    };
+    fundAndOptInStatus: any;
+    dataTransactionStatus: any;
+};
+
+export type DeRegisterResponse = {
+    status: string;
+    message: string;
+    contractId: number;
+    contractAddress: string;
+    result: {
+        status: string;
+        message: string;
+        txId: string;
+    }
+}
+
+export type FundOptInResponse = {
+    status: string;
+    message: string;
+    fundAndOptInStatus: {
+        status: string;
+        message: string;
+        txId: string;
+    }
+}
+
+export type OptInAppResponse = {
+    status: string;
+    message: string;
+    optInStatus: {
+        status: string;
+        message: string;
+        txId: string;
+    }
+}
+
+export type TTMConfig = {
+    apiKey: string;
+    authDomain: string;
+    projectId: string;
+    storageBucket: string;
+    messagingSenderId: string;
+    appId: string;
+}
+
+export type TTMMessage = {
+    id: string;
+    messageType: string;
+    messageTokens: string[];
+    messageString: string;
+    messageRound: number;
+    createdAt: any;
+    status: number;
+};
+
+export type TokenResponse = {
+    status: string;
+    message: string;
+    error: string;
+    txDetail: {
+        status: string;
+        message: string;
+        txId: string;
+    }
+};
+
+export type AccessTokenResponse = {
+    status: string;
+    message: string;
+    data: {
+        token: string;
+        expires: number;
+        validFor: number;
+    },
+    error: string;
+    confirmedInRound: {
+        status: string;
+        message: string;
+        txId: string;
+    },
+    dbUUID: string;
+};
+
+export type LiNRResponse = {
+    status: string;
+    message: string;
+    error: string;
+    data: {
+        status: string;
+        engine: number;
+        content: string;
+    }
+};

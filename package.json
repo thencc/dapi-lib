@@ -1,6 +1,6 @@
 {
     "name": "@thencc/dapi-lib",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "This dAPI-lib is a cute way to interface with the NCC dAPIs",
     "type": "module",
     "types": "dist/index.d.ts",
@@ -19,6 +19,7 @@
         "README.md"
     ],
     "scripts": {
+        "link": "pnpm link --global",
         "build": "rm -rf dist && run-s build:*",
         "build:cjs": "node ./esbuild.cjs.js",
         "build:esm": "node ./esbuild.esm.js",
@@ -40,7 +41,7 @@
         "url": "git@github.com:thencc/dapi-lib.git"
     },
     "dependencies": {
-        "@thencc/algonautjs": "0.3.10"
+        "@thencc/algonautjs": "0.3.17"
     },
     "optionalDependencies": {},
     "devDependencies": {

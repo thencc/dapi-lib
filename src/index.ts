@@ -1,61 +1,62 @@
-import { NCCdAPIs } from "./NCCdAPIs";
+import NCCHappyDapi from './dapis/NCCHappyDapi';
+import NCCEndUser from './end-user/NCCEndUser';
+import { NCCDapiConfig } from './types';
 
-import NCCRodeo from "./NCCRodeo";
-import NCCBricks from "./NCCBricks";
-import NCCLiNR from "./NCCLiNR";
-import NCCToken from "./NCCToken";
-import NCCTTM from "./NCCTTM";
-import NCCUser from "./NCCUser";
-import Algonaut from "@thencc/algonautjs";
+export * from './types';
+export default class dapiLib {
+    dapis: NCCHappyDapi | null = null;
+    endUser: NCCEndUser | null = null; // TODO
 
-export default class NCChappyDapi {
-    rodeo: NCCRodeo | null = null;
-    bricks: NCCBricks | null = null;
-    linr: NCCLiNR | null = null;
-    ttm: NCCTTM | null = null;
-    user: NCCUser | null = null;
+    public constructor(config: NCCDapiConfig) {
+        if (!config.algonaut) throw new Error('Invalid algonaut instance');
 
-    token: NCCToken | null = null;
-
-    algonaut: Algonaut | null = null;
-
-    docs = NCCdAPIs.call('docs', {});
-    dAPI = NCCdAPIs;
-
-    public constructor() { }
-
-    public async init(algonaut: Algonaut) {
-        // initialize ncc token
-        console.log('getting NCC Token instance...');
-        const token = await NCCToken.getInstance(algonaut);
-        console.log('initializing NCC\'s happy dapi...');
-        this.algonaut = algonaut;
-        this.token = token;
+        // Initialize Happy Dapi
+        this.dapis = new NCCHappyDapi(config.excludes);
+        this.dapis.init(config.algonaut);
+        console.log('Initialized happy dapi with algonaut instance');
     }
 
-    public static destroyAll() {
-        NCCToken.destroy();
-        NCCUser.destroy();
-        NCCRodeo.destroy();
-        NCCTTM.destroy();
-        NCCLiNR.destroy();
-        NCCBricks.destroy();
-        console.log('destroyed all services');
-    }
-
-    public startServices(accessToken: string) {
-        // if valid config, start all
-        if (!this.algonaut) return false;
-        if (this.algonaut.address && accessToken.length) {
-            this.rodeo = NCCRodeo.getInstance(accessToken);
-            this.bricks = NCCBricks.getInstance(accessToken);
-            this.linr = NCCLiNR.getInstance(accessToken);
-            this.ttm = NCCTTM.getInstance(accessToken, this.algonaut);
-            this.user = NCCUser.getInstance(accessToken);
-            console.log('started services');
-            return true;
-        }
-        return false;
-    }
 }
 
+// class dapiLib {
+//     types: {
+//         // request
+//         // response
+//     }
+//     dAPIs: {
+//         config: {
+//             // configure which dAPIs to use in dApp
+//             // algonaut config for NCCToken
+//         },
+//         NCCToken: {
+//             // required
+//             // configure SLA contract, get access token
+//         },
+//         NCCUser: {
+//             // required?
+//             // approve user requests if admin of an org ? or is this end-user?
+//         },
+//         NCCRodeo: {},
+//         NCCTTM: {},
+//         NCCLiNR: {},
+//         NCCBricks: {},
+//         NCCPeels: {}
+//     },
+// }
+
+
+/**
+ * //     endUser: {
+
+        // UUID --> contract UUID --> end user .optin
+        // RodeoOrg.addMember(uuid[]);
+        // user sitting in database, NCC transacts in place
+//             // rodeo/project vote
+//             // rodeo/task accept
+
+//             // flow for new Algo account to NCC user
+
+//             // what other API calls should we enable for end-user?
+//             //      especially if revenue stream is from NCC access token-gated dAPIs?
+//     }
+ */

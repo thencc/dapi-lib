@@ -1,58 +1,5 @@
-import { NCCdAPIs } from "../src/NCCdAPIs";
-
-export type UserResponse = {
-    data: any;
-    message: string;
-    status: string;
-}
-
-export type RegisterResponse = {
-    status: string;
-    message: string;
-    contractId: number;
-    contractAddress: string;
-    result: {
-        status: string;
-        message: string;
-        txId: string;
-        createdIndex: number;
-        meta: any;
-    };
-    fundAndOptInStatus: any;
-    dataTransactionStatus: any;
-};
-
-export type DeRegisterResponse = {
-    status: string;
-    message: string;
-    contractId: number;
-    contractAddress: string;
-    result: {
-        status: string;
-        message: string;
-        txId: string;
-    }
-}
-
-export type FundOptInResponse = {
-    status: string;
-    message: string;
-    fundAndOptInStatus: {
-        status: string;
-        message: string;
-        txId: string;
-    }
-}
-
-export type OptInAppResponse = {
-    status: string;
-    message: string;
-    optInStatus: {
-        status: string;
-        message: string;
-        txId: string;
-    }
-}
+import { NCCApiResponse, DeRegisterResponse, FundOptInResponse, UserResponse, OptInAppResponse } from "../types";
+import { NCCdAPIs } from "./NCCdAPIs";
 
 class NCCUser {
     private static instance: NCCUser | null;
@@ -84,7 +31,7 @@ class NCCUser {
                 accessToken: this.accessToken,
                 uuid: uuid,
                 creatorAddress: creatorAddr
-            }) as RegisterResponse;
+            }) as NCCApiResponse;
 
             console.log(response);
             return response
