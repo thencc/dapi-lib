@@ -190,7 +190,7 @@ class NCCToken {
                 message: 'Error in creating SLA contract',
                 error,
                 result: null
-            }
+            } as NCCApiResponse
         }
     }
 }

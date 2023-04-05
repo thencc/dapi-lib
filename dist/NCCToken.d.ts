@@ -39,11 +39,6 @@ declare class NCCToken {
     getAccessToken(): Promise<NCCApiResponse>;
     refreshNCCBal(): Promise<void>;
     getNCCs(): Promise<NCCApiResponse>;
-    createUserSLA(uuid: string): Promise<NCCApiResponse | {
-        status: string;
-        message: string;
-        error: any;
-        result: null;
-    }>;
+    createUserSLA(uuid: string): Promise<NCCApiResponse>;
 }
 export default NCCToken;
