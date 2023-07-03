@@ -1,3 +1,0 @@
-# dapi-lib
-
-Hello world
