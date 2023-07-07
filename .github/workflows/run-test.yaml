@@ -1,0 +1,17 @@
+name: Run dapi-lib tests
+
+on:
+  repository_dispatch:
+    types:
+      - trigger-action
+
+jobs:
+  run-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Run Action
+        run: |
+          # Add your desired actions to run here
