@@ -4,7 +4,8 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"test": "jest",
+		"test": "NODE_ENV=purestake jest",
+		"test:sandbox": "NODE_ENV=sandbox jest",
 		"reschema": "npm run docker-docs:build; npm run docker-docs:run; npm run docker-docs:js-sdk",
 		"preview-docs": "ts-node-esm --files ./src/generateDocs.ts; redocly preview-docs ./src/output/swagger.yaml",
 		"build-docs": "ts-node-esm --files ./src/generateDocs.ts; redocly build-docs ./src/output/swagger.yaml",

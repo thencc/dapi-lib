@@ -1,29 +1,27 @@
 import { Algonaut } from '@thencc/algonautjs';
+import * as dotenv from 'dotenv';
+dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` })
 
 // on test net, we use this temp address
-export const purserPhrase =
-    'what valley hat retreat dawn bubble science hammer hello churn slim real slush crash frequent state symptom neutral office enlist skirt broom cabbage abstract oppose';
-export const purserAddress =
-    'BHG4PLCGEYRG3POITR3IXMVFQKJ3XESAV5QR63PMSGOBDACZOLHE235SVE';
+export const purserPhrase = process.env.PURSER_PHRASE ? process.env.PURSER_PHRASE : null;
+export const purserAddress = process.env.PURSER_ADDRESS ? process.env.PURSER_ADDRESS : null;
+export const NCC_TOKEN_INDEX = process.env.NCC_TOKEN_INDEX ? process.env.NCC_TOKEN_INDEX : null;
+export const USDC_TOKEN_INDEX = process.env.USDC_TOKEN_INDEX ? process.env.USDC_TOKEN_INDEX : null;
+export const BRICKS_TOKEN_INDEX = process.env.BRICKS_TOKEN_INDEX ? process.env.BRICKS_TOKEN_INDEX : null;
+export const RICKS_TOKEN_INDEX = process.env.RICKS_TOKEN_INDEX ? process.env.RICKS_TOKEN_INDEX : null;
+export const NCC_ACCOUNT_INDEX = process.env.NCC_ACCOUNT_INDEX ? process.env.NCC_ACCOUNT_INDEX : null;
+export const NCC_TOKEN_AUTH_APP_INDEX = process.env.NCC_TOKEN_AUTH_APP_INDEX ? process.env.NCC_TOKEN_AUTH_APP_INDEX : null;
+export const BRICKS_BANK_INDEX = process.env.BRICKS_BANK_INDEX ? process.env.BRICKS_BANK_INDEX : null;
+export const NCC_SLA_INDEX_TEST_NET = process.env.NCC_SLA_INDEX_TEST_NET ? process.env.NCC_SLA_INDEX_TEST_NET : null;
+export const NCC_SLA_INDEX = process.env.NCC_SLA_INDEX ? process.env.NCC_SLA_INDEX : null;
+export const TTM_INDEX = process.env.TTM_INDEX ? process.env.TTM_INDEX : null;
 
-export const NCC_TOKEN_INDEX = 101088863;
-export const USDC_TOKEN_INDEX = 10458941;
-export const BRICKS_TOKEN_INDEX = 106237109;
-export const RICKS_TOKEN_INDEX = 106237127;
-export const NCC_ACCOUNT_INDEX = 101088323;
-export const NCC_TOKEN_AUTH_APP_INDEX = 106807887; //101209779;
-export const BRICKS_BANK_INDEX = 106236940;
-export const NCC_SLA_INDEX_TEST_NET = 110525806;
-export const NCC_SLA_INDEX = 1090801931;
-export const TTM_INDEX = 121197299;
-
-/** Prerequisite: run Algorand sandbox k8 locally */
-export const algonautSandbox = new Algonaut({
+export const algonautTest = new Algonaut({
     nodeConfig: {
-        BASE_SERVER: 'http://localhost',
-        INDEX_SERVER: 'http://localhost:8980',
-        LEDGER: 'TestNet',
-        PORT: '4001',
-        API_TOKEN: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        BASE_SERVER: process.env.BASE_SERVER ? process.env.BASE_SERVER : "",
+        INDEX_SERVER: process.env.INDEX_SERVER ? process.env.INDEX_SERVER : "",
+        LEDGER: process.env.LEDGER ? process.env.LEDGER : "",
+        PORT: process.env.PORT ? process.env.PORT : "",
+        API_TOKEN: process.env.API_TOKEN ? process.env.API_TOKEN : { "X-API-KEY": process.env.X_API_KEY }
     },
 });

@@ -1,12 +1,11 @@
 import { describe, expect, it, beforeAll } from '@jest/globals';
-import { algonautSandbox } from './algonaut';
+import { algonautTest } from './algonaut';
 import { promptAccessToken } from '../src/endUser';
 import { Dapi } from '../src/index';
 import { PeelsCreateParams, PeelsFundUserParams, PeelsGetParams, PeelsGrantParams, PeelsGrantTokensParams, PeelsListMineParams, PeelsListParams, PeelsMintParams, UserDeregisterParams, UserOptIntoAppParams, UserOptIntoTokenParams, UserRegisterParams } from '../src/model';
 import * as dotenv from 'dotenv';
 
-dotenv.config({ path: 'test/.env.sandbox' });
-console.log(`env is ${JSON.stringify(process.env)}`);
+dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` });
 const creatorMnemonic: string = process.env.CREATOR_MNEMONIC ? process.env.CREATOR_MNEMONIC : "";
 
 /**
@@ -23,7 +22,7 @@ let createdAccountContractIndex = 0;
 let toAddress = '';
 
 beforeAll(async () => {
-    const status = await algonautSandbox.checkStatus();
+    console.log(`this is algonaut: ${JSON.stringify(algonautTest)}`);
 
     const initWallet = {
         mnemonic: {
@@ -35,7 +34,9 @@ beforeAll(async () => {
 
     console.log('initWallet is: ', initWallet);
 
-    await algonautSandbox.connect(initWallet);
+    await algonautTest.connect(initWallet);
+
+    const status = await algonautTest.checkStatus();
 
     console.log(`status of algonaut is ${status}`);
 
@@ -44,11 +45,11 @@ beforeAll(async () => {
 /** Access Token */
 describe('NCC token should ', () => {
     it('generate an access token successfully', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
-        const accessTokenParams = await promptAccessToken(algonautSandbox);
-        expect(accessTokenParams.address).toEqual(algonautSandbox.account?.address);
+        const accessTokenParams = await promptAccessToken(algonautTest);
+        expect(accessTokenParams.address).toEqual(algonautTest.account?.address);
         expect(accessTokenParams.signedTx.length).toBeGreaterThan(0);
         expect(accessTokenParams.txId.length).toBeGreaterThan(0);
 
@@ -64,8 +65,8 @@ describe('NCC token should ', () => {
 /** User */
 describe('NCC user should ', () => {
     it('register a new user', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
 
@@ -74,7 +75,7 @@ describe('NCC user should ', () => {
         const registerUserParams: UserRegisterParams = {
             accessToken,
             uuid: createdAccountUUID,
-            creatorAddress: algonautSandbox.account!.address
+            creatorAddress: algonautTest.account!.address
         }
 
         const response = await DapiObj.registerAccount(registerUserParams);
@@ -85,7 +86,7 @@ describe('NCC user should ', () => {
         expect(response.result[0].createdIndex).toBeGreaterThan(0);
 
         createdAccountContractIndex = response.result[0].createdIndex;
-        const escrowAccount = algonautSandbox.getAppEscrowAccount(createdAccountContractIndex);
+        const escrowAccount = algonautTest.getAppEscrowAccount(createdAccountContractIndex);
         expect(escrowAccount.length).toBeGreaterThan(0);
         toAddress = escrowAccount;
 
@@ -95,8 +96,8 @@ describe('NCC user should ', () => {
 /** Peels */
 describe('Peels contract should ', () => {
     it('be created successfully', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
 
@@ -105,7 +106,7 @@ describe('Peels contract should ', () => {
             name: generateRandomString(10),
             meta: generateRandomString(10),
             url: generateRandomString(10),
-            creatorAddress: algonautSandbox.account!.address
+            creatorAddress: algonautTest.account!.address
         };
 
         const response = await DapiObj.createPeelsContract(createPeelsParams);
@@ -117,26 +118,26 @@ describe('Peels contract should ', () => {
 
     }, 20000);
     it('fetch contract by creator address', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
 
         const listPeelsParams: PeelsListParams = {
             accessToken,
-            creatorAddress: algonautSandbox.account!.address
+            creatorAddress: algonautTest.account!.address
         };
 
         const response = await DapiObj.listPeelsContract(listPeelsParams);
         // console.log('list peels contract is: ', response);
 
         expect(response.data.length).toBeGreaterThan(0);
-        expect(response.data[0]["creator_address"]).toEqual(algonautSandbox.account?.address);
+        expect(response.data[0]["creator_address"]).toEqual(algonautTest.account?.address);
         latestPeel = response.data[response.data.length - 1];
     }, 10000);
     it('fetch all contracts', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
 
@@ -146,8 +147,8 @@ describe('Peels contract should ', () => {
         expect(response.data.length).toBeGreaterThan(0);
     });
     it('mint a contract successfully', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
         // console.log('this is latest peel', latestPeel);
@@ -167,8 +168,8 @@ describe('Peels contract should ', () => {
         expect(response.data.txId.length).toBeGreaterThan(0);
     }, 20000);
     it('get a specific contract', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
         const getPeelParams: PeelsGetParams = {
@@ -185,8 +186,8 @@ describe('Peels contract should ', () => {
 /** User */
 describe('NCC user should ', () => {
     it('opt into an app that requires 0 appArgs', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
         expect(createdAccountUUID.length).toBeGreaterThan(0);
@@ -208,8 +209,8 @@ describe('NCC user should ', () => {
         expect(response.result.status).toEqual("success");
     }, 20000);
     it('opt into an asset', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
         expect(createdAccountUUID.length).toBeGreaterThan(0);
@@ -234,8 +235,8 @@ describe('NCC user should ', () => {
 /** Peels */
 describe('Peels contract should ', () => {
     it('grant a peel amount successfully', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
         // console.log('this is latest peel', latestPeel);
@@ -257,8 +258,8 @@ describe('Peels contract should ', () => {
         // console.log('granted latest peel is: ', response);
     }, 10000);
     it('grant tokens from a peels contract successfully', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
         // console.log('this is latest peel', latestPeel);
@@ -286,8 +287,8 @@ describe('Peels contract should ', () => {
         expect(response.result.txId.length).toBeGreaterThan(0);
     }, 10000);
     it('fund a user successfully', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
         // console.log('this is latest peel', latestPeel);
@@ -313,8 +314,8 @@ describe('Peels contract should ', () => {
 /** User */
 describe('NCC user should ', () => {
     it('be able to be deregistered', async () => {
-        expect(algonautSandbox.account).not.toBeNull();
-        expect(algonautSandbox.account?.address.length).toBeGreaterThan(0);
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
         expect(accessToken.length).toBeGreaterThan(0);
         expect(createdAccountUUID.length).toBeGreaterThan(0);

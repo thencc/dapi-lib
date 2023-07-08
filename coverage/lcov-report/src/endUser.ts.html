@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.95% </span>
+                <span class="strong">47.61% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/21</span>
+                <span class='fraction'>10/21</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80.95% </span>
+                <span class="strong">47.61% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/21</span>
+                <span class='fraction'>10/21</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -139,23 +139,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Algonaut } from '@thencc/algonautjs';
 import { AccessTokenParams } from './model';
@@ -186,23 +186,23 @@ export async function promptAccessToken(algonaut: Algonaut): Promise&lt;AccessTo
             }
         });
 &nbsp;
-        const txId = tx.transaction.txID().toString();
+        const txId = <span class="cstat-no" title="statement not covered" >tx.transaction.txID().toString();</span>
 &nbsp;
-        console.log('trying to sign');
+<span class="cstat-no" title="statement not covered" >        console.log('trying to sign');</span>
 &nbsp;
-        const signedTx = await algonaut.signTransaction([tx]);
-        const b64encoded = algonaut.txnBuffToB64(signedTx[0]);
-        console.log(b64encoded);
+        const signedTx = <span class="cstat-no" title="statement not covered" >await algonaut.signTransaction([tx]);</span>
+        const b64encoded = <span class="cstat-no" title="statement not covered" >algonaut.txnBuffToB64(signedTx[0]);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(b64encoded);</span>
 &nbsp;
-        params.address = algonaut.account.address;
-        params.txId = txId;
-        params.signedTx = b64encoded;
+<span class="cstat-no" title="statement not covered" >        params.address = algonaut.account.address;</span>
+<span class="cstat-no" title="statement not covered" >        params.txId = txId;</span>
+<span class="cstat-no" title="statement not covered" >        params.signedTx = b64encoded;</span>
 &nbsp;
-        return params;
+<span class="cstat-no" title="statement not covered" >        return params;</span>
 &nbsp;
     } catch (e: any) {
-<span class="cstat-no" title="statement not covered" >        console.error('there was an error: ', e);</span>
-<span class="cstat-no" title="statement not covered" >        return params;</span>
+        console.error('there was an error: ', e);
+        return params;
     }
 }</pre></td></tr></table></pre>
 
@@ -211,7 +211,7 @@ export async function promptAccessToken(algonaut: Algonaut): Promise&lt;AccessTo
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-05T19:31:45.892Z
+                at 2023-07-08T03:01:09.678Z
             </div>
         <script src="../prettify.js"></script>
         <script>
