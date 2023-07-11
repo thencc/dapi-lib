@@ -6,11 +6,11 @@
 	"scripts": {
 		"test": "NODE_ENV=purestake jest",
 		"test:sandbox": "NODE_ENV=sandbox jest",
-		"reschema": "npm run docker-docs:build; npm run docker-docs:run; npm run docker-docs:js-sdk",
+		"reschema": "npm run docker-docs:build --build-arg GIT_ACCESS_TOKEN=${GIT_ACCESS_TOKEN}; npm run docker-docs:run; npm run docker-docs:js-sdk",
 		"preview-docs": "ts-node-esm --files ./src/generateDocs.ts; redocly preview-docs ./src/output/swagger.yaml",
 		"build-docs": "ts-node-esm --files ./src/generateDocs.ts; redocly build-docs ./src/output/swagger.yaml",
 		"generate-types": "npx openapi-typescript ./src/output/openapi3.json -o ./src/js-sdk/schema.d.ts",
-		"docker-docs:build": "docker build --progress plain --tag docker-autodocs --build-arg GIT_ACCESS_TOKEN=${GIT_ACCESS_TOKEN} .",
+		"docker-docs:build": "docker build --progress plain --tag docker-autodocs .",
 		"docker-docs:run": "docker stop extract; docker rm extract; docker run --name extract -d docker-autodocs:latest tail -f /dev/null; docker cp extract:/autodoc/ncc-dapis/src/output ./output/; docker cp extract:/autodoc/ncc-dapis/redoc-static.html ./output/index.html",
 		"docker-docs:js-sdk": "npx openapi-typescript ./output/openapi3.yaml -o src/schema.d.ts"
 	},

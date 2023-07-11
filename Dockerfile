@@ -9,7 +9,6 @@ RUN apk update && apk add git
 # Set the working directory and config
 WORKDIR /autodoc
 ARG GIT_ACCESS_TOKEN
-# RUN git config --global url."https://{GIT_ACCESS_TOKEN}:@github.com/".insteadOf "https://github.com/"
 
 # Set database env variables
 ARG DATABASE_HOST_ARG
@@ -24,10 +23,6 @@ RUN git clone https://${GIT_ACCESS_TOKEN}:@github.com/thencc/NCC_dAPIs.git /repo
     rm -rf /repo/.git && \
     cp -R /repo/workers/ncc-dapis/ . && \
     cp /repo/workers/ncc-dapis/autodocs-package.json ./package.json
-# RUN git clone https://github.com/thencc/NCC_dAPIs.git /repo
-# COPY --from=0 /repo/workers/ncc-dapis/ .
-# COPY /repo/workers/ncc-dapis/autodocs-package.json ./package.json
-# COPY ./workers/ncc-dapis/autodocs-package.json ./package.json
 
 # Install dependencies
 RUN npm install --legacy-peer-deps
