@@ -1,6 +1,7 @@
 name: Docker docs
 
-on: workflow_call
+on: workflow_dispatch
+# on: workflow_call
 
 jobs:
   build:
@@ -17,7 +18,7 @@ jobs:
           DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
           DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
         run: |
-          docker build --progress plain --tag docker-autodocs --build-arg GIT_ACCESS_TOKEN=$GIT_ACCESS_TOKEN --build-arg DATABASE_HOST_ARG=$DATABASE_HOST --build-arg DATABASE_USERNAME_ARG=$DATABASE_USERNAME --build-arg DATABASE_PASSWORD_ARG=$DATABASE_PASSWORD .
+          docker build --progress plain --tag docker-autodocs --build-arg GIT_ACCESS_TOKEN=${{ secrets.GIT_ACCESS_TOKEN }} --build-arg DATABASE_HOST_ARG=$DATABASE_HOST --build-arg DATABASE_USERNAME_ARG=$DATABASE_USERNAME --build-arg DATABASE_PASSWORD_ARG=$DATABASE_PASSWORD .
           npm run docker-docs:run
       - name: Upload docs html as artifact
         uses: actions/upload-artifact@v3
