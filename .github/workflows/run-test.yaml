@@ -16,4 +16,4 @@ jobs:
           npm install
           npm run test
   publish-docs:
-    uses: thencc/dapi-lib/.github/workflows/publish-docs.yaml@main
+    uses: .github/workflows/publish-docs.yaml@main
