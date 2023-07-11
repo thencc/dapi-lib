@@ -14,12 +14,12 @@ ARG GIT_ACCESS_TOKEN
 ARG DATABASE_HOST_ARG
 ARG DATABASE_USERNAME_ARG
 ARG DATABASE_PASSWORD_ARG
-ENV DATABASE_HOST={DATABASE_HOST_ARG}
-ENV DATABASE_USERNAME={DATABASE_USERNAME_ARG}
-ENV DATABASE_PASSWORD={DATABASE_PASSWORD_ARG}
+ENV DATABASE_HOST=$DATABASE_HOST_ARG
+ENV DATABASE_USERNAME=$DATABASE_USERNAME_ARG
+ENV DATABASE_PASSWORD=$DATABASE_PASSWORD_ARG
 
 # Clone the Git repository
-RUN git clone https://${GIT_ACCESS_TOKEN}:@github.com/thencc/NCC_dAPIs.git /repo && \
+RUN git clone https://$GIT_ACCESS_TOKEN:@github.com/thencc/NCC_dAPIs.git /repo && \
     rm -rf /repo/.git && \
     cp -R /repo/workers/ncc-dapis/ . && \
     cp /repo/workers/ncc-dapis/autodocs-package.json ./package.json
