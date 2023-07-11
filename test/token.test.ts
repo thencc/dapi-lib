@@ -22,7 +22,7 @@ let createdAccountContractIndex = 0;
 let toAddress = '';
 
 beforeAll(async () => {
-    console.log(`this is algonaut: ${JSON.stringify(algonautTest)}`);
+    // console.log(`this is algonaut: ${JSON.stringify(algonautTest)}`);
 
     const initWallet = {
         mnemonic: {
@@ -32,13 +32,13 @@ beforeAll(async () => {
         }
     };
 
-    console.log('initWallet is: ', initWallet);
+    // console.log('initWallet is: ', initWallet);
 
     await algonautTest.connect(initWallet);
 
     const status = await algonautTest.checkStatus();
 
-    console.log(`status of algonaut is ${status}`);
+    // console.log(`status of algonaut is ${status}`);
 
 });
 
@@ -54,7 +54,7 @@ describe('NCC token should ', () => {
         expect(accessTokenParams.txId.length).toBeGreaterThan(0);
 
         const response = await DapiObj.getAccessToken(accessTokenParams);
-        console.log('ncc token response is: ', response);
+        // console.log('ncc token response is: ', response);
         expect(response.status).toEqual("success");
         accessToken = response.result.token;
 
@@ -177,7 +177,7 @@ describe('Peels contract should ', () => {
             contractId: latestPeel.appIndex
         };
         const response = await DapiObj.getPeel(getPeelParams);
-        console.log(`response is ${JSON.stringify(response)}`);
+        // console.log(`response is ${JSON.stringify(response)}`);
         expect(response.data.address.length).toBeGreaterThan(0);
         latestPeel = response.data;
     });
@@ -217,8 +217,8 @@ describe('NCC user should ', () => {
         expect(Object.keys(latestPeel).length).toBeGreaterThan(0);
 
         const tokenIndex = parseInt(latestPeel.tokenIndex);
-        console.log(`latest peel is ${JSON.stringify(latestPeel)}`);
-        console.log(`token index is ${tokenIndex}`);
+        // console.log(`latest peel is ${JSON.stringify(latestPeel)}`);
+        // console.log(`token index is ${tokenIndex}`);
 
         const optIntoAssetParams: UserOptIntoTokenParams = {
             accessToken,
@@ -325,7 +325,7 @@ describe('NCC user should ', () => {
             uuid: createdAccountUUID
         };
         const response = await DapiObj.deregisterAccount(deregisterParams);
-        console.log(`this is the response for register ${JSON.stringify(response)}`);
+        // console.log(`this is the response for register ${JSON.stringify(response)}`);
         expect(response.status).toEqual("success");
     }, 10000);
 });
