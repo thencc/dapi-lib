@@ -165,7 +165,8 @@ export const NCC_TOKEN_INDEX = 101088863;
 export const NCC_SLA_INDEX = 110525806;
 
 // prod URL for Workers dAPIs
-const APIRootURI = 'https://dapis.thencc.workers.dev';
+const APIRootURI = 'https://dapis-testnet.thencc.workers.dev';
+// const APIRootURI = 'https://dapis.thencc.workers.dev';
 // local URL for Workers sAPIs
 // const APIRootURI = 'http://127.0.0.1:8787';
 
