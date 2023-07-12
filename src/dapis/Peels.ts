@@ -1,5 +1,5 @@
-import { PeelsCreateParams, ValidUrl, PeelsListParams, PeelsListMineParams, PeelsGetParams, PeelsMintParams, PeelsGrantParams, PeelsGrantTokensParams, PeelsFundUserParams } from "./model";
-import { postRequest } from "./utils";
+import { PeelsCreateParams, ValidUrl, PeelsListParams, PeelsListMineParams, PeelsGetParams, PeelsMintParams, PeelsGrantParams, PeelsGrantTokensParams, PeelsFundUserParams } from "../model";
+import { postRequest } from "../utils";
 
 export class Peels {
     constructor() {

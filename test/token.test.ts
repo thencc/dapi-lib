@@ -9,7 +9,8 @@ dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` });
 const creatorMnemonic: string = process.env.CREATOR_MNEMONIC ? process.env.CREATOR_MNEMONIC : "";
 
 /**
- * Prerequesites:
+ * On default, the tests will run with Purestake nodes, but you can also use a locally deployed sandbox
+ * Prerequisites if you want to use sandbox:
  * - ./sandbox up
  * - export 1 sandbox mnemonic as $CREATOR_MNEMONIC env variable
  */

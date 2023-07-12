@@ -19,16 +19,25 @@ ENV DATABASE_USERNAME=${DATABASE_USERNAME_ARG}
 ENV DATABASE_PASSWORD=${DATABASE_PASSWORD_ARG}
 
 # Clone the Git repository
-RUN git clone https://${GIT_ACCESS_TOKEN}:@github.com/thencc/NCC_dAPIs.git /repo && \
-    rm -rf /repo/.git && \
-    cp -R /repo/workers/ncc-dapis/ . && \
-    cp /repo/workers/ncc-dapis/autodocs-package.json ./package.json
+# Note: instantiating CACHEBUST forces clean git clone on the following line
+ARG CACHEBUST=1
+RUN echo "The value of CACHEBUST is: $CACHEBUST" 
+RUN git clone https://${GIT_ACCESS_TOKEN}:@github.com/thencc/NCC_dAPIs.git /repo \
+    && rm -rf /repo/.git \
+    && rm /repo/workers/ncc-dapis/package.json \
+    && mv /repo/workers/ncc-dapis/autodocs-package.json /repo/workers/ncc-dapis/package.json \
+    && cp -R /repo/workers/ncc-dapis . 
+WORKDIR /autodoc/ncc-dapis
 
 # Install dependencies
-RUN npm install --legacy-peer-deps
+RUN echo "//npm.pkg.github.com/:_authToken=${GIT_ACCESS_TOKEN}" > .npmrc \
+    && echo "@thencc:registry=https://npm.pkg.github.com/" >> .npmrc \
+    && npm install --legacy-peer-deps \
+    && rm -f .npmrc
 RUN npm i -g @redocly/cli@latest
 
 # COPY . .
 
-# Build documentation on start
-CMD [ "npm", "run", "build-docs" ]
+# Build documentation 
+RUN npm run docker:build-docs
+# CMD [ "npm", "run", "docker:build-docs" ]

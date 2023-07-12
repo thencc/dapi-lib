@@ -1,9 +1,11 @@
-import { Peels } from './Peels';
-import { TTM } from './TTM';
-import { User } from './User';
+import { Bricks } from './dapis/Bricks';
+import { Impression } from './dapis/Impression';
+import { LiNR } from './dapis/LiNR';
+import { Peels } from './dapis/Peels';
+import { TTM } from './dapis/TTM';
+import { User } from './dapis/User';
 import {
     ValidUrl,
-    CreateMilestoneParams,
     AccessTokenParams,
     ListAccountsParams
 } from './model';
@@ -15,11 +17,17 @@ export class Dapi {
         this.peels = new Peels();
         this.user = new User();
         this.ttm = new TTM();
+        this.bricks = new Bricks();
+        this.impression = new Impression();
+        this.linr = new LiNR();
     }
 
     peels: Peels;
     user: User;
     ttm: TTM;
+    bricks: Bricks;
+    impression: Impression;
+    linr: LiNR;
 
     /** TOKEN */
     public async getAccessToken(params: AccessTokenParams) {
@@ -34,19 +42,5 @@ export class Dapi {
     public async listAccounts(params: ListAccountsParams) {
         const path: ValidUrl = '/list-accounts';
         return await postRequest(path, params);
-    }
-
-    /** Rodeo */
-    public createMilestone(params: CreateMilestoneParams) {
-        const url: ValidUrl = '/rodeo/milestone/create';
-
-        // const url = "/evolutions/{id}".replace("{id}", params.id);
-        // // or try this
-        // const { id } = params;
-        // const url = `/evolutions/${id}`;
-
-        // TODO make client
-        // must be flexible between firebase and cloudflare, with a priority on cloudflare
-        // also write tests
     }
 }

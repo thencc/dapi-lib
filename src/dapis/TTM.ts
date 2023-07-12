@@ -1,5 +1,5 @@
-import { TTMReceiveParams, TTMSendParams, UserDeregisterParams, ValidUrl } from "./model";
-import { postRequest } from "./utils";
+import { TTMReceiveParams, TTMSendParams, ValidUrl } from "../model";
+import { postRequest } from "../utils";
 
 export class TTM {
     constructor() { }

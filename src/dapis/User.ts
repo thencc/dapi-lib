@@ -1,5 +1,5 @@
-import { UserRegisterParams, ValidUrl, UserDeregisterParams, UserOptIntoAppParams, UserOptIntoTokenParams } from "./model";
-import { postRequest } from "./utils";
+import { UserRegisterParams, ValidUrl, UserDeregisterParams, UserOptIntoAppParams, UserOptIntoTokenParams } from "../model";
+import { postRequest } from "../utils";
 
 export class User {
     constructor() {

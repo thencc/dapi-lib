@@ -4,12 +4,12 @@ info:
   version: "0.0.0"
   description: ""
 paths:
-  /bricks/deploy-media:
+  /bricks/create:
     post:
       tags:
         - "Bricks"
-      summary: "DeployMedia"
-      description: "Deploy Media"
+      summary: "CreateBrick"
+      description: "Create Brick"
       parameters: []
       requestBody:
         required: true
@@ -19,34 +19,80 @@ paths:
               properties:
                 accessToken:
                   type: "string"
-                  description: "Valid NCC access token"
-                uuid:
-                  type: "string"
-                  description: "UUID of active NCC user"
+                  description: "Valid access token"
                 name:
                   type: "string"
-                  description: "Name of media"
-                metadata:
+                  description: "Name"
+                meta:
                   type: "string"
-                  description: "Metadata of media"
-                price:
-                  type: "number"
-                  description: "Price of media"
-                publicPerformancePrice:
-                  type: "number"
-                  description: "Public performance price of media"
-                creatorAddress:
+                  description: "Metadata"
+                url:
                   type: "string"
-                  description: "Creator's Algorand address"
+                  description: "URL"
               type: "object"
               required:
                 - "accessToken"
-                - "uuid"
                 - "name"
-                - "metadata"
-                - "price"
-                - "publicPerformancePrice"
-                - "creatorAddress"
+                - "meta"
+                - "url"
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail'"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of result, TODO fix this"
+                    required:
+                      - "message"
+                  error:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of error, TODO fix this nested obj"
+                    required:
+                      - "message"
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
+  /bricks/fund-user:
+    post:
+      tags:
+        - "Bricks"
+      summary: "FundUser"
+      description: "Funds user"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                address:
+                  type: "string"
+                  description: "Address"
+                contractId:
+                  type: "string"
+                  description: "Contract ID"
+              type: "object"
+              required:
+                - "address"
+                - "contractId"
       responses:
         200:
           description: "A successful response"
@@ -65,7 +111,7 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of result, TODO update this to be accurate"
+                        description: "Message of result, TODO fix this"
                     required:
                       - "message"
                   error:
@@ -73,7 +119,127 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of error, TODO update this to be accurate"
+                        description: "Message of error, TODO fix this nested obj"
+                    required:
+                      - "message"
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
+  /bricks/grant:
+    post:
+      tags:
+        - "Bricks"
+      summary: "GrantBrick"
+      description: "Grants Brick"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                accessToken:
+                  type: "string"
+                  description: "Valid access token"
+                appId:
+                  type: "number"
+                  description: "App index"
+                grantToAddress:
+                  type: "string"
+                  description: "Address to grant"
+                tokenId:
+                  type: "number"
+                  description: "Token index"
+                totalGrant:
+                  type: "number"
+                  description: "Total number of tokens to grant"
+              type: "object"
+              required:
+                - "accessToken"
+                - "appId"
+                - "grantToAddress"
+                - "tokenId"
+                - "totalGrant"
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of result, TODO fix this"
+                    required:
+                      - "message"
+                  error:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of error, TODO fix this nested obj"
+                    required:
+                      - "message"
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
+  /bricks/list-all:
+    post:
+      tags:
+        - "Bricks"
+      summary: "ListAllBricks"
+      description: "Lists all Bricks"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties: {}
+              type: "object"
+              required: []
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of result, TODO fix this"
+                    required:
+                      - "message"
+                  error:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of error, TODO fix this nested obj"
                     required:
                       - "message"
                 type: "object"
@@ -86,8 +252,8 @@ paths:
     post:
       tags:
         - "Bricks"
-      summary: "ListBricks"
-      description: "List Bricks"
+      summary: "ListBrick"
+      description: "Lists Brick"
       parameters: []
       requestBody:
         required: true
@@ -97,10 +263,10 @@ paths:
               properties:
                 accessToken:
                   type: "string"
-                  description: "Valid NCC access token"
+                  description: "Valid access token"
                 creatorAddress:
                   type: "string"
-                  description: "Creator's Algonaut address"
+                  description: "Creator's Algorand address"
               type: "object"
               required:
                 - "accessToken"
@@ -123,7 +289,7 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of result, TODO update this to be accurate"
+                        description: "Message of result, TODO fix this"
                     required:
                       - "message"
                   error:
@@ -131,7 +297,7 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of error, TODO update this to be accurate"
+                        description: "Message of error, TODO fix this nested obj"
                     required:
                       - "message"
                 type: "object"
@@ -140,12 +306,12 @@ paths:
                   - "message"
                   - "result"
                   - "error"
-  /bricks/send:
+  /bricks/mint:
     post:
       tags:
         - "Bricks"
-      summary: "SendBricks"
-      description: "Send Bricks"
+      summary: "MintBrick"
+      description: "Mints Brick"
       parameters: []
       requestBody:
         required: true
@@ -155,26 +321,26 @@ paths:
               properties:
                 accessToken:
                   type: "string"
-                  description: "Valid NCC access token"
-                uuid:
-                  type: "string"
-                  description: "Active NCC user uuid"
-                amount:
-                  type: "number"
-                  description: "Amount of Bricks to send"
-                toAddress:
-                  type: "string"
-                  description: "Recipient address of transaction"
-                toAppIndex:
+                  description: "Valid access token"
+                appId:
                   type: "number"
                   description: "App index"
+                tokenName:
+                  type: "string"
+                  description: "Token name"
+                tokenUrl:
+                  type: "string"
+                  description: "Token URL"
+                totalTokens:
+                  type: "number"
+                  description: "Total number of tokens"
               type: "object"
               required:
                 - "accessToken"
-                - "uuid"
-                - "amount"
-                - "toAddress"
-                - "toAppIndex"
+                - "appId"
+                - "tokenName"
+                - "tokenUrl"
+                - "totalTokens"
       responses:
         200:
           description: "A successful response"
@@ -193,7 +359,7 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of result, TODO update this to be accurate"
+                        description: "Message of result, TODO fix this"
                     required:
                       - "message"
                   error:
@@ -201,7 +367,7 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of error, TODO update this to be accurate"
+                        description: "Message of error, TODO fix this nested obj"
                     required:
                       - "message"
                 type: "object"
@@ -210,12 +376,12 @@ paths:
                   - "message"
                   - "result"
                   - "error"
-  /bricks/send-rick:
+  /impression/create:
     post:
       tags:
-        - "Bricks"
-      summary: "SendRicks"
-      description: "Send Ricks"
+        - "Impression"
+      summary: "CreateImpression"
+      description: "Create Impression"
       parameters: []
       requestBody:
         required: true
@@ -225,26 +391,18 @@ paths:
               properties:
                 accessToken:
                   type: "string"
-                  description: "Valid NCC access token"
+                  description: "Valid access token"
                 uuid:
                   type: "string"
-                  description: "Active NCC user uuid"
-                amount:
-                  type: "number"
-                  description: "Amount of Ricks to send"
-                toAddress:
+                  description: "NCC user ID"
+                creatorAddress:
                   type: "string"
-                  description: "Recipient address of transaction"
-                toAppIndex:
-                  type: "number"
-                  description: "App index"
+                  description: "Valid Algorand address of creator"
               type: "object"
               required:
                 - "accessToken"
                 - "uuid"
-                - "amount"
-                - "toAddress"
-                - "toAppIndex"
+                - "creatorAddress"
       responses:
         200:
           description: "A successful response"
@@ -263,7 +421,7 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of result, TODO update this to be accurate"
+                        description: "Message of result, TODO fix this"
                     required:
                       - "message"
                   error:
@@ -271,7 +429,159 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of error, TODO update this to be accurate"
+                        description: "Message of error, TODO fix this nested obj"
+                    required:
+                      - "message"
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
+  /impression/update-all:
+    post:
+      tags:
+        - "Impression"
+      summary: "UpdateAllImpressions"
+      description: "Updates all Impressions"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                accessToken:
+                  type: "string"
+                  description: "Valid access token"
+                uuid:
+                  type: "string"
+                  description: "NCC user ID"
+                unique:
+                  type: "number"
+                  description: "Unique"
+                total:
+                  type: "number"
+                  description: "Total"
+                exposure:
+                  type: "number"
+                  description: "Exposure"
+                engagement:
+                  type: "number"
+                  description: "Engagement"
+                conversion:
+                  type: "number"
+                  description: "Conversion"
+                relevence:
+                  type: "number"
+                  description: "Relevence"
+                revenue:
+                  type: "number"
+                  description: "Revenue"
+              type: "object"
+              required:
+                - "accessToken"
+                - "uuid"
+                - "unique"
+                - "total"
+                - "exposure"
+                - "engagement"
+                - "conversion"
+                - "relevence"
+                - "revenue"
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of result, TODO fix this"
+                    required:
+                      - "message"
+                  error:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of error, TODO fix this nested obj"
+                    required:
+                      - "message"
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
+  /impression/update-one:
+    post:
+      tags:
+        - "Impression"
+      summary: "UpdateOneImpression"
+      description: "Updates one Impression"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                accessToken:
+                  type: "string"
+                  description: "Valid access token"
+                uuid:
+                  type: "string"
+                  description: "NCC user ID"
+                field:
+                  type: "string"
+                  description: "Field"
+                value:
+                  type: "string"
+                  description: "Value"
+              type: "object"
+              required:
+                - "accessToken"
+                - "uuid"
+                - "field"
+                - "value"
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of result, TODO fix this"
+                    required:
+                      - "message"
+                  error:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of error, TODO fix this nested obj"
                     required:
                       - "message"
                 type: "object"
@@ -284,8 +594,8 @@ paths:
     post:
       tags:
         - "LiNR"
-      summary: "LiNRMedia"
-      description: "LiNR Media"
+      summary: "LinrMedia"
+      description: "Ask LiNR media engine"
       parameters: []
       requestBody:
         required: true
@@ -293,21 +603,17 @@ paths:
           application/json:
             schema:
               properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
                 qText:
                   type: "string"
-                  description: "Question to ask LiNR"
+                  description: "Question"
                 ctx:
                   type: "string"
-                  description: "Context to provide LiNR"
+                  description: "Context"
                 respLength:
-                  type: "number"
-                  description: "Length of response"
+                  type: "string"
+                  description: "Response length"
               type: "object"
               required:
-                - "accessToken"
                 - "qText"
                 - "ctx"
                 - "respLength"
@@ -329,7 +635,7 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of result, TODO update this to be accurate"
+                        description: "Message of result, TODO fix this"
                     required:
                       - "message"
                   error:
@@ -337,7 +643,7 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of error, TODO update this to be accurate"
+                        description: "Message of error, TODO fix this nested obj"
                     required:
                       - "message"
                 type: "object"
@@ -350,8 +656,8 @@ paths:
     post:
       tags:
         - "LiNR"
-      summary: "LiNRMusic"
-      description: "LiNR Music"
+      summary: "LinrMusic"
+      description: "Ask LiNR music engine"
       parameters: []
       requestBody:
         required: true
@@ -359,21 +665,17 @@ paths:
           application/json:
             schema:
               properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
                 qText:
                   type: "string"
-                  description: "Question to ask LiNR"
+                  description: "Question"
                 ctx:
                   type: "string"
-                  description: "Context to provide LiNR"
+                  description: "Context"
                 respLength:
-                  type: "number"
-                  description: "Length of response"
+                  type: "string"
+                  description: "Response length"
               type: "object"
               required:
-                - "accessToken"
                 - "qText"
                 - "ctx"
                 - "respLength"
@@ -395,7 +697,7 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of result, TODO update this to be accurate"
+                        description: "Message of result, TODO fix this"
                     required:
                       - "message"
                   error:
@@ -403,512 +705,7 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /rodeo/milestone/{id}:
-    post:
-      tags:
-        - "Milestone"
-      summary: "MilestoneValidateAdmin"
-      description: "Validates admin privileges for milestone"
-      parameters:
-        - in: "query"
-          name: "id"
-          description: "App index of milestone to check"
-          required: true
-          schema:
-            type: "string"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                route:
-                  type: "string"
-                  description: "For this endpoint, route is 'isAdmin'"
-                uuid:
-                  type: "string"
-                  description: "UUID of active NCC user"
-              type: "object"
-              required:
-                - "accessToken"
-                - "route"
-                - "uuid"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /rodeo/milestone/create:
-    post:
-      tags:
-        - "Milestone"
-      summary: "MilestoneCreate"
-      description: "Creates a new milestone"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                route:
-                  type: "string"
-                  description: "For this endpoint, route is 'create'"
-                uuid:
-                  type: "string"
-                  description: "UUID of active NCC user"
-                creatorAddress:
-                  type: "string"
-                  description: "Algorand address of milestone creator"
-                url:
-                  type: "string"
-                  description: "URL of new milestone"
-                title:
-                  type: "string"
-                  description: "Title of new milestone"
-                description:
-                  type: "string"
-                  description: "Description of new milestone"
-                data:
-                  type: "string"
-                  description: "Data of new milestone"
-                project_id:
-                  type: "string"
-                  description: "Project ID to associate new project"
-                approverUUID:
-                  type: "string"
-                  description: "UUID of NCC user to be approver of milestone"
-              type: "object"
-              required:
-                - "accessToken"
-                - "route"
-                - "uuid"
-                - "creatorAddress"
-                - "url"
-                - "title"
-                - "description"
-                - "data"
-                - "project_id"
-                - "approverUUID"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /rodeo/milestone/all:
-    post:
-      tags:
-        - "Milestone"
-      summary: "MilestoneFetchByProject"
-      description: "Fetches all milestones by project"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                route:
-                  type: "string"
-                  description: "For this endpoint, route is 'fetchByProjectId'"
-                uuid:
-                  type: "string"
-                  description: "UUID of active NCC user"
-                project_id:
-                  type: "string"
-                  description: "Project index associated with milestones to be fetched"
-              type: "object"
-              required:
-                - "accessToken"
-                - "route"
-                - "uuid"
-                - "project_id"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /rodeo/test:
-    post:
-      tags:
-        - "Org"
-      summary: "FetchAllOrgs"
-      description: "Get all orgs"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                uuid:
-                  type: "string"
-                  description: "Active NCC user uuid"
-              type: "object"
-              required:
-                - "accessToken"
-                - "uuid"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /rodeo/org/{name}:
-    post:
-      tags:
-        - "Org"
-      summary: "OrgUpdate"
-      description: "Updates an existing organization"
-      parameters:
-        - in: "query"
-          name: "name"
-          description: "Name of organization to update"
-          required: true
-          schema:
-            type: "string"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                route:
-                  type: "string"
-                  description: "For this endpoint, route is 'update'"
-                uuid:
-                  type: "string"
-                  description: "UUID of active NCC user"
-                edits:
-                  type: "object"
-                  properties:
-                    data:
-                      type: "string"
-                      description: "Data to update in organization, TODO update this to be accurate"
-                  required:
-                    - "data"
-              type: "object"
-              required:
-                - "accessToken"
-                - "route"
-                - "uuid"
-                - "edits"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /rodeo/org/create:
-    post:
-      tags:
-        - "Org"
-      summary: "OrgCreate"
-      description: "Create new Rodeo organization"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                orgName:
-                  type: "string"
-                  description: "Name of organization"
-                url:
-                  type: "string"
-                  description: "Url of organization"
-                description:
-                  type: "string"
-                  description: "Description of organization"
-                totalMembers:
-                  type: "string"
-                  description: "Number of total members"
-                totalAdmins:
-                  type: "string"
-                  description: "Number of total admins"
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                creatorAddress:
-                  type: "string"
-                  description: "Algorand address of organization creator"
-              type: "object"
-              required:
-                - "orgName"
-                - "url"
-                - "description"
-                - "totalMembers"
-                - "totalAdmins"
-                - "accessToken"
-                - "creatorAddress"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /rodeo/org/{appId}:
-    post:
-      tags:
-        - "Org"
-      summary: "OrgFetchByAppId"
-      description: "Fetch organization by app ID"
-      parameters:
-        - in: "query"
-          name: "appId"
-          description: "App index of organization to fetch"
-          required: true
-          schema:
-            type: "string"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                route:
-                  type: "string"
-                  description: "The route value of this endpoint is 'fetchByAppId'"
-                uuid:
-                  type: "string"
-                  description: "UUID of active NCC user"
-              type: "object"
-              required:
-                - "accessToken"
-                - "route"
-                - "uuid"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
+                        description: "Message of error, TODO fix this nested obj"
                     required:
                       - "message"
                 type: "object"
@@ -1624,226 +1421,6 @@ paths:
                 type: "object"
                 required:
                   - "data"
-  /rodeo/project/{id}:
-    post:
-      tags:
-        - "Project"
-      summary: "ProjectVote"
-      description: "Votes on project"
-      parameters:
-        - in: "query"
-          name: "id"
-          description: "App index of project to vote on"
-          required: true
-          schema:
-            type: "string"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                uuid:
-                  type: "string"
-                  description: "UUID of active NCC user"
-                route:
-                  type: "string"
-                  description: "For this endpoint, route is 'vote'"
-                vote:
-                  type: "string"
-                  description: "Value of vote"
-              type: "object"
-              required:
-                - "accessToken"
-                - "uuid"
-                - "route"
-                - "vote"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /rodeo/project/create:
-    post:
-      tags:
-        - "Project"
-      summary: "ProjectCreate"
-      description: "Creates a new project"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                route:
-                  type: "string"
-                  description: "For this endpoint, route is 'create'"
-                uuid:
-                  type: "string"
-                  description: "UUID of active NCC user"
-                creatorAddress:
-                  type: "string"
-                  description: "Algorand address of project creator"
-                url:
-                  type: "string"
-                  description: "URL of new project"
-                title:
-                  type: "string"
-                  description: "Title of new project"
-                description:
-                  type: "string"
-                  description: "Description of new project"
-                org_id:
-                  type: "string"
-                  description: "Org ID to associate new project"
-              type: "object"
-              required:
-                - "accessToken"
-                - "route"
-                - "uuid"
-                - "creatorAddress"
-                - "url"
-                - "title"
-                - "description"
-                - "org_id"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /rodeo/project/all:
-    post:
-      tags:
-        - "Project"
-      summary: "ProjectFetchAllByOrg"
-      description: "Fetch all projects by organization ID"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                route:
-                  type: "string"
-                  description: "For this endpoint, route is 'fetchByOrgId'"
-                uuid:
-                  type: "string"
-                  description: "UUID of active NCC user"
-                org_id:
-                  type: "string"
-                  description: "ID of organization"
-              type: "object"
-              required:
-                - "accessToken"
-                - "route"
-                - "uuid"
-                - "org_id"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
   /ttm/receive:
     post:
       tags:
@@ -1895,20 +1472,12 @@ paths:
                     description: "Message of response"
                   result:
                     type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
+                    properties: {}
+                    required: []
                   error:
                     type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
+                    properties: {}
+                    required: []
                 type: "object"
                 required:
                   - "status"
@@ -1961,74 +1530,12 @@ paths:
                     description: "Message of response"
                   result:
                     type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
+                    properties: {}
+                    required: []
                   error:
                     type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /get-nccs:
-    post:
-      tags:
-        - "Token"
-      summary: "GetNCCs"
-      description: "Get NCCs"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                address:
-                  type: "string"
-                  description: "Algorand address to receive testnet NCC tokens"
-              type: "object"
-              required:
-                - "address"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
+                    properties: {}
+                    required: []
                 type: "object"
                 required:
                   - "status"
@@ -2101,64 +1608,6 @@ paths:
                   - "message"
                   - "result"
                   - "error"
-  /deregister-account:
-    post:
-      tags:
-        - "User"
-      summary: "DeRegisterUser"
-      description: "De-register a user account"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                uuid:
-                  type: "string"
-                  description: "Active NCC user uuid to de-register"
-              type: "object"
-              required:
-                - "accessToken"
-                - "uuid"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
   /user/deregister:
     post:
       tags:
@@ -2209,72 +1658,6 @@ paths:
                       message:
                         type: "string"
                         description: "String of error, TODO fix this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /fund-account:
-    post:
-      tags:
-        - "User"
-      summary: "FundUser"
-      description: "Fund a user account"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                uuid:
-                  type: "string"
-                  description: "Active NCC user uuid to fund"
-                asaId:
-                  type: "number"
-                  description: "ID of asset to fund, defaults to Algo"
-                amount:
-                  type: "number"
-                  description: "Amount to fund user"
-              type: "object"
-              required:
-                - "accessToken"
-                - "uuid"
-                - "asaId"
-                - "amount"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
                     required:
                       - "message"
                 type: "object"
@@ -2419,72 +1802,6 @@ paths:
                   - "message"
                   - "result"
                   - "error"
-  /opt-user-into-app:
-    post:
-      tags:
-        - "User"
-      summary: "OptUserApp"
-      description: "Opt user account into app"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                uuid:
-                  type: "string"
-                  description: "Active NCC user uuid to opt-in"
-                appId:
-                  type: "number"
-                  description: "ID of app to opt-in"
-                appArgs:
-                  type: "string"
-                  description: "Comma-separated string of app arguments, up to 8"
-              type: "object"
-              required:
-                - "accessToken"
-                - "uuid"
-                - "appId"
-                - "appArgs"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
   /user/opt-into-token:
     post:
       tags:
@@ -2547,68 +1864,6 @@ paths:
                   - "message"
                   - "result"
                   - "error"
-  /opt-account-into-token:
-    post:
-      tags:
-        - "User"
-      summary: "OptUserToken"
-      description: "Opt user account into token"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                uuid:
-                  type: "string"
-                  description: "Active NCC user uuid to opt-in"
-                asaId:
-                  type: "number"
-                  description: "ID of asset to opt-in, defaults to Algo"
-              type: "object"
-              required:
-                - "accessToken"
-                - "uuid"
-                - "asaId"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
   /user/register:
     post:
       tags:
@@ -2651,64 +1906,10 @@ paths:
                     description: "Message of response"
                   result:
                     type: "object"
-                    properties: {}
-                    required: []
-                  error:
-                    type: "object"
-                    properties: {}
-                    required: []
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /register-account:
-    post:
-      tags:
-        - "User"
-      summary: "RegisterUser"
-      description: "Register a user account"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                uuid:
-                  type: "string"
-                  description: "Active NCC user uuid"
-                creatorAddress:
-                  type: "string"
-                  description: "Algorand address of creator"
-              type: "object"
-              required:
-                - "accessToken"
-                - "uuid"
-                - "creatorAddress"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
                     properties:
                       message:
                         type: "string"
-                        description: "Message of result, TODO update this to be accurate"
+                        description: "Message of result, TODO fix this"
                     required:
                       - "message"
                   error:
@@ -2716,69 +1917,7 @@ paths:
                     properties:
                       message:
                         type: "string"
-                        description: "Message of error, TODO update this to be accurate"
-                    required:
-                      - "message"
-                type: "object"
-                required:
-                  - "status"
-                  - "message"
-                  - "result"
-                  - "error"
-  /register-accounts:
-    post:
-      tags:
-        - "User"
-      summary: "RegisterUsers"
-      description: "Batch register user accounts"
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
-                creatorAddress:
-                  type: "string"
-                  description: "Algorand address of creator"
-                csv:
-                  type: "string"
-                  description: "Base64 encoded CSV string of users to create"
-              type: "object"
-              required:
-                - "accessToken"
-                - "creatorAddress"
-                - "csv"
-      responses:
-        200:
-          description: "A successful response"
-          content:
-            application/json:
-              schema:
-                properties:
-                  status:
-                    type: "string"
-                    description: "Status of response, either 'success' or 'fail"
-                  message:
-                    type: "string"
-                    description: "Message of response"
-                  result:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of result, TODO update this to be accurate"
-                    required:
-                      - "message"
-                  error:
-                    type: "object"
-                    properties:
-                      message:
-                        type: "string"
-                        description: "Message of error, TODO update this to be accurate"
+                        description: "Message of error, TODO fix this nested obj"
                     required:
                       - "message"
                 type: "object"

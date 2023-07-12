@@ -1,7 +1,5 @@
 import { paths } from './schema.js';
 
-export type CreateMilestoneParams = paths["/rodeo/milestone/create"]["post"]["requestBody"]["content"]["application/json"];
-
 /** Token */
 export type AccessTokenParams = paths["/get-access-token"]["post"]["requestBody"]["content"]["application/json"];
 export type AccessTokenSuccessResponse = paths["/get-access-token"]["post"]["responses"]["200"]["content"]["application/json"];
@@ -42,10 +40,36 @@ export type UserDeregisterParams = paths["/user/deregister"]["post"]["requestBod
 export type UserOptIntoAppParams = paths["/user/opt-into-app"]["post"]["requestBody"]["content"]["application/json"];
 export type UserOptIntoTokenParams = paths["/user/opt-into-token"]["post"]["requestBody"]["content"]["application/json"];
 
-export type ValidParams = CreateMilestoneParams | AccessTokenParams | ListAccountsParams |
+/** Bricks */
+export type BricksCreateParams = paths["/bricks/create"]["post"]["requestBody"]["content"]["application/json"];
+export type BricksFundUserParams = paths["/bricks/fund-user"]["post"]["requestBody"]["content"]["application/json"];
+export type BricksGrantParams = paths["/bricks/grant"]["post"]["requestBody"]["content"]["application/json"];
+export type BricksListParams = paths["/bricks/list"]["post"]["requestBody"]["content"]["application/json"];
+export type BricksListAllParams = paths["/bricks/list-all"]["post"]["requestBody"]["content"]["application/json"];
+export type BricksMintParams = paths["/bricks/mint"]["post"]["requestBody"]["content"]["application/json"];
+
+/** Impressions */
+export type ImpressionCreateParams = paths["/impression/create"]["post"]["requestBody"]["content"]["application/json"];
+export type ImpressionUpdateOneParams = paths["/impression/update-one"]["post"]["requestBody"]["content"]["application/json"];
+export type ImpressionUpdateAllParams = paths["/impression/update-all"]["post"]["requestBody"]["content"]["application/json"];
+
+/** LiNR */
+export type LinrMediaParams = paths["/linr/media"]["post"]["requestBody"]["content"]["application/json"];
+export type LinrMusicParams = paths["/linr/music"]["post"]["requestBody"]["content"]["application/json"];
+
+export type ValidParams = AccessTokenParams | ListAccountsParams |
+    /** Peels */
     PeelsCreateParams | PeelsListParams | PeelsMintParams | PeelsGrantParams | PeelsFundUserParams | PeelsGrantTokensParams | PeelsGetParams | PeelsListMineParams | // do I need to do this
+    /** Users */
     UserRegisterParams | UserDeregisterParams | UserOptIntoAppParams | UserOptIntoTokenParams |
-    TTMSendParams | TTMReceiveParams;
+    /** TTM */
+    TTMSendParams | TTMReceiveParams |
+    /** Bricks */
+    BricksCreateParams | BricksFundUserParams | BricksGrantParams | BricksListAllParams | BricksListParams | BricksMintParams |
+    /** Impression */
+    ImpressionCreateParams | ImpressionUpdateAllParams | ImpressionUpdateOneParams |
+    /** LiNR */
+    LinrMediaParams | LinrMusicParams;
 export type ValidUrl = keyof paths;
 
 export type ParamsTuple = {

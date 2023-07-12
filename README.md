@@ -32,18 +32,30 @@ To use the NCC dAPIs SDK, follow these steps:
     ```
 
 ## Usage
-### Generating JS Schemas
+### Local development
+#### Generating JS Schemas
 
 To generate JavaScript schemas from the main branch of NCC_dAPIs comment stubs, follow these steps:
 
 1. Make sure you have Docker installed on your machine as a prerequisite.
-2. Run the following command:
+2. Have a personal access token with the `repo` and `package` scopes enabled. Export it as an `ENV` variable named `GIT_ACCESS_TOKEN`.
+3. Run the following command:
     ```shell
     npm run reschema
     ```
     This command will generate the JS schemas based on the comment stubs in the main branch of NCC_dAPIs repository.
+4. Now, you can add new types to `src/model.ts` such as:
+    ```javascript
+    // Note: a new URL path, aka "/new/valid-url" in the example, 
+    //  will be auto-completed if it is a valid part of the generated schema
+    export type NewParams = paths["/new/valid-url"]["post"]["requestBody"]["content"]["application/json"];
+    export type NewSuccessResponse = paths["/new/valid-url"]["post"]["responses"]["200"]["content"]["application/json"];
 
-### Running Tests
+    // Note: add your new param type definition to the "ValidParams" type
+    export type ValidParams = AccessTokenParams | NewParams;
+    ```
+
+#### Running Tests
 
 To run Jest tests for the NCC dAPIs SDK, follow these steps:
 
