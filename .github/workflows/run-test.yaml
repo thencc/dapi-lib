@@ -1,6 +1,7 @@
 name: Run dapi-lib tests
 
 on:
+  workflow_dispatch:
   repository_dispatch:
     types: [trigger-tests]
 
