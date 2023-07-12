@@ -6,6 +6,17 @@ export type CreateMilestoneParams = paths["/rodeo/milestone/create"]["post"]["re
 export type AccessTokenParams = paths["/get-access-token"]["post"]["requestBody"]["content"]["application/json"];
 export type AccessTokenSuccessResponse = paths["/get-access-token"]["post"]["responses"]["200"]["content"]["application/json"];
 
+/** List Accounts */
+export type ListAccountsParams = paths["/list-accounts"]["post"]["requestBody"]["content"]["application/json"];
+export type ListAccountsSuccessResponse = paths["/list-accounts"]["post"]["responses"]["200"]["content"]["application/json"];
+
+/** TTM */
+export type TTMSendParams = paths["/ttm/send"]["post"]["requestBody"]["content"]["application/json"];
+export type TTMReceiveParams = paths["/ttm/receive"]["post"]["requestBody"]["content"]["application/json"];
+
+export type TTMSendSuccessResponse = paths["/ttm/send"]["post"]["responses"]["200"]["content"]["application/json"];
+export type TTMReceiveSuccessResponse = paths["/ttm/receive"]["post"]["responses"]["200"]["content"]["application/json"];
+
 /** Peels */
 export type PeelsCreateParams = paths["/peels/create"]["post"]["requestBody"]["content"]["application/json"];
 export type PeelsFundUserParams = paths["/peels/fund-user"]["post"]["requestBody"]["content"]["application/json"];
@@ -31,9 +42,10 @@ export type UserDeregisterParams = paths["/user/deregister"]["post"]["requestBod
 export type UserOptIntoAppParams = paths["/user/opt-into-app"]["post"]["requestBody"]["content"]["application/json"];
 export type UserOptIntoTokenParams = paths["/user/opt-into-token"]["post"]["requestBody"]["content"]["application/json"];
 
-export type ValidParams = CreateMilestoneParams | AccessTokenParams |
+export type ValidParams = CreateMilestoneParams | AccessTokenParams | ListAccountsParams |
     PeelsCreateParams | PeelsListParams | PeelsMintParams | PeelsGrantParams | PeelsFundUserParams | PeelsGrantTokensParams | PeelsGetParams | PeelsListMineParams | // do I need to do this
-    UserRegisterParams | UserDeregisterParams | UserOptIntoAppParams | UserOptIntoTokenParams;
+    UserRegisterParams | UserDeregisterParams | UserOptIntoAppParams | UserOptIntoTokenParams |
+    TTMSendParams | TTMReceiveParams;
 export type ValidUrl = keyof paths;
 
 export type ParamsTuple = {

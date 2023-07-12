@@ -2,7 +2,7 @@ import { describe, expect, it, beforeAll } from '@jest/globals';
 import { algonautTest } from './algonaut';
 import { promptAccessToken } from '../src/endUser';
 import { Dapi } from '../src/index';
-import { PeelsCreateParams, PeelsFundUserParams, PeelsGetParams, PeelsGrantParams, PeelsGrantTokensParams, PeelsListMineParams, PeelsListParams, PeelsMintParams, UserDeregisterParams, UserOptIntoAppParams, UserOptIntoTokenParams, UserRegisterParams } from '../src/model';
+import { ListAccountsParams, PeelsCreateParams, PeelsFundUserParams, PeelsGetParams, PeelsGrantParams, PeelsGrantTokensParams, PeelsListMineParams, PeelsListParams, PeelsMintParams, TTMReceiveParams, TTMSendParams, UserDeregisterParams, UserOptIntoAppParams, UserOptIntoTokenParams, UserRegisterParams } from '../src/model';
 import * as dotenv from 'dotenv';
 
 dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` });
@@ -78,7 +78,7 @@ describe('NCC user should ', () => {
             creatorAddress: algonautTest.account!.address
         }
 
-        const response = await DapiObj.registerAccount(registerUserParams);
+        const response = await DapiObj.user.register(registerUserParams);
 
         expect(response.status).toEqual("success");
         expect(response.result.length).toBeGreaterThan(0);
@@ -109,7 +109,7 @@ describe('Peels contract should ', () => {
             creatorAddress: algonautTest.account!.address
         };
 
-        const response = await DapiObj.createPeelsContract(createPeelsParams);
+        const response = await DapiObj.peels.create(createPeelsParams);
         // console.log('create peels contract is: ', response);
 
         expect(response.data.status).toEqual("success");
@@ -128,7 +128,7 @@ describe('Peels contract should ', () => {
             creatorAddress: algonautTest.account!.address
         };
 
-        const response = await DapiObj.listPeelsContract(listPeelsParams);
+        const response = await DapiObj.peels.list(listPeelsParams);
         // console.log('list peels contract is: ', response);
 
         expect(response.data.length).toBeGreaterThan(0);
@@ -141,7 +141,7 @@ describe('Peels contract should ', () => {
 
         expect(accessToken.length).toBeGreaterThan(0);
 
-        const response = await DapiObj.listAllPeels();
+        const response = await DapiObj.peels.listAll();
         // console.log('list all peels is: ', response);
 
         expect(response.data.length).toBeGreaterThan(0);
@@ -161,7 +161,7 @@ describe('Peels contract should ', () => {
             tokenUrl: generateRandomString(5),
             totalTokens: 3
         };
-        const response = await DapiObj.mintPeel(mintPeelParams);
+        const response = await DapiObj.peels.mint(mintPeelParams);
         // console.log('minted latest peel is: ', response);
 
         expect(response.data.status).toEqual("success");
@@ -176,7 +176,7 @@ describe('Peels contract should ', () => {
             accessToken,
             contractId: latestPeel.appIndex
         };
-        const response = await DapiObj.getPeel(getPeelParams);
+        const response = await DapiObj.peels.get(getPeelParams);
         // console.log(`response is ${JSON.stringify(response)}`);
         expect(response.data.address.length).toBeGreaterThan(0);
         latestPeel = response.data;
@@ -201,7 +201,7 @@ describe('NCC user should ', () => {
             appArgs: ''
         };
 
-        const response = await DapiObj.optIntoApp(optIntoAppParams);
+        const response = await DapiObj.user.optIntoApp(optIntoAppParams);
         // console.log('this is opt into latest Peel app response: ', response);
 
         expect(response.status).toEqual("success");
@@ -225,7 +225,7 @@ describe('NCC user should ', () => {
             uuid: createdAccountUUID,
             asaId: tokenIndex
         };
-        const response = await DapiObj.optIntoToken(optIntoAssetParams);
+        const response = await DapiObj.user.optIntoToken(optIntoAssetParams);
         expect(response.status).toEqual("success");
         expect(response.error).toBeNull();
         expect(response.result.status).toEqual("success");
@@ -254,7 +254,7 @@ describe('Peels contract should ', () => {
         };
         expect(grantPeelParams.totalGrant).toBeGreaterThan(0);
         expect(grantPeelParams.grantToAddress.length).toBeGreaterThan(0);
-        const response = await DapiObj.grantPeel(grantPeelParams);
+        const response = await DapiObj.peels.grant(grantPeelParams);
         // console.log('granted latest peel is: ', response);
     }, 10000);
     it('grant tokens from a peels contract successfully', async () => {
@@ -281,7 +281,7 @@ describe('Peels contract should ', () => {
 
         expect(grantPeelTokenParams.tokenId).toBeGreaterThan(0);
         expect(grantPeelTokenParams.grantToAddress.length).toBeGreaterThan(0);
-        const response = await DapiObj.grantPeelTokens(grantPeelTokenParams);
+        const response = await DapiObj.peels.grantTokens(grantPeelTokenParams);
         // console.log('granted latest peel tokens is: ', response);
         expect(response.result.status).toEqual('success');
         expect(response.result.txId.length).toBeGreaterThan(0);
@@ -303,7 +303,7 @@ describe('Peels contract should ', () => {
         expect(fundPeelParams.address.length).toBeGreaterThan(0);
         expect(fundPeelParams.contractId.length).toBeGreaterThan(0);
         expect(fundPeelParams.challenge.length).toBeGreaterThan(0);
-        const response = await DapiObj.fundPeelUser(fundPeelParams);
+        const response = await DapiObj.peels.fundUser(fundPeelParams);
         // console.log('funded peel is: ', response);
         expect(response.status).toEqual("success");
         expect(response.result.status).toEqual("success");
@@ -324,10 +324,62 @@ describe('NCC user should ', () => {
             accessToken,
             uuid: createdAccountUUID
         };
-        const response = await DapiObj.deregisterAccount(deregisterParams);
+        const response = await DapiObj.user.deregister(deregisterParams);
         // console.log(`this is the response for register ${JSON.stringify(response)}`);
         expect(response.status).toEqual("success");
     }, 10000);
+
+    it('list accounts', async () => {
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
+
+        expect(accessToken.length).toBeGreaterThan(0);
+        const listAccountsParams: ListAccountsParams = {
+            accessToken,
+            creatorAddress: algonautTest.account!.address
+        }
+        const response = await DapiObj.listAccounts(listAccountsParams);
+        expect(response.status).toEqual("success");
+    });
+});
+
+/** TTM */
+describe('TTM should ', () => {
+    it('send successfully', async () => {
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
+
+        expect(accessToken.length).toBeGreaterThan(0);
+        expect(createdAccountUUID.length).toBeGreaterThan(0);
+
+        const ttmSendParams: TTMSendParams = {
+            accessToken,
+            uuid: createdAccountUUID,
+            tokenToTarget: 0,
+            message: generateRandomString(12)
+        };
+        const response = await DapiObj.ttm.send(ttmSendParams);
+        // console.log(`this is the response for register ${JSON.stringify(response)}`);
+        expect(response.status).toEqual("success");
+    }, 10000);
+
+    it('receive successfully', async () => {
+        expect(algonautTest.account).not.toBeNull();
+        expect(algonautTest.account?.address.length).toBeGreaterThan(0);
+
+        expect(accessToken.length).toBeGreaterThan(0);
+        expect(createdAccountUUID.length).toBeGreaterThan(0);
+        const ttmReceiveParams: TTMReceiveParams = {
+            accessToken,
+            uuid: createdAccountUUID,
+            lastRound: 0,
+            config: {
+                todo: ''
+            }
+        };
+        const response = await DapiObj.ttm.receive(ttmReceiveParams);
+        expect(response.status).toEqual("success");
+    });
 });
 
 /** Utils */

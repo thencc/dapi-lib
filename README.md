@@ -8,6 +8,9 @@ The NCC dAPIs SDK is a TypeScript library that provides a convenient way to acce
 - Currently supports the following workflows:
     - Peels
     - Users
+    - TTM
+    - getAccessToken
+    - listAccounts
 - Provides TypeScript typings for improved development experience
 
 ## Installation

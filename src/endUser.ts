@@ -1,6 +1,6 @@
 import { Algonaut } from '@thencc/algonautjs';
 import { AccessTokenParams } from './model';
-import { NCC_TOKEN_AUTH_APP_INDEX, NCC_TOKEN_INDEX } from '.';
+import { NCC_TOKEN_AUTH_APP_INDEX, NCC_TOKEN_INDEX } from './setup';
 
 export async function promptAccessToken(algonaut: Algonaut): Promise<AccessTokenParams> {
     // Function to simplify endUser calls, response of this is part of the params in dAPI /get-access-token
