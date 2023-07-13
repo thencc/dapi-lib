@@ -1,21 +1,32 @@
-import { describe, expect, it } from '@jest/globals';
-import testGlobal from './01_setup.test';
+import { beforeAll, describe, expect, it } from '@jest/globals';
 import { TTMSendParams, TTMReceiveParams } from '../src/model';
 import { algonautTest } from './algonaut';
+import TestGlobals from './setup';
 
 /** TTM */
 describe('TTM should ', () => {
+    let accountInfo: any;
+    let accessToken: string;
+    let testGlobal: TestGlobals;
+
+    beforeAll(async () => {
+        testGlobal = new TestGlobals();
+        await testGlobal.initializeAlgonaut();
+        accessToken = await testGlobal.setAccessToken();
+        accountInfo = await testGlobal.setAccountInfo(accessToken);
+    }, 20000);
+
     it('send successfully', async () => {
         expect(algonautTest.account).not.toBeNull();
         expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
-        expect(testGlobal.accessToken.length).toBeGreaterThan(0);
-        expect(testGlobal.createdAccountUUID.length).toBeGreaterThan(0);
+        expect(accessToken.length).toBeGreaterThan(0);
+        expect(accountInfo.createdAccountUUID.length).toBeGreaterThan(0);
 
         const ttmSendParams: TTMSendParams = {
-            accessToken: testGlobal.accessToken,
-            uuid: testGlobal.createdAccountUUID,
-            tokenToTarget: 0,
+            accessToken: accessToken,
+            uuid: accountInfo.createdAccountUUID,
+            tokenToTarget: testGlobal.testPeelsToken,
             message: testGlobal.generateRandomString(12)
         };
         const response = await testGlobal.dapiObj.ttm.send(ttmSendParams);
@@ -27,12 +38,12 @@ describe('TTM should ', () => {
         expect(algonautTest.account).not.toBeNull();
         expect(algonautTest.account?.address.length).toBeGreaterThan(0);
 
-        expect(testGlobal.accessToken.length).toBeGreaterThan(0);
-        expect(testGlobal.createdAccountUUID.length).toBeGreaterThan(0);
+        expect(accessToken.length).toBeGreaterThan(0);
+        expect(accountInfo.createdAccountUUID.length).toBeGreaterThan(0);
         const ttmReceiveParams: TTMReceiveParams = {
-            accessToken: testGlobal.accessToken,
-            uuid: testGlobal.createdAccountUUID,
-            lastRound: 0,
+            accessToken: accessToken,
+            uuid: accountInfo.createdAccountUUID,
+            lastRound: 21350945,
             config: {
                 todo: ''
             }
