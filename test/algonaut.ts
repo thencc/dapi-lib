@@ -1,4 +1,4 @@
-import { Algonaut } from '@thencc/algonautjs';
+import { Algonaut, AlgonautConfig } from '@thencc/algonautjs';
 import * as dotenv from 'dotenv';
 dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` })
 
@@ -16,12 +16,16 @@ export const NCC_SLA_INDEX_TEST_NET = process.env.NCC_SLA_INDEX_TEST_NET ? proce
 export const NCC_SLA_INDEX = process.env.NCC_SLA_INDEX ? process.env.NCC_SLA_INDEX : null;
 export const TTM_INDEX = process.env.TTM_INDEX ? process.env.TTM_INDEX : null;
 
+const nodeConfig = {
+    BASE_SERVER: process.env.BASE_SERVER ? process.env.BASE_SERVER : "",
+    INDEX_SERVER: process.env.INDEX_SERVER ? process.env.INDEX_SERVER : "",
+    LEDGER: process.env.LEDGER ? process.env.LEDGER : "",
+    PORT: process.env.PORT ? process.env.PORT : "",
+    API_TOKEN: process.env.API_TOKEN ? process.env.API_TOKEN : { "X-API-KEY": process.env.X_API_KEY }
+}
+
+console.log(`this is node config: ${JSON.stringify(nodeConfig)}`);
+
 export const algonautTest = new Algonaut({
-    nodeConfig: {
-        BASE_SERVER: process.env.BASE_SERVER ? process.env.BASE_SERVER : "",
-        INDEX_SERVER: process.env.INDEX_SERVER ? process.env.INDEX_SERVER : "",
-        LEDGER: process.env.LEDGER ? process.env.LEDGER : "",
-        PORT: process.env.PORT ? process.env.PORT : "",
-        API_TOKEN: process.env.API_TOKEN ? process.env.API_TOKEN : { "X-API-KEY": process.env.X_API_KEY }
-    },
+    nodeConfig
 });
