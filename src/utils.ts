@@ -1,4 +1,4 @@
-import { ParamsTuple, ValidUrl, AccessTokenParams, CreateMilestoneParams, PeelsCreateParams, PeelsListParams, PeelsMintParams, PeelsGrantParams, PeelsFundUserParams, PeelsGrantTokensParams, UserRegisterParams, UserDeregisterParams, UserOptIntoAppParams, UserOptIntoTokenParams, PeelsListMineParams, PeelsGetParams, ListAccountsParams, TTMSendParams, TTMReceiveParams } from "./model";
+import { ParamsTuple, ValidUrl, AccessTokenParams, PeelsCreateParams, PeelsListParams, PeelsMintParams, PeelsGrantParams, PeelsFundUserParams, PeelsGrantTokensParams, UserRegisterParams, UserDeregisterParams, UserOptIntoAppParams, UserOptIntoTokenParams, PeelsListMineParams, PeelsGetParams, ListAccountsParams, TTMSendParams, TTMReceiveParams } from "./model";
 import { NCCdAPIs } from "./setup";
 
 /** Type validation functions */
@@ -12,10 +12,6 @@ export function validateParams(endpoint: string, params: any): ParamsTuple {
         case '/get-access-token':
             validatedParams.valid = true;
             validatedParams.params = params as AccessTokenParams;
-            break;
-        case '/rodeo/milestone/create':
-            validatedParams.valid = true;
-            validatedParams.params = params as CreateMilestoneParams;
             break;
         case '/peels/create':
             validatedParams.valid = true;
