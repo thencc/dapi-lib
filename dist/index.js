@@ -50,7 +50,7 @@ class Dapi {
         this.bricks = new Bricks_1.Bricks();
         this.impression = new Impression_1.Impression();
         this.linr = new LiNR_1.LiNR();
-        const jsonString = fs.readFileSync('output/openapi3.json', 'utf8');
+        const jsonString = fs.readFileSync('output/documentation.json', 'utf8');
         this.docs = JSON.parse(jsonString);
     }
     /** TOKEN */
