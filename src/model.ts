@@ -78,11 +78,7 @@ export type ParamsTuple = {
 }
 
 export type ApiDocs = {
-    openapi: string;
-    info: {
-        title: string;
-        version: string;
-        description: string;
-    };
-    paths: any;
+    data: any[];
+    project: any;
+    swagDoc: any;
 }

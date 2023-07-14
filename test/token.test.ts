@@ -17,9 +17,9 @@ describe('NCC should ', () => {
     });
 
     it('access docs successfully', async () => {
-        expect(testGlobal.dapiObj.docs.info.version.length).toBeGreaterThan(0);
-        expect(testGlobal.dapiObj.docs.openapi.length).toBeGreaterThan(0);
-        expect(Object.keys(testGlobal.dapiObj.docs.paths).length).toBeGreaterThan(0);
+        expect(testGlobal.dapiObj.docs.data.length).toBeGreaterThan(0);
+        expect(Object.keys(testGlobal.dapiObj.docs.project).length).toBeGreaterThan(0);
+        expect(Object.keys(testGlobal.dapiObj.docs.swagDoc).length).toBeGreaterThan(0);
     });
 });
 

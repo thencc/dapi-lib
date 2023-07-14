@@ -23,7 +23,7 @@ export class Dapi {
         this.impression = new Impression();
         this.linr = new LiNR();
 
-        const jsonString = fs.readFileSync('output/openapi3.json', 'utf8');
+        const jsonString = fs.readFileSync('output/documentation.json', 'utf8');
         this.docs = JSON.parse(jsonString);
     }
 
