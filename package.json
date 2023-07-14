@@ -14,7 +14,6 @@
 	},
 	"scripts": {
 		"build": "rm -rf dist/; tsc",
-		"publish": "npm publish",
 		"test": "NODE_ENV=purestake jest --runInBand",
 		"test:sandbox": "NODE_ENV=sandbox jest",
 		"reschema": "docker build --progress plain --tag docker-autodocs --build-arg GIT_ACCESS_TOKEN=${GIT_ACCESS_TOKEN} --build-arg CACHEBUST=$(date +%s) .; npm run docker-docs:run; npm run docker-docs:js-sdk",
