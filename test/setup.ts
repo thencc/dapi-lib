@@ -1,4 +1,4 @@
-import { beforeAll, expect } from "@jest/globals";
+import { expect } from "@jest/globals";
 import { Dapi } from "../src";
 
 import * as dotenv from 'dotenv';

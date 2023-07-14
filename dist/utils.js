@@ -22,10 +22,6 @@ function validateParams(endpoint, params) {
             validatedParams.valid = true;
             validatedParams.params = params;
             break;
-        case '/rodeo/milestone/create':
-            validatedParams.valid = true;
-            validatedParams.params = params;
-            break;
         case '/peels/create':
             validatedParams.valid = true;
             validatedParams.params = params;

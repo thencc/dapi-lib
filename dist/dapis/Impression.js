@@ -9,35 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
-const utils_1 = require("./utils");
-class User {
-    constructor() {
-    }
-    /** User */
-    register(params) {
+exports.Impression = void 0;
+const utils_1 = require("../utils");
+class Impression {
+    create(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            const path = '/user/register';
+            const path = '/impression/create';
             return yield (0, utils_1.postRequest)(path, params);
         });
     }
-    deregister(params) {
+    updateAll(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            const path = '/user/deregister';
+            const path = '/impression/update-all';
             return yield (0, utils_1.postRequest)(path, params);
         });
     }
-    optIntoApp(params) {
+    updateOne(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            const path = '/user/opt-into-app';
-            return yield (0, utils_1.postRequest)(path, params);
-        });
-    }
-    optIntoToken(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/user/opt-into-token';
+            const path = '/impression/update-one';
             return yield (0, utils_1.postRequest)(path, params);
         });
     }
 }
-exports.User = User;
+exports.Impression = Impression;

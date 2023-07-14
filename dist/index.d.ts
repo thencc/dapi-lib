@@ -1,16 +1,21 @@
-import { Peels } from './Peels';
-import { TTM } from './TTM';
-import { User } from './User';
-import { CreateMilestoneParams, AccessTokenParams, ListAccountsParams } from './model';
+import { Bricks } from './dapis/Bricks';
+import { Impression } from './dapis/Impression';
+import { LiNR } from './dapis/LiNR';
+import { Peels } from './dapis/Peels';
+import { TTM } from './dapis/TTM';
+import { User } from './dapis/User';
+import { AccessTokenParams, ListAccountsParams, ApiDocs } from './model';
 export declare class Dapi {
     constructor();
     peels: Peels;
     user: User;
     ttm: TTM;
+    bricks: Bricks;
+    impression: Impression;
+    linr: LiNR;
+    docs: ApiDocs;
     /** TOKEN */
     getAccessToken(params: AccessTokenParams): Promise<any>;
     /** List Accounts */
     listAccounts(params: ListAccountsParams): Promise<any>;
-    /** Rodeo */
-    createMilestone(params: CreateMilestoneParams): void;
 }
