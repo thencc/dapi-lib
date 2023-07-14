@@ -1,4 +1,4 @@
-import { UserRegisterParams, UserDeregisterParams, UserOptIntoAppParams, UserOptIntoTokenParams } from "./model";
+import { UserRegisterParams, UserDeregisterParams, UserOptIntoAppParams, UserOptIntoTokenParams } from "../model";
 export declare class User {
     constructor();
     /** User */

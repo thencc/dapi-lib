@@ -1,4 +1,4 @@
-import { TTMReceiveParams, TTMSendParams } from "./model";
+import { TTMReceiveParams, TTMSendParams } from "../model";
 export declare class TTM {
     constructor();
     /** TTM */

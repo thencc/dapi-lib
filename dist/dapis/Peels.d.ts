@@ -1,4 +1,4 @@
-import { PeelsCreateParams, PeelsListParams, PeelsListMineParams, PeelsGetParams, PeelsMintParams, PeelsGrantParams, PeelsGrantTokensParams, PeelsFundUserParams } from "./model";
+import { PeelsCreateParams, PeelsListParams, PeelsListMineParams, PeelsGetParams, PeelsMintParams, PeelsGrantParams, PeelsGrantTokensParams, PeelsFundUserParams } from "../model";
 export declare class Peels {
     constructor();
     /** PEELS */

@@ -3,27 +3,178 @@
  * Do not make direct changes to the file.
  */
 export interface paths {
-    "/bricks/deploy-media": {
+    "/bricks/create": {
         /**
-         * DeployMedia
-         * @description Deploy Media
+         * CreateBrick
+         * @description Create Brick
          */
         post: {
             requestBody: {
                 content: {
                     "application/json": {
-                        /** @description Valid NCC access token */
+                        /** @description Valid access token */
                         accessToken: string;
-                        /** @description UUID of active NCC user */
-                        uuid: string;
-                        /** @description Name of media */
+                        /** @description Name */
                         name: string;
-                        /** @description Metadata of media */
-                        metadata: string;
-                        /** @description Price of media */
-                        price: number;
-                        /** @description Public performance price of media */
-                        publicPerformancePrice: number;
+                        /** @description Metadata */
+                        meta: string;
+                        /** @description URL */
+                        url: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail' */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO fix this */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO fix this nested obj */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/bricks/fund-user": {
+        /**
+         * FundUser
+         * @description Funds user
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Address */
+                        address: string;
+                        /** @description Contract ID */
+                        contractId: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO fix this */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO fix this nested obj */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/bricks/grant": {
+        /**
+         * GrantBrick
+         * @description Grants Brick
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid access token */
+                        accessToken: string;
+                        /** @description App index */
+                        appId: number;
+                        /** @description Address to grant */
+                        grantToAddress: string;
+                        /** @description Token index */
+                        tokenId: number;
+                        /** @description Total number of tokens to grant */
+                        totalGrant: number;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO fix this */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO fix this nested obj */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/bricks/list-all": {
+        /**
+         * ListAllBricks
+         * @description Lists all Bricks
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO fix this */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO fix this nested obj */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/bricks/list": {
+        /**
+         * ListBrick
+         * @description Lists Brick
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid access token */
+                        accessToken: string;
                         /** @description Creator's Algorand address */
                         creatorAddress: string;
                     };
@@ -39,11 +190,11 @@ export interface paths {
                             /** @description Message of response */
                             message: string;
                             result: {
-                                /** @description Message of result, TODO update this to be accurate */
+                                /** @description Message of result, TODO fix this */
                                 message: string;
                             };
                             error: {
-                                /** @description Message of error, TODO update this to be accurate */
+                                /** @description Message of error, TODO fix this nested obj */
                                 message: string;
                             };
                         };
@@ -52,18 +203,65 @@ export interface paths {
             };
         };
     };
-    "/bricks/list": {
+    "/bricks/mint": {
         /**
-         * ListBricks
-         * @description List Bricks
+         * MintBrick
+         * @description Mints Brick
          */
         post: {
             requestBody: {
                 content: {
                     "application/json": {
-                        /** @description Valid NCC access token */
+                        /** @description Valid access token */
                         accessToken: string;
-                        /** @description Creator's Algonaut address */
+                        /** @description App index */
+                        appId: number;
+                        /** @description Token name */
+                        tokenName: string;
+                        /** @description Token URL */
+                        tokenUrl: string;
+                        /** @description Total number of tokens */
+                        totalTokens: number;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO fix this */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO fix this nested obj */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/impression/create": {
+        /**
+         * CreateImpression
+         * @description Create Impression
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid access token */
+                        accessToken: string;
+                        /** @description NCC user ID */
+                        uuid: string;
+                        /** @description Valid Algorand address of creator */
                         creatorAddress: string;
                     };
                 };
@@ -78,11 +276,11 @@ export interface paths {
                             /** @description Message of response */
                             message: string;
                             result: {
-                                /** @description Message of result, TODO update this to be accurate */
+                                /** @description Message of result, TODO fix this */
                                 message: string;
                             };
                             error: {
-                                /** @description Message of error, TODO update this to be accurate */
+                                /** @description Message of error, TODO fix this nested obj */
                                 message: string;
                             };
                         };
@@ -91,25 +289,33 @@ export interface paths {
             };
         };
     };
-    "/bricks/send": {
+    "/impression/update-all": {
         /**
-         * SendBricks
-         * @description Send Bricks
+         * UpdateAllImpressions
+         * @description Updates all Impressions
          */
         post: {
             requestBody: {
                 content: {
                     "application/json": {
-                        /** @description Valid NCC access token */
+                        /** @description Valid access token */
                         accessToken: string;
-                        /** @description Active NCC user uuid */
+                        /** @description NCC user ID */
                         uuid: string;
-                        /** @description Amount of Bricks to send */
-                        amount: number;
-                        /** @description Recipient address of transaction */
-                        toAddress: string;
-                        /** @description App index */
-                        toAppIndex: number;
+                        /** @description Unique */
+                        unique: number;
+                        /** @description Total */
+                        total: number;
+                        /** @description Exposure */
+                        exposure: number;
+                        /** @description Engagement */
+                        engagement: number;
+                        /** @description Conversion */
+                        conversion: number;
+                        /** @description Relevence */
+                        relevence: number;
+                        /** @description Revenue */
+                        revenue: number;
                     };
                 };
             };
@@ -123,11 +329,11 @@ export interface paths {
                             /** @description Message of response */
                             message: string;
                             result: {
-                                /** @description Message of result, TODO update this to be accurate */
+                                /** @description Message of result, TODO fix this */
                                 message: string;
                             };
                             error: {
-                                /** @description Message of error, TODO update this to be accurate */
+                                /** @description Message of error, TODO fix this nested obj */
                                 message: string;
                             };
                         };
@@ -136,25 +342,23 @@ export interface paths {
             };
         };
     };
-    "/bricks/send-rick": {
+    "/impression/update-one": {
         /**
-         * SendRicks
-         * @description Send Ricks
+         * UpdateOneImpression
+         * @description Updates one Impression
          */
         post: {
             requestBody: {
                 content: {
                     "application/json": {
-                        /** @description Valid NCC access token */
+                        /** @description Valid access token */
                         accessToken: string;
-                        /** @description Active NCC user uuid */
+                        /** @description NCC user ID */
                         uuid: string;
-                        /** @description Amount of Ricks to send */
-                        amount: number;
-                        /** @description Recipient address of transaction */
-                        toAddress: string;
-                        /** @description App index */
-                        toAppIndex: number;
+                        /** @description Field */
+                        field: string;
+                        /** @description Value */
+                        value: string;
                     };
                 };
             };
@@ -168,11 +372,11 @@ export interface paths {
                             /** @description Message of response */
                             message: string;
                             result: {
-                                /** @description Message of result, TODO update this to be accurate */
+                                /** @description Message of result, TODO fix this */
                                 message: string;
                             };
                             error: {
-                                /** @description Message of error, TODO update this to be accurate */
+                                /** @description Message of error, TODO fix this nested obj */
                                 message: string;
                             };
                         };
@@ -183,21 +387,19 @@ export interface paths {
     };
     "/linr/media": {
         /**
-         * LiNRMedia
-         * @description LiNR Media
+         * LinrMedia
+         * @description Ask LiNR media engine
          */
         post: {
             requestBody: {
                 content: {
                     "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description Question to ask LiNR */
+                        /** @description Question */
                         qText: string;
-                        /** @description Context to provide LiNR */
+                        /** @description Context */
                         ctx: string;
-                        /** @description Length of response */
-                        respLength: number;
+                        /** @description Response length */
+                        respLength: string;
                     };
                 };
             };
@@ -211,11 +413,11 @@ export interface paths {
                             /** @description Message of response */
                             message: string;
                             result: {
-                                /** @description Message of result, TODO update this to be accurate */
+                                /** @description Message of result, TODO fix this */
                                 message: string;
                             };
                             error: {
-                                /** @description Message of error, TODO update this to be accurate */
+                                /** @description Message of error, TODO fix this nested obj */
                                 message: string;
                             };
                         };
@@ -226,21 +428,19 @@ export interface paths {
     };
     "/linr/music": {
         /**
-         * LiNRMusic
-         * @description LiNR Music
+         * LinrMusic
+         * @description Ask LiNR music engine
          */
         post: {
             requestBody: {
                 content: {
                     "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description Question to ask LiNR */
+                        /** @description Question */
                         qText: string;
-                        /** @description Context to provide LiNR */
+                        /** @description Context */
                         ctx: string;
-                        /** @description Length of response */
-                        respLength: number;
+                        /** @description Response length */
+                        respLength: string;
                     };
                 };
             };
@@ -254,342 +454,11 @@ export interface paths {
                             /** @description Message of response */
                             message: string;
                             result: {
-                                /** @description Message of result, TODO update this to be accurate */
+                                /** @description Message of result, TODO fix this */
                                 message: string;
                             };
                             error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/rodeo/milestone/{id}": {
-        /**
-         * MilestoneValidateAdmin
-         * @description Validates admin privileges for milestone
-         */
-        post: {
-            parameters: {
-                query: {
-                    /** @description App index of milestone to check */
-                    id: string;
-                };
-            };
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description For this endpoint, route is 'isAdmin' */
-                        route: string;
-                        /** @description UUID of active NCC user */
-                        uuid: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/rodeo/milestone/create": {
-        /**
-         * MilestoneCreate
-         * @description Creates a new milestone
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description For this endpoint, route is 'create' */
-                        route: string;
-                        /** @description UUID of active NCC user */
-                        uuid: string;
-                        /** @description Algorand address of milestone creator */
-                        creatorAddress: string;
-                        /** @description URL of new milestone */
-                        url: string;
-                        /** @description Title of new milestone */
-                        title: string;
-                        /** @description Description of new milestone */
-                        description: string;
-                        /** @description Data of new milestone */
-                        data: string;
-                        /** @description Project ID to associate new project */
-                        project_id: string;
-                        /** @description UUID of NCC user to be approver of milestone */
-                        approverUUID: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/rodeo/milestone/all": {
-        /**
-         * MilestoneFetchByProject
-         * @description Fetches all milestones by project
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description For this endpoint, route is 'fetchByProjectId' */
-                        route: string;
-                        /** @description UUID of active NCC user */
-                        uuid: string;
-                        /** @description Project index associated with milestones to be fetched */
-                        project_id: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/rodeo/test": {
-        /**
-         * FetchAllOrgs
-         * @description Get all orgs
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description Active NCC user uuid */
-                        uuid: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/rodeo/org/{name}": {
-        /**
-         * OrgUpdate
-         * @description Updates an existing organization
-         */
-        post: {
-            parameters: {
-                query: {
-                    /** @description Name of organization to update */
-                    name: string;
-                };
-            };
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description For this endpoint, route is 'update' */
-                        route: string;
-                        /** @description UUID of active NCC user */
-                        uuid: string;
-                        edits: {
-                            /** @description Data to update in organization, TODO update this to be accurate */
-                            data: string;
-                        };
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/rodeo/org/create": {
-        /**
-         * OrgCreate
-         * @description Create new Rodeo organization
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Name of organization */
-                        orgName: string;
-                        /** @description Url of organization */
-                        url: string;
-                        /** @description Description of organization */
-                        description: string;
-                        /** @description Number of total members */
-                        totalMembers: string;
-                        /** @description Number of total admins */
-                        totalAdmins: string;
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description Algorand address of organization creator */
-                        creatorAddress: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/rodeo/org/{appId}": {
-        /**
-         * OrgFetchByAppId
-         * @description Fetch organization by app ID
-         */
-        post: {
-            parameters: {
-                query: {
-                    /** @description App index of organization to fetch */
-                    appId: string;
-                };
-            };
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description The route value of this endpoint is 'fetchByAppId' */
-                        route: string;
-                        /** @description UUID of active NCC user */
-                        uuid: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
+                                /** @description Message of error, TODO fix this nested obj */
                                 message: string;
                             };
                         };
@@ -1050,149 +919,6 @@ export interface paths {
             };
         };
     };
-    "/rodeo/project/{id}": {
-        /**
-         * ProjectVote
-         * @description Votes on project
-         */
-        post: {
-            parameters: {
-                query: {
-                    /** @description App index of project to vote on */
-                    id: string;
-                };
-            };
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description UUID of active NCC user */
-                        uuid: string;
-                        /** @description For this endpoint, route is 'vote' */
-                        route: string;
-                        /** @description Value of vote */
-                        vote: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/rodeo/project/create": {
-        /**
-         * ProjectCreate
-         * @description Creates a new project
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description For this endpoint, route is 'create' */
-                        route: string;
-                        /** @description UUID of active NCC user */
-                        uuid: string;
-                        /** @description Algorand address of project creator */
-                        creatorAddress: string;
-                        /** @description URL of new project */
-                        url: string;
-                        /** @description Title of new project */
-                        title: string;
-                        /** @description Description of new project */
-                        description: string;
-                        /** @description Org ID to associate new project */
-                        org_id: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/rodeo/project/all": {
-        /**
-         * ProjectFetchAllByOrg
-         * @description Fetch all projects by organization ID
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description For this endpoint, route is 'fetchByOrgId' */
-                        route: string;
-                        /** @description UUID of active NCC user */
-                        uuid: string;
-                        /** @description ID of organization */
-                        org_id: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
     "/ttm/receive": {
         /**
          * ReceiveTTM
@@ -1224,14 +950,8 @@ export interface paths {
                             status: string;
                             /** @description Message of response */
                             message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
+                            result: Record<string, never>;
+                            error: Record<string, never>;
                         };
                     };
                 };
@@ -1267,51 +987,8 @@ export interface paths {
                             status: string;
                             /** @description Message of response */
                             message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/get-nccs": {
-        /**
-         * GetNCCs
-         * @description Get NCCs
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Algorand address to receive testnet NCC tokens */
-                        address: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
+                            result: Record<string, never>;
+                            error: Record<string, never>;
                         };
                     };
                 };
@@ -1368,45 +1045,6 @@ export interface paths {
             };
         };
     };
-    "/deregister-account": {
-        /**
-         * DeRegisterUser
-         * @description De-register a user account
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description Active NCC user uuid to de-register */
-                        uuid: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
     "/user/deregister": {
         /**
          * DeregisterUser
@@ -1438,49 +1076,6 @@ export interface paths {
                             };
                             error: {
                                 /** @description String of error, TODO fix this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/fund-account": {
-        /**
-         * FundUser
-         * @description Fund a user account
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description Active NCC user uuid to fund */
-                        uuid: string;
-                        /** @description ID of asset to fund, defaults to Algo */
-                        asaId: number;
-                        /** @description Amount to fund user */
-                        amount: number;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
                                 message: string;
                             };
                         };
@@ -1579,49 +1174,6 @@ export interface paths {
             };
         };
     };
-    "/opt-user-into-app": {
-        /**
-         * OptUserApp
-         * @description Opt user account into app
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description Active NCC user uuid to opt-in */
-                        uuid: string;
-                        /** @description ID of app to opt-in */
-                        appId: number;
-                        /** @description Comma-separated string of app arguments, up to 8 */
-                        appArgs: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
     "/user/opt-into-token": {
         /**
          * OptUserToken
@@ -1663,47 +1215,6 @@ export interface paths {
             };
         };
     };
-    "/opt-account-into-token": {
-        /**
-         * OptUserToken
-         * @description Opt user account into token
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description Active NCC user uuid to opt-in */
-                        uuid: string;
-                        /** @description ID of asset to opt-in, defaults to Algo */
-                        asaId: number;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
     "/user/register": {
         /**
          * RegisterUser
@@ -1731,88 +1242,12 @@ export interface paths {
                             status: string;
                             /** @description Message of response */
                             message: string;
-                            result: Record<string, never>;
-                            error: Record<string, never>;
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/register-account": {
-        /**
-         * RegisterUser
-         * @description Register a user account
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description Active NCC user uuid */
-                        uuid: string;
-                        /** @description Algorand address of creator */
-                        creatorAddress: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
                             result: {
-                                /** @description Message of result, TODO update this to be accurate */
+                                /** @description Message of result, TODO fix this */
                                 message: string;
                             };
                             error: {
-                                /** @description Message of error, TODO update this to be accurate */
-                                message: string;
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
-    "/register-accounts": {
-        /**
-         * RegisterUsers
-         * @description Batch register user accounts
-         */
-        post: {
-            requestBody: {
-                content: {
-                    "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
-                        /** @description Algorand address of creator */
-                        creatorAddress: string;
-                        /** @description Base64 encoded CSV string of users to create */
-                        csv: string;
-                    };
-                };
-            };
-            responses: {
-                /** @description A successful response */
-                200: {
-                    content: {
-                        "application/json": {
-                            /** @description Status of response, either 'success' or 'fail */
-                            status: string;
-                            /** @description Message of response */
-                            message: string;
-                            result: {
-                                /** @description Message of result, TODO update this to be accurate */
-                                message: string;
-                            };
-                            error: {
-                                /** @description Message of error, TODO update this to be accurate */
+                                /** @description Message of error, TODO fix this nested obj */
                                 message: string;
                             };
                         };

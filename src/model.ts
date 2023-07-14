@@ -76,3 +76,13 @@ export type ParamsTuple = {
     valid: boolean,
     params: ValidParams | null
 }
+
+export type ApiDocs = {
+    openapi: string;
+    info: {
+        title: string;
+        version: string;
+        description: string;
+    };
+    paths: any;
+}

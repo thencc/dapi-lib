@@ -7,9 +7,11 @@ import { User } from './dapis/User';
 import {
     ValidUrl,
     AccessTokenParams,
-    ListAccountsParams
+    ListAccountsParams,
+    ApiDocs
 } from './model';
 import { postRequest } from './utils';
+import * as fs from 'fs';
 
 export class Dapi {
     constructor() {
@@ -20,6 +22,9 @@ export class Dapi {
         this.bricks = new Bricks();
         this.impression = new Impression();
         this.linr = new LiNR();
+
+        const jsonString = fs.readFileSync('output/openapi3.json', 'utf8');
+        this.docs = JSON.parse(jsonString);
     }
 
     peels: Peels;
@@ -28,6 +33,7 @@ export class Dapi {
     bricks: Bricks;
     impression: Impression;
     linr: LiNR;
+    docs: ApiDocs;
 
     /** TOKEN */
     public async getAccessToken(params: AccessTokenParams) {
