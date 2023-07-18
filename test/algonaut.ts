@@ -1,6 +1,6 @@
 import { Algonaut, AlgonautConfig } from '@thencc/algonautjs';
 import * as dotenv from 'dotenv';
-if (process) dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` })
+if (process !== undefined) dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` })
 
 // on test net, we use this temp address
 export const purserPhrase = process.env.PURSER_PHRASE ? process.env.PURSER_PHRASE : null;

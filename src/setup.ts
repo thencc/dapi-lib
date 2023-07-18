@@ -5,7 +5,7 @@
 import { sanityCheck } from "./utils";
 import * as dotenv from 'dotenv';
 
-dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` });
+if (process !== undefined) dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` });
 
 export const NCC_TOKEN_AUTH_APP_INDEX = process.env.NCC_TOKEN_AUTH_APP_INDEX ? parseInt(process.env.NCC_TOKEN_AUTH_APP_INDEX!) : -1;
 export const NCC_TOKEN_INDEX = process.env.NCC_TOKEN_INDEX ? parseInt(process.env.NCC_TOKEN_INDEX) : -1;

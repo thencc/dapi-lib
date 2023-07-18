@@ -6,7 +6,7 @@ import { algonautTest } from "./algonaut";
 import { promptAccessToken } from "../src/endUser";
 import { UserRegisterParams } from "../src/model";
 
-if (process) dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` });
+if (process !== undefined) dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` });
 const creatorMnemonic: string = process.env.CREATOR_MNEMONIC ? process.env.CREATOR_MNEMONIC : "";
 
 
