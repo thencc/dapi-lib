@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,11 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.sanityCheck = exports.postRequest = exports.validateParams = void 0;
-const setup_1 = require("./setup");
+import { NCCdAPIs } from "./setup";
 /** Type validation functions */
-function validateParams(endpoint, params) {
+export function validateParams(endpoint, params) {
     let validatedParams = {
         valid: false,
         params: null
@@ -82,11 +79,10 @@ function validateParams(endpoint, params) {
     console.log(validatedParams);
     return validatedParams;
 }
-exports.validateParams = validateParams;
 /**
  * Util functions
  */
-function postRequest(endpoint, params) {
+export function postRequest(endpoint, params) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const validParams = validateParams(endpoint, params);
@@ -96,7 +92,7 @@ function postRequest(endpoint, params) {
             console.log(`This is the type of params: ${validParams.params.constructor.name}`);
             if (endpoint[0] == '/')
                 endpoint = endpoint.slice(1);
-            const response = (yield setup_1.NCCdAPIs.call(endpoint, validParams.params
+            const response = (yield NCCdAPIs.call(endpoint, validParams.params
             // })) as any as NCCApiResponse;
             ));
             console.log(`This is response of the call: ${JSON.stringify(response)}`);
@@ -107,8 +103,7 @@ function postRequest(endpoint, params) {
         }
     });
 }
-exports.postRequest = postRequest;
-function sanityCheck(apiEndpoint, data) {
+export function sanityCheck(apiEndpoint, data) {
     console.log('sanity check');
     if (!data.accessToken) {
         console.warn('YOU HAVE NO API KEY!  Just sayin');
@@ -117,4 +112,3 @@ function sanityCheck(apiEndpoint, data) {
         throw new Error('you must provide an api endpoint!');
     }
 }
-exports.sanityCheck = sanityCheck;

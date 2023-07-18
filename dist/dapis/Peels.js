@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,10 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Peels = void 0;
-const utils_1 = require("../utils");
-class Peels {
+import { postRequest } from "../utils";
+export class Peels {
     constructor() {
         console.log('Initializing Peels object');
     }
@@ -19,56 +16,55 @@ class Peels {
     create(params) {
         return __awaiter(this, void 0, void 0, function* () {
             const path = '/peels/create';
-            return yield (0, utils_1.postRequest)(path, params);
+            return yield postRequest(path, params);
         });
     }
     list(params) {
         return __awaiter(this, void 0, void 0, function* () {
             const path = '/peels/list';
-            return yield (0, utils_1.postRequest)(path, params);
+            return yield postRequest(path, params);
         });
     }
     listAll() {
         return __awaiter(this, void 0, void 0, function* () {
             const path = '/peels/list-all';
-            return yield (0, utils_1.postRequest)(path, {});
+            return yield postRequest(path, {});
         });
     }
     listMine(params) {
         return __awaiter(this, void 0, void 0, function* () {
             const path = '/peels/list-mine';
-            return yield (0, utils_1.postRequest)(path, params);
+            return yield postRequest(path, params);
         });
     }
     get(params) {
         return __awaiter(this, void 0, void 0, function* () {
             const path = '/peels/get';
-            return yield (0, utils_1.postRequest)(path, params);
+            return yield postRequest(path, params);
         });
     }
     mint(params) {
         return __awaiter(this, void 0, void 0, function* () {
             const path = '/peels/mint';
-            return yield (0, utils_1.postRequest)(path, params);
+            return yield postRequest(path, params);
         });
     }
     grant(params) {
         return __awaiter(this, void 0, void 0, function* () {
             const path = '/peels/grant';
-            return yield (0, utils_1.postRequest)(path, params);
+            return yield postRequest(path, params);
         });
     }
     grantTokens(params) {
         return __awaiter(this, void 0, void 0, function* () {
             const path = '/peels/grant-tokens';
-            return yield (0, utils_1.postRequest)(path, params);
+            return yield postRequest(path, params);
         });
     }
     fundUser(params) {
         return __awaiter(this, void 0, void 0, function* () {
             const path = '/peels/fund-user';
-            return yield (0, utils_1.postRequest)(path, params);
+            return yield postRequest(path, params);
         });
     }
 }
-exports.Peels = Peels;

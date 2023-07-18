@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,10 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.promptAccessToken = void 0;
-const setup_1 = require("./setup");
-function promptAccessToken(algonaut) {
+import { NCC_TOKEN_AUTH_APP_INDEX, NCC_TOKEN_INDEX } from './setup';
+export function promptAccessToken(algonaut) {
     return __awaiter(this, void 0, void 0, function* () {
         // Function to simplify endUser calls, response of this is part of the params in dAPI /get-access-token
         console.log('getting access token');
@@ -27,10 +24,10 @@ function promptAccessToken(algonaut) {
         try {
             console.log('CURRENT ALGONAUT ADDRESS: ', algonaut.account.address);
             const tx = yield algonaut.atomicCallApp({
-                appIndex: setup_1.NCC_TOKEN_AUTH_APP_INDEX,
+                appIndex: NCC_TOKEN_AUTH_APP_INDEX,
                 appArgs: ['get_token'],
                 optionalFields: {
-                    assets: [setup_1.NCC_TOKEN_INDEX]
+                    assets: [NCC_TOKEN_INDEX]
                 }
             });
             const txId = tx.transaction.txID().toString();
@@ -49,4 +46,3 @@ function promptAccessToken(algonaut) {
         }
     });
 }
-exports.promptAccessToken = promptAccessToken;

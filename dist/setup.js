@@ -1,30 +1,6 @@
-"use strict";
 /**
  * NCCdAPI setup
  */
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,14 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.NCCdAPIs = exports.NCC_SLA_INDEX = exports.NCC_TOKEN_INDEX = exports.NCC_TOKEN_AUTH_APP_INDEX = void 0;
-const utils_1 = require("./utils");
-const dotenv = __importStar(require("dotenv"));
+import { sanityCheck } from "./utils";
+import * as dotenv from 'dotenv';
 dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` });
-exports.NCC_TOKEN_AUTH_APP_INDEX = process.env.NCC_TOKEN_AUTH_APP_INDEX ? parseInt(process.env.NCC_TOKEN_AUTH_APP_INDEX) : -1;
-exports.NCC_TOKEN_INDEX = process.env.NCC_TOKEN_INDEX ? parseInt(process.env.NCC_TOKEN_INDEX) : -1;
-exports.NCC_SLA_INDEX = process.env.NCC_SLA_INDEX ? parseInt(process.env.NCC_SLA_INDEX) : -1;
+export const NCC_TOKEN_AUTH_APP_INDEX = process.env.NCC_TOKEN_AUTH_APP_INDEX ? parseInt(process.env.NCC_TOKEN_AUTH_APP_INDEX) : -1;
+export const NCC_TOKEN_INDEX = process.env.NCC_TOKEN_INDEX ? parseInt(process.env.NCC_TOKEN_INDEX) : -1;
+export const NCC_SLA_INDEX = process.env.NCC_SLA_INDEX ? parseInt(process.env.NCC_SLA_INDEX) : -1;
 // prod URL for Workers dAPIs
 const APIRootURI = process.env.ROOT_URI ? process.env.ROOT_URI : "Undefined ROOT_URI";
 // // TODO think of another way to validate accessToken for get requests
@@ -58,10 +32,10 @@ const APIRootURI = process.env.ROOT_URI ? process.env.ROOT_URI : "Undefined ROOT
 // 	}
 // 	return true;
 //   }
-exports.NCCdAPIs = {
+export const NCCdAPIs = {
     call: function (apiEndpoint, data, apiVersion, method) {
         return __awaiter(this, void 0, void 0, function* () {
-            (0, utils_1.sanityCheck)(apiEndpoint, data);
+            sanityCheck(apiEndpoint, data);
             const version = apiVersion ? apiVersion : 'v1';
             console.log(`running call to ${version}/${apiEndpoint}`);
             let jsn = {};
@@ -108,7 +82,7 @@ exports.NCCdAPIs = {
     requestToken() { },
     fetch: function (apiEndpoint, data, apiVersion) {
         return __awaiter(this, void 0, void 0, function* () {
-            (0, utils_1.sanityCheck)(apiEndpoint, data);
+            sanityCheck(apiEndpoint, data);
             // TODO think of another way to validate accessToken for get requests
             // const tokenIsValidAndUserCanTransact = await validateToken(data);
             // if (!tokenIsValidAndUserCanTransact) throw new Error('Invalid token or user cannot transact');
