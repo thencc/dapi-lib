@@ -13,7 +13,7 @@
 	},
 	"scripts": {
 		"build": "rm -rf dist/; tsc",
-		"test": "NODE_ENV=purestake jest --runInBand",
+		"test": "NODE_ENV=purestake NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand",
 		"test:sandbox": "NODE_ENV=sandbox jest",
 		"reschema": "docker build --progress plain --tag docker-autodocs --build-arg GIT_ACCESS_TOKEN=${GIT_ACCESS_TOKEN} --build-arg CACHEBUST=$(date +%s) .; npm run docker-docs:run; npm run docker-docs:js-sdk",
 		"preview-docs": "ts-node-esm --files ./src/generateDocs.ts; redocly preview-docs ./src/output/swagger.yaml",
@@ -25,7 +25,8 @@
 	},
 	"dependencies": {
 		"@babel/types": "^7.18.13",
-		"@thencc/algonautjs": "^0.3.58"
+		"@thencc/algonautjs": "^0.3.58",
+		"vite": "^4.4.4"
 	},
 	"devDependencies": {
 		"@jest/globals": "^29.5.0",

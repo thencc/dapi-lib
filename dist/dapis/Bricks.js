@@ -1,48 +1,27 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { postRequest } from "../utils";
 export class Bricks {
-    create(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/bricks/create';
-            return yield postRequest(path, params);
-        });
+    async create(params) {
+        const path = '/bricks/create';
+        return await postRequest(path, params);
     }
-    fundUser(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/bricks/fund-user';
-            return yield postRequest(path, params);
-        });
+    async fundUser(params) {
+        const path = '/bricks/fund-user';
+        return await postRequest(path, params);
     }
-    grant(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/bricks/grant';
-            return yield postRequest(path, params);
-        });
+    async grant(params) {
+        const path = '/bricks/grant';
+        return await postRequest(path, params);
     }
-    list(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/bricks/list';
-            return yield postRequest(path, params);
-        });
+    async list(params) {
+        const path = '/bricks/list';
+        return await postRequest(path, params);
     }
-    listAll(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/bricks/list-all';
-            return yield postRequest(path, params);
-        });
+    async listAll(params) {
+        const path = '/bricks/list-all';
+        return await postRequest(path, params);
     }
-    mint(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/bricks/mint';
-            return yield postRequest(path, params);
-        });
+    async mint(params) {
+        const path = '/bricks/mint';
+        return await postRequest(path, params);
     }
 }

@@ -155,7 +155,7 @@ describe('Peels contract should ', () => {
         expect(accessToken.length).toBeGreaterThan(0);
         // console.log('this is latest peel', latestPeel);
         expect(testPeelsContract).toBeGreaterThan(0);
-        // const toAddress: string = process.env.TO_ADDRESS ? process.env.TO_ADDRESS : '';
+        // const toAddress: string = import.meta.env.TO_ADDRESS ? import.meta.env.TO_ADDRESS : '';
         expect(accountInfo.toAddress.length).toBeGreaterThan(0);
 
         const grantPeelTokenParams: PeelsGrantTokensParams = {

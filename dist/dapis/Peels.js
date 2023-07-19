@@ -1,70 +1,43 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { postRequest } from "../utils";
 export class Peels {
     constructor() {
         console.log('Initializing Peels object');
     }
     /** PEELS */
-    create(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/peels/create';
-            return yield postRequest(path, params);
-        });
+    async create(params) {
+        const path = '/peels/create';
+        return await postRequest(path, params);
     }
-    list(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/peels/list';
-            return yield postRequest(path, params);
-        });
+    async list(params) {
+        const path = '/peels/list';
+        return await postRequest(path, params);
     }
-    listAll() {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/peels/list-all';
-            return yield postRequest(path, {});
-        });
+    async listAll() {
+        const path = '/peels/list-all';
+        return await postRequest(path, {});
     }
-    listMine(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/peels/list-mine';
-            return yield postRequest(path, params);
-        });
+    async listMine(params) {
+        const path = '/peels/list-mine';
+        return await postRequest(path, params);
     }
-    get(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/peels/get';
-            return yield postRequest(path, params);
-        });
+    async get(params) {
+        const path = '/peels/get';
+        return await postRequest(path, params);
     }
-    mint(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/peels/mint';
-            return yield postRequest(path, params);
-        });
+    async mint(params) {
+        const path = '/peels/mint';
+        return await postRequest(path, params);
     }
-    grant(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/peels/grant';
-            return yield postRequest(path, params);
-        });
+    async grant(params) {
+        const path = '/peels/grant';
+        return await postRequest(path, params);
     }
-    grantTokens(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/peels/grant-tokens';
-            return yield postRequest(path, params);
-        });
+    async grantTokens(params) {
+        const path = '/peels/grant-tokens';
+        return await postRequest(path, params);
     }
-    fundUser(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const path = '/peels/fund-user';
-            return yield postRequest(path, params);
-        });
+    async fundUser(params) {
+        const path = '/peels/fund-user';
+        return await postRequest(path, params);
     }
 }

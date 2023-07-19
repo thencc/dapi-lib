@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -15,54 +14,55 @@
         }
     </style>
 </head>
-    
+
 <body>
-<div class='wrapper'>
-    <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> setup.ts</h1>
-        <div class='clearfix'>
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">57.57% </span>
-                <span class="quiet">Statements</span>
-                <span class='fraction'>19/33</span>
+    <div class='wrapper'>
+        <div class='pad1'>
+            <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> setup.ts</h1>
+            <div class='clearfix'>
+
+                <div class='fl pad1y space-right2'>
+                    <span class="strong">57.57% </span>
+                    <span class="quiet">Statements</span>
+                    <span class='fraction'>19/33</span>
+                </div>
+
+
+                <div class='fl pad1y space-right2'>
+                    <span class="strong">44.44% </span>
+                    <span class="quiet">Branches</span>
+                    <span class='fraction'>8/18</span>
+                </div>
+
+
+                <div class='fl pad1y space-right2'>
+                    <span class="strong">33.33% </span>
+                    <span class="quiet">Functions</span>
+                    <span class='fraction'>1/3</span>
+                </div>
+
+
+                <div class='fl pad1y space-right2'>
+                    <span class="strong">57.57% </span>
+                    <span class="quiet">Lines</span>
+                    <span class='fraction'>19/33</span>
+                </div>
+
+
             </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">44.44% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>8/18</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">57.57% </span>
-                <span class="quiet">Lines</span>
-                <span class='fraction'>19/33</span>
-            </div>
-        
-            
+            <p class="quiet">
+                Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em>
+                for the previous block.
+            </p>
+            <template id="filterTemplate">
+                <div class="quiet">
+                    Filter:
+                    <input oninput="onInput()" type="search" id="fileSearch">
+                </div>
+            </template>
         </div>
-        <p class="quiet">
-            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
-        </p>
-        <template id="filterTemplate">
-            <div class="quiet">
-                Filter:
-                <input oninput="onInput()" type="search" id="fileSearch">
-            </div>
-        </template>
-    </div>
-    <div class='status-line medium'></div>
-    <pre><table class="coverage">
+        <div class='status-line medium'></div>
+        <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
 <a name='L3'></a><a href='#L3'>3</a>
@@ -302,14 +302,14 @@
 import { sanityCheck } from "./utils";
 import * as dotenv from 'dotenv';
 &nbsp;
-dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` });
+dotenv.config({ path: `test/.env.${import.meta.env.NODE_ENV}` });
 &nbsp;
-export const NCC_TOKEN_AUTH_APP_INDEX = process.env.NCC_TOKEN_AUTH_APP_INDEX ? parseInt(process.env.NCC_TOKEN_AUTH_APP_INDEX!) : <span class="branch-1 cbranch-no" title="branch not covered" >-1;</span>
-export const NCC_TOKEN_INDEX = process.env.NCC_TOKEN_INDEX ? parseInt(process.env.NCC_TOKEN_INDEX) : <span class="branch-1 cbranch-no" title="branch not covered" >-1;</span>
-export const NCC_SLA_INDEX = process.env.NCC_SLA_INDEX ? parseInt(process.env.NCC_SLA_INDEX) : <span class="branch-1 cbranch-no" title="branch not covered" >-1;</span>
+export const NCC_TOKEN_AUTH_APP_INDEX = import.meta.env.NCC_TOKEN_AUTH_APP_INDEX ? parseInt(import.meta.env.NCC_TOKEN_AUTH_APP_INDEX!) : <span class="branch-1 cbranch-no" title="branch not covered" >-1;</span>
+export const NCC_TOKEN_INDEX = import.meta.env.NCC_TOKEN_INDEX ? parseInt(import.meta.env.NCC_TOKEN_INDEX) : <span class="branch-1 cbranch-no" title="branch not covered" >-1;</span>
+export const NCC_SLA_INDEX = import.meta.env.NCC_SLA_INDEX ? parseInt(import.meta.env.NCC_SLA_INDEX) : <span class="branch-1 cbranch-no" title="branch not covered" >-1;</span>
 &nbsp;
 // prod URL for Workers dAPIs
-const APIRootURI = process.env.ROOT_URI ? process.env.ROOT_URI : <span class="branch-1 cbranch-no" title="branch not covered" >"Undefined ROOT_URI";</span>
+const APIRootURI = import.meta.env.ROOT_URI ? import.meta.env.ROOT_URI : <span class="branch-1 cbranch-no" title="branch not covered" >"Undefined ROOT_URI";</span>
 // // TODO think of another way to validate accessToken for get requests
 // async function validateToken(data: any) {
 // 	console.log('HI I AM IN VALIDATE TOKEN');
@@ -411,23 +411,27 @@ export const NCCdAPIs = {
         }
     }
 };
-&nbsp;</pre></td></tr></table></pre>
+&nbsp;</pre>
+        </td>
+        </tr>
+        </table>
+        </pre>
 
-                <div class='push'></div><!-- for sticky footer -->
-            </div><!-- /wrapper -->
-            <div class='footer quiet pad2 space-top1 center small'>
-                Code coverage generated by
-                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-13T22:33:33.894Z
-            </div>
-        <script src="../prettify.js"></script>
-        <script>
-            window.onload = function () {
-                prettyPrint();
-            };
-        </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
-    </body>
+        <div class='push'></div><!-- for sticky footer -->
+    </div><!-- /wrapper -->
+    <div class='footer quiet pad2 space-top1 center small'>
+        Code coverage generated by
+        <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+        at 2023-07-13T22:33:33.894Z
+    </div>
+    <script src="../prettify.js"></script>
+    <script>
+        window.onload = function () {
+            prettyPrint();
+        };
+    </script>
+    <script src="../sorter.js"></script>
+    <script src="../block-navigation.js"></script>
+</body>
+
 </html>
-    

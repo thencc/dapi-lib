@@ -3,16 +3,16 @@
  */
 
 import { sanityCheck } from "./utils";
-import * as dotenv from 'dotenv';
+import "vite/client"
 
-if (process !== undefined) dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` });
+console.log(`import meta is: ${import.meta}`)
 
-export const NCC_TOKEN_AUTH_APP_INDEX = process.env.NCC_TOKEN_AUTH_APP_INDEX ? parseInt(process.env.NCC_TOKEN_AUTH_APP_INDEX!) : -1;
-export const NCC_TOKEN_INDEX = process.env.NCC_TOKEN_INDEX ? parseInt(process.env.NCC_TOKEN_INDEX) : -1;
-export const NCC_SLA_INDEX = process.env.NCC_SLA_INDEX ? parseInt(process.env.NCC_SLA_INDEX) : -1;
+export const NCC_TOKEN_AUTH_APP_INDEX = import.meta.env.NCC_TOKEN_AUTH_APP_INDEX ? parseInt(import.meta.env.NCC_TOKEN_AUTH_APP_INDEX!) : -1;
+export const NCC_TOKEN_INDEX = import.meta.env.NCC_TOKEN_INDEX ? parseInt(import.meta.env.NCC_TOKEN_INDEX) : -1;
+export const NCC_SLA_INDEX = import.meta.env.NCC_SLA_INDEX ? parseInt(import.meta.env.NCC_SLA_INDEX) : -1;
 
 // prod URL for Workers dAPIs
-const APIRootURI = process.env.ROOT_URI ? process.env.ROOT_URI : "Undefined ROOT_URI";
+const APIRootURI = import.meta.env.ROOT_URI ? import.meta.env.ROOT_URI : "Undefined ROOT_URI";
 // // TODO think of another way to validate accessToken for get requests
 // async function validateToken(data: any) {
 // 	console.log('HI I AM IN VALIDATE TOKEN');

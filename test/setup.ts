@@ -1,13 +1,12 @@
 import { expect } from "@jest/globals";
 import { Dapi } from "../src";
 
-import * as dotenv from 'dotenv';
+import "vite/client";
 import { algonautTest } from "./algonaut";
 import { promptAccessToken } from "../src/endUser";
 import { UserRegisterParams } from "../src/model";
 
-if (process !== undefined) dotenv.config({ path: `test/.env.${process.env.NODE_ENV}` });
-const creatorMnemonic: string = process.env.CREATOR_MNEMONIC ? process.env.CREATOR_MNEMONIC : "";
+const creatorMnemonic: string = import.meta.env.CREATOR_MNEMONIC ? import.meta.env.CREATOR_MNEMONIC : "";
 
 
 /**
