@@ -1,5 +1,4 @@
 import { Algonaut, AlgonautConfig } from '@thencc/algonautjs';
-import "vite/client"
 
 // on test net, we use this temp address
 export const purserPhrase = import.meta.env.PURSER_PHRASE ? import.meta.env.PURSER_PHRASE : null;

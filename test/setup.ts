@@ -1,7 +1,6 @@
 import { expect } from "@jest/globals";
 import { Dapi } from "../src";
 
-import "vite/client";
 import { algonautTest } from "./algonaut";
 import { promptAccessToken } from "../src/endUser";
 import { UserRegisterParams } from "../src/model";

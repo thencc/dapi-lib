@@ -33,12 +33,6 @@ export type UserDeregisterParams = paths["/user/deregister"]["post"]["requestBod
 export type UserOptIntoAppParams = paths["/user/opt-into-app"]["post"]["requestBody"]["content"]["application/json"];
 export type UserOptIntoTokenParams = paths["/user/opt-into-token"]["post"]["requestBody"]["content"]["application/json"];
 /** Bricks */
-export type BricksCreateParams = paths["/bricks/create"]["post"]["requestBody"]["content"]["application/json"];
-export type BricksFundUserParams = paths["/bricks/fund-user"]["post"]["requestBody"]["content"]["application/json"];
-export type BricksGrantParams = paths["/bricks/grant"]["post"]["requestBody"]["content"]["application/json"];
-export type BricksListParams = paths["/bricks/list"]["post"]["requestBody"]["content"]["application/json"];
-export type BricksListAllParams = paths["/bricks/list-all"]["post"]["requestBody"]["content"]["application/json"];
-export type BricksMintParams = paths["/bricks/mint"]["post"]["requestBody"]["content"]["application/json"];
 /** Impressions */
 export type ImpressionCreateParams = paths["/impression/create"]["post"]["requestBody"]["content"]["application/json"];
 export type ImpressionUpdateOneParams = paths["/impression/update-one"]["post"]["requestBody"]["content"]["application/json"];
@@ -54,7 +48,6 @@ UserRegisterParams | UserDeregisterParams | UserOptIntoAppParams | UserOptIntoTo
 /** TTM */
 TTMSendParams | TTMReceiveParams | 
 /** Bricks */
-BricksCreateParams | BricksFundUserParams | BricksGrantParams | BricksListAllParams | BricksListParams | BricksMintParams | 
 /** Impression */
 ImpressionCreateParams | ImpressionUpdateAllParams | ImpressionUpdateOneParams | 
 /** LiNR */

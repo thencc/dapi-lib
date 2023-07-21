@@ -5,7 +5,7 @@ import { Peels } from './dapis/Peels';
 import { TTM } from './dapis/TTM';
 import { User } from './dapis/User';
 import { postRequest } from './utils';
-import * as fs from 'fs';
+import { documentation } from '../output/documentation';
 export class Dapi {
     constructor() {
         console.log('Initializing Dapi object');
@@ -15,8 +15,7 @@ export class Dapi {
         this.bricks = new Bricks();
         this.impression = new Impression();
         this.linr = new LiNR();
-        const jsonString = fs.readFileSync('output/documentation.json', 'utf8');
-        this.docs = JSON.parse(jsonString);
+        this.docs = documentation;
     }
     peels;
     user;

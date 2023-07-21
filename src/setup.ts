@@ -3,9 +3,8 @@
  */
 
 import { sanityCheck } from "./utils";
-import "vite/client"
 
-console.log(`import meta is: ${import.meta}`)
+console.log(`import meta is: ${JSON.stringify(import.meta)}`)
 
 export const NCC_TOKEN_AUTH_APP_INDEX = import.meta.env.NCC_TOKEN_AUTH_APP_INDEX ? parseInt(import.meta.env.NCC_TOKEN_AUTH_APP_INDEX!) : -1;
 export const NCC_TOKEN_INDEX = import.meta.env.NCC_TOKEN_INDEX ? parseInt(import.meta.env.NCC_TOKEN_INDEX) : -1;

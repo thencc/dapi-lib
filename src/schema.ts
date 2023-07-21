@@ -5,251 +5,6 @@
 
 
 export interface paths {
-  "/bricks/create": {
-    /**
-     * CreateBrick 
-     * @description Create Brick
-     */
-    post: {
-      requestBody: {
-        content: {
-          "application/json": {
-            /** @description Valid access token */
-            accessToken: string;
-            /** @description Name */
-            name: string;
-            /** @description Metadata */
-            meta: string;
-            /** @description URL */
-            url: string;
-          };
-        };
-      };
-      responses: {
-        /** @description A successful response */
-        200: {
-          content: {
-            "application/json": {
-              /** @description Status of response, either 'success' or 'fail' */
-              status: string;
-              /** @description Message of response */
-              message: string;
-              result: {
-                /** @description Message of result, TODO fix this */
-                message: string;
-              };
-              error: {
-                /** @description Message of error, TODO fix this nested obj */
-                message: string;
-              };
-            };
-          };
-        };
-      };
-    };
-  };
-  "/bricks/fund-user": {
-    /**
-     * FundUser 
-     * @description Funds user
-     */
-    post: {
-      requestBody: {
-        content: {
-          "application/json": {
-            /** @description Address */
-            address: string;
-            /** @description Contract ID */
-            contractId: string;
-          };
-        };
-      };
-      responses: {
-        /** @description A successful response */
-        200: {
-          content: {
-            "application/json": {
-              /** @description Status of response, either 'success' or 'fail */
-              status: string;
-              /** @description Message of response */
-              message: string;
-              result: {
-                /** @description Message of result, TODO fix this */
-                message: string;
-              };
-              error: {
-                /** @description Message of error, TODO fix this nested obj */
-                message: string;
-              };
-            };
-          };
-        };
-      };
-    };
-  };
-  "/bricks/grant": {
-    /**
-     * GrantBrick 
-     * @description Grants Brick
-     */
-    post: {
-      requestBody: {
-        content: {
-          "application/json": {
-            /** @description Valid access token */
-            accessToken: string;
-            /** @description App index */
-            appId: number;
-            /** @description Address to grant */
-            grantToAddress: string;
-            /** @description Token index */
-            tokenId: number;
-            /** @description Total number of tokens to grant */
-            totalGrant: number;
-          };
-        };
-      };
-      responses: {
-        /** @description A successful response */
-        200: {
-          content: {
-            "application/json": {
-              /** @description Status of response, either 'success' or 'fail */
-              status: string;
-              /** @description Message of response */
-              message: string;
-              result: {
-                /** @description Message of result, TODO fix this */
-                message: string;
-              };
-              error: {
-                /** @description Message of error, TODO fix this nested obj */
-                message: string;
-              };
-            };
-          };
-        };
-      };
-    };
-  };
-  "/bricks/list-all": {
-    /**
-     * ListAllBricks 
-     * @description Lists all Bricks
-     */
-    post: {
-      requestBody: {
-        content: {
-          "application/json": Record<string, never>;
-        };
-      };
-      responses: {
-        /** @description A successful response */
-        200: {
-          content: {
-            "application/json": {
-              /** @description Status of response, either 'success' or 'fail */
-              status: string;
-              /** @description Message of response */
-              message: string;
-              result: {
-                /** @description Message of result, TODO fix this */
-                message: string;
-              };
-              error: {
-                /** @description Message of error, TODO fix this nested obj */
-                message: string;
-              };
-            };
-          };
-        };
-      };
-    };
-  };
-  "/bricks/list": {
-    /**
-     * ListBrick 
-     * @description Lists Brick
-     */
-    post: {
-      requestBody: {
-        content: {
-          "application/json": {
-            /** @description Valid access token */
-            accessToken: string;
-            /** @description Creator's Algorand address */
-            creatorAddress: string;
-          };
-        };
-      };
-      responses: {
-        /** @description A successful response */
-        200: {
-          content: {
-            "application/json": {
-              /** @description Status of response, either 'success' or 'fail */
-              status: string;
-              /** @description Message of response */
-              message: string;
-              result: {
-                /** @description Message of result, TODO fix this */
-                message: string;
-              };
-              error: {
-                /** @description Message of error, TODO fix this nested obj */
-                message: string;
-              };
-            };
-          };
-        };
-      };
-    };
-  };
-  "/bricks/mint": {
-    /**
-     * MintBrick 
-     * @description Mints Brick
-     */
-    post: {
-      requestBody: {
-        content: {
-          "application/json": {
-            /** @description Valid access token */
-            accessToken: string;
-            /** @description App index */
-            appId: number;
-            /** @description Token name */
-            tokenName: string;
-            /** @description Token URL */
-            tokenUrl: string;
-            /** @description Total number of tokens */
-            totalTokens: number;
-          };
-        };
-      };
-      responses: {
-        /** @description A successful response */
-        200: {
-          content: {
-            "application/json": {
-              /** @description Status of response, either 'success' or 'fail */
-              status: string;
-              /** @description Message of response */
-              message: string;
-              result: {
-                /** @description Message of result, TODO fix this */
-                message: string;
-              };
-              error: {
-                /** @description Message of error, TODO fix this nested obj */
-                message: string;
-              };
-            };
-          };
-        };
-      };
-    };
-  };
   "/impression/create": {
     /**
      * CreateImpression 
@@ -957,6 +712,22 @@ export interface paths {
             };
           };
         };
+      };
+    };
+  };
+  "/ttm/relay": {
+    /**
+     * RelayTTM 
+     * @description Relay TTM
+     */
+    post: {
+      requestBody: {
+        content: {
+          "application/json": Record<string, never>;
+        };
+      };
+      responses: {
+        200: never;
       };
     };
   };
