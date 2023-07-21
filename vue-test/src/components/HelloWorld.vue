@@ -50,7 +50,10 @@ export default defineComponent({
         /**
          * Fix this
          * 
-there was an error:  Error: Application index must be a positive number and smaller than 2^53-1
+         * http://localhost:5174/Undefined%20ROOT_URI/v1/get-access-token
+
+         there was an error:  
+         Error: Application index must be a positive number and smaller than 2^53-1
          */
 
 
