@@ -3,11 +3,12 @@
  */
 import { sanityCheck } from "./utils";
 console.log(`import meta is: ${JSON.stringify(import.meta)}`);
-export const NCC_TOKEN_AUTH_APP_INDEX = import.meta.env.NCC_TOKEN_AUTH_APP_INDEX ? parseInt(import.meta.env.NCC_TOKEN_AUTH_APP_INDEX) : -1;
-export const NCC_TOKEN_INDEX = import.meta.env.NCC_TOKEN_INDEX ? parseInt(import.meta.env.NCC_TOKEN_INDEX) : -1;
-export const NCC_SLA_INDEX = import.meta.env.NCC_SLA_INDEX ? parseInt(import.meta.env.NCC_SLA_INDEX) : -1;
+console.log(`import meta env is: ${JSON.stringify(import.meta.env)}`);
+export const NCC_TOKEN_AUTH_APP_INDEX = import.meta.env.VITE_NCC_TOKEN_AUTH_APP_INDEX ? parseInt(import.meta.env.VITE_NCC_TOKEN_AUTH_APP_INDEX) : -1;
+export const NCC_TOKEN_INDEX = import.meta.env.VITE_NCC_TOKEN_INDEX ? parseInt(import.meta.env.VITE_NCC_TOKEN_INDEX) : -1;
+export const NCC_SLA_INDEX = import.meta.env.VITE_NCC_SLA_INDEX ? parseInt(import.meta.env.VITE_NCC_SLA_INDEX) : -1;
 // prod URL for Workers dAPIs
-const APIRootURI = import.meta.env.ROOT_URI ? import.meta.env.ROOT_URI : "Undefined ROOT_URI";
+const APIRootURI = import.meta.env.VITE_ROOT_URI ? import.meta.env.VITE_ROOT_URI : "Undefined ROOT_URI";
 // // TODO think of another way to validate accessToken for get requests
 // async function validateToken(data: any) {
 // 	console.log('HI I AM IN VALIDATE TOKEN');
