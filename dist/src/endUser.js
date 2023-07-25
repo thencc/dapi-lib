@@ -1,4 +1,4 @@
-import { NCC_TOKEN_AUTH_APP_INDEX, NCC_TOKEN_INDEX } from './setup';
+import { NCC_TOKEN_AUTH_APP_INDEX, NCC_TOKEN_INDEX } from './constants';
 export async function promptAccessToken(algonaut) {
     // Function to simplify endUser calls, response of this is part of the params in dAPI /get-access-token
     console.log('getting access token');
