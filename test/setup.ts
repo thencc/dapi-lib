@@ -1,11 +1,9 @@
-import { expect } from "@jest/globals";
+import { expect, jest } from "@jest/globals";
 import { Dapi } from "../src";
 
-import { algonautTest } from "./algonaut";
+import { algonautTest, creatorMnemonic } from "./algonaut";
 import { promptAccessToken } from "../src/endUser";
 import { UserRegisterParams } from "../src/model";
-
-const creatorMnemonic: string = import.meta.env.CREATOR_MNEMONIC ? import.meta.env.CREATOR_MNEMONIC : "";
 
 
 /**
@@ -14,6 +12,12 @@ const creatorMnemonic: string = import.meta.env.CREATOR_MNEMONIC ? import.meta.e
  * - ./sandbox up
  * - export 1 sandbox mnemonic as $CREATOR_MNEMONIC env variable
  */
+jest.mock('../src/constants', () => ({
+    NCC_TOKEN_AUTH_APP_INDEX: 106807887,
+    NCC_TOKEN_INDEX: 101088863,
+    NCC_SLA_INDEX: 110525806,
+    APIRootURI: 'https://dapis-testnet.thencc.workers.dev',
+}));
 
 
 /**

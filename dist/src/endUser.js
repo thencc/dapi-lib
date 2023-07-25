@@ -1,4 +1,4 @@
-import { NCC_TOKEN_AUTH_APP_INDEX, NCC_TOKEN_INDEX } from './setup';
+import { NCC_TOKEN_AUTH_APP_INDEX, NCC_TOKEN_INDEX } from './constants';
 export async function promptAccessToken(algonaut) {
     // Function to simplify endUser calls, response of this is part of the params in dAPI /get-access-token
     console.log('getting access token');
@@ -13,6 +13,8 @@ export async function promptAccessToken(algonaut) {
     }
     try {
         console.log('CURRENT ALGONAUT ADDRESS: ', algonaut.account.address);
+        console.log(`NCC TOKEN AUTH APP INDEX is ${NCC_TOKEN_AUTH_APP_INDEX}`);
+        console.log(`NCC TOKEN INDEX is ${NCC_TOKEN_INDEX}`);
         const tx = await algonaut.atomicCallApp({
             appIndex: NCC_TOKEN_AUTH_APP_INDEX,
             appArgs: ['get_token'],
