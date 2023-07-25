@@ -13,9 +13,9 @@ import { UserRegisterParams } from "../src/model";
  * - export 1 sandbox mnemonic as $CREATOR_MNEMONIC env variable
  */
 jest.mock('../src/constants', () => ({
-    VITE_NCC_TOKEN_AUTH_APP_INDEX: '106807887',
-    VITE_NCC_TOKEN_INDEX: '101088863',
-    VITE_NCC_SLA_INDEX: '110525806',
+    NCC_TOKEN_AUTH_APP_INDEX: 106807887,
+    NCC_TOKEN_INDEX: 101088863,
+    NCC_SLA_INDEX: 110525806,
     APIRootURI: 'https://dapis-testnet.thencc.workers.dev',
 }));
 
