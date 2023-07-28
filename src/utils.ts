@@ -95,7 +95,7 @@ export async function postRequest(endpoint: string, params: any) {
             validParams.params
             // })) as any as NCCApiResponse;
         )) as any;
-        console.log(`This is response of the call: ${JSON.stringify(response)}`);
+        console.log(`This is response of the call: ${response}`);
         return response;
     } catch (e: any) {
         console.error('TODO properly surface this error: ', e);
