@@ -342,6 +342,206 @@ paths:
                   - "message"
                   - "result"
                   - "error"
+  /rodeo/org/all:
+    post:
+      tags:
+        - "Org"
+      summary: "FetchAllOrgs"
+      description: "Get all orgs"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                accessToken:
+                  type: "string"
+                  description: "Valid NCC access token"
+              type: "object"
+              required:
+                - "accessToken"
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of result, TODO update this to be accurate"
+                    required:
+                      - "message"
+                  error:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of error, TODO update this to be accurate"
+                    required:
+                      - "message"
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
+  /rodeo/org/create:
+    post:
+      tags:
+        - "Org"
+      summary: "OrgCreate"
+      description: "Create new Rodeo organization"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                orgName:
+                  type: "string"
+                  description: "Name of organization"
+                url:
+                  type: "string"
+                  description: "Url of organization"
+                description:
+                  type: "string"
+                  description: "Description of organization"
+                totalMembers:
+                  type: "string"
+                  description: "Number of total members"
+                totalAdmins:
+                  type: "string"
+                  description: "Number of total admins"
+                accessToken:
+                  type: "string"
+                  description: "Valid NCC access token"
+                creatorAddress:
+                  type: "string"
+                  description: "Algorand address of organization creator"
+              type: "object"
+              required:
+                - "orgName"
+                - "url"
+                - "description"
+                - "totalMembers"
+                - "totalAdmins"
+                - "accessToken"
+                - "creatorAddress"
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of result, TODO update this to be accurate"
+                    required:
+                      - "message"
+                  error:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of error, TODO update this to be accurate"
+                    required:
+                      - "message"
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
+  /rodeo/org/{appId}:
+    post:
+      tags:
+        - "Org"
+      summary: "OrgFetchByAppId"
+      description: "Fetch organization by app ID"
+      parameters:
+        - in: "query"
+          name: "appId"
+          description: "App index of organization to fetch"
+          required: true
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                accessToken:
+                  type: "string"
+                  description: "Valid NCC access token"
+                route:
+                  type: "string"
+                  description: "The route value of this endpoint is 'fetchByAppId'"
+                uuid:
+                  type: "string"
+                  description: "UUID of active NCC user"
+              type: "object"
+              required:
+                - "accessToken"
+                - "route"
+                - "uuid"
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of result, TODO update this to be accurate"
+                    required:
+                      - "message"
+                  error:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Message of error, TODO update this to be accurate"
+                    required:
+                      - "message"
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
   /peels/create:
     post:
       tags:
@@ -1257,6 +1457,60 @@ paths:
                   - "message"
                   - "result"
                   - "error"
+  /invite/refeemm:
+    post:
+      tags:
+        - "User2"
+      summary: "RedeemPortalInvite"
+      description: "Redeem invite code for NCC Memember Token"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                address:
+                  type: "string"
+                  description: "Algorand address of user"
+                invite:
+                  type: "string"
+                  description: "The invite code"
+              type: "object"
+              required:
+                - "address"
+                - "invite"
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties: {}
+                    required: []
+                  error:
+                    type: "object"
+                    properties:
+                      message:
+                        type: "string"
+                        description: "Error message\n\nIf the address already has an NCC token, this will error, if the address is\nnot yet funded, this will fund it and return the funded success message"
+                    required:
+                      - "message"
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
   /user/deregister:
     post:
       tags:
@@ -1519,16 +1773,25 @@ paths:
         - "User"
       summary: "RegisterUser"
       description: "Register a user account"
-      parameters: []
+      parameters:
+        - in: "header"
+          name: "accessToken"
+          description: "Valid NCC access token"
+          required: true
+          schema:
+            type: "string"
+        - in: "header"
+          name: "whichNet"
+          description: "One of \"TESTNET\" || \"MAINNET\""
+          required: true
+          schema:
+            type: "string"
       requestBody:
         required: true
         content:
           application/json:
             schema:
               properties:
-                accessToken:
-                  type: "string"
-                  description: "Valid NCC access token"
                 uuid:
                   type: "string"
                   description: "Active NCC user uuid"
@@ -1537,7 +1800,6 @@ paths:
                   description: "Algorand address of creator"
               type: "object"
               required:
-                - "accessToken"
                 - "uuid"
                 - "creatorAddress"
       responses:
