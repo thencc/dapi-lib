@@ -47,16 +47,6 @@ export default defineComponent({
       console.log('getting access token');
 
       try {
-        /**
-         * Fix this
-         * 
-         * http://localhost:5174/Undefined%20ROOT_URI/v1/get-access-token
-
-         there was an error:  
-         Error: Application index must be a positive number and smaller than 2^53-1
-         */
-
-
         // Prompt access token
         const accessParams: AccessTokenParams = await promptAccessToken(this.algonaut as Algonaut);
 

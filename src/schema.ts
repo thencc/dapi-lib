@@ -224,6 +224,139 @@ export interface paths {
       };
     };
   };
+  "/rodeo/org/all": {
+    /**
+     * FetchAllOrgs 
+     * @description Get all orgs
+     */
+    post: {
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Valid NCC access token */
+            accessToken: string;
+          };
+        };
+      };
+      responses: {
+        /** @description A successful response */
+        200: {
+          content: {
+            "application/json": {
+              /** @description Status of response, either 'success' or 'fail */
+              status: string;
+              /** @description Message of response */
+              message: string;
+              result: {
+                /** @description Message of result, TODO update this to be accurate */
+                message: string;
+              };
+              error: {
+                /** @description Message of error, TODO update this to be accurate */
+                message: string;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+  "/rodeo/org/create": {
+    /**
+     * OrgCreate 
+     * @description Create new Rodeo organization
+     */
+    post: {
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Name of organization */
+            orgName: string;
+            /** @description Url of organization */
+            url: string;
+            /** @description Description of organization */
+            description: string;
+            /** @description Number of total members */
+            totalMembers: string;
+            /** @description Number of total admins */
+            totalAdmins: string;
+            /** @description Valid NCC access token */
+            accessToken: string;
+            /** @description Algorand address of organization creator */
+            creatorAddress: string;
+          };
+        };
+      };
+      responses: {
+        /** @description A successful response */
+        200: {
+          content: {
+            "application/json": {
+              /** @description Status of response, either 'success' or 'fail */
+              status: string;
+              /** @description Message of response */
+              message: string;
+              result: {
+                /** @description Message of result, TODO update this to be accurate */
+                message: string;
+              };
+              error: {
+                /** @description Message of error, TODO update this to be accurate */
+                message: string;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+  "/rodeo/org/{appId}": {
+    /**
+     * OrgFetchByAppId 
+     * @description Fetch organization by app ID
+     */
+    post: {
+      parameters: {
+        query: {
+          /** @description App index of organization to fetch */
+          appId: string;
+        };
+      };
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Valid NCC access token */
+            accessToken: string;
+            /** @description The route value of this endpoint is 'fetchByAppId' */
+            route: string;
+            /** @description UUID of active NCC user */
+            uuid: string;
+          };
+        };
+      };
+      responses: {
+        /** @description A successful response */
+        200: {
+          content: {
+            "application/json": {
+              /** @description Status of response, either 'success' or 'fail */
+              status: string;
+              /** @description Message of response */
+              message: string;
+              result: {
+                /** @description Message of result, TODO update this to be accurate */
+                message: string;
+              };
+              error: {
+                /** @description Message of error, TODO update this to be accurate */
+                message: string;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
   "/peels/create": {
     /**
      * CreatePeels 
@@ -348,29 +481,29 @@ export interface paths {
           content: {
             "application/json": {
               data: ({
-                  /** @description ID */
-                  id: string;
-                  /** @description Address */
-                  address: string;
-                  /** @description Name */
-                  name: string;
-                  /** @description meta */
-                  meta: string;
-                  /** @description url */
-                  url: string;
-                  /** @description Is it minted? */
-                  isMinted: string;
-                  /** @description Index of token */
-                  tokenIndex: string;
-                  /** @description Status */
-                  status: string;
-                  /** @description Address of creator */
-                  creator_address: string;
-                  /** @description Access token of creator */
-                  creator_token: string;
-                  /** @description Updated at */
-                  updatedAt: string;
-                })[];
+                /** @description ID */
+                id: string;
+                /** @description Address */
+                address: string;
+                /** @description Name */
+                name: string;
+                /** @description meta */
+                meta: string;
+                /** @description url */
+                url: string;
+                /** @description Is it minted? */
+                isMinted: string;
+                /** @description Index of token */
+                tokenIndex: string;
+                /** @description Status */
+                status: string;
+                /** @description Address of creator */
+                creator_address: string;
+                /** @description Access token of creator */
+                creator_token: string;
+                /** @description Updated at */
+                updatedAt: string;
+              })[];
             };
           };
         };
@@ -494,29 +627,29 @@ export interface paths {
           content: {
             "application/json": {
               data: ({
-                  /** @description ID */
-                  id: string;
-                  /** @description Address */
-                  address: string;
-                  /** @description Name */
-                  name: string;
-                  /** @description meta */
-                  meta: string;
-                  /** @description url */
-                  url: string;
-                  /** @description Is it minted? */
-                  isMinted: string;
-                  /** @description Index of token */
-                  tokenIndex: string;
-                  /** @description Status */
-                  status: string;
-                  /** @description Address of creator */
-                  creator_address: string;
-                  /** @description Access token of creator */
-                  creator_token: string;
-                  /** @description Updated at */
-                  updatedAt: string;
-                })[];
+                /** @description ID */
+                id: string;
+                /** @description Address */
+                address: string;
+                /** @description Name */
+                name: string;
+                /** @description meta */
+                meta: string;
+                /** @description url */
+                url: string;
+                /** @description Is it minted? */
+                isMinted: string;
+                /** @description Index of token */
+                tokenIndex: string;
+                /** @description Status */
+                status: string;
+                /** @description Address of creator */
+                creator_address: string;
+                /** @description Access token of creator */
+                creator_token: string;
+                /** @description Updated at */
+                updatedAt: string;
+              })[];
             };
           };
         };
@@ -545,29 +678,29 @@ export interface paths {
           content: {
             "application/json": {
               data: ({
-                  /** @description ID */
-                  id: string;
-                  /** @description Address */
-                  address: string;
-                  /** @description Name */
-                  name: string;
-                  /** @description meta */
-                  meta: string;
-                  /** @description url */
-                  url: string;
-                  /** @description Is it minted? */
-                  isMinted: string;
-                  /** @description Index of token */
-                  tokenIndex: string;
-                  /** @description Status */
-                  status: string;
-                  /** @description Address of creator */
-                  creator_address: string;
-                  /** @description Access token of creator */
-                  creator_token: string;
-                  /** @description Updated at */
-                  updatedAt: string;
-                })[];
+                /** @description ID */
+                id: string;
+                /** @description Address */
+                address: string;
+                /** @description Name */
+                name: string;
+                /** @description meta */
+                meta: string;
+                /** @description url */
+                url: string;
+                /** @description Is it minted? */
+                isMinted: string;
+                /** @description Index of token */
+                tokenIndex: string;
+                /** @description Status */
+                status: string;
+                /** @description Address of creator */
+                creator_address: string;
+                /** @description Access token of creator */
+                creator_token: string;
+                /** @description Updated at */
+                updatedAt: string;
+              })[];
             };
           };
         };
@@ -596,29 +729,29 @@ export interface paths {
           content: {
             "application/json": {
               data: ({
-                  /** @description ID */
-                  id: string;
-                  /** @description Address */
-                  address: string;
-                  /** @description Name */
-                  name: string;
-                  /** @description meta */
-                  meta: string;
-                  /** @description url */
-                  url: string;
-                  /** @description Is it minted? */
-                  isMinted: string;
-                  /** @description Index of token */
-                  tokenIndex: string;
-                  /** @description Status */
-                  status: string;
-                  /** @description Address of creator */
-                  creator_address: string;
-                  /** @description Access token of creator */
-                  creator_token: string;
-                  /** @description Updated at */
-                  updatedAt: string;
-                })[];
+                /** @description ID */
+                id: string;
+                /** @description Address */
+                address: string;
+                /** @description Name */
+                name: string;
+                /** @description meta */
+                meta: string;
+                /** @description url */
+                url: string;
+                /** @description Is it minted? */
+                isMinted: string;
+                /** @description Index of token */
+                tokenIndex: string;
+                /** @description Status */
+                status: string;
+                /** @description Address of creator */
+                creator_address: string;
+                /** @description Access token of creator */
+                creator_token: string;
+                /** @description Updated at */
+                updatedAt: string;
+              })[];
             };
           };
         };
@@ -818,6 +951,47 @@ export interface paths {
       };
     };
   };
+  "/invite/refeemm": {
+    /**
+     * RedeemPortalInvite 
+     * @description Redeem invite code for NCC Memember Token
+     */
+    post: {
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Algorand address of user */
+            address: string;
+            /** @description The invite code */
+            invite: string;
+          };
+        };
+      };
+      responses: {
+        /** @description A successful response */
+        200: {
+          content: {
+            "application/json": {
+              /** @description Status of response, either 'success' or 'fail */
+              status: string;
+              /** @description Message of response */
+              message: string;
+              result: Record<string, never>;
+              error: {
+                /**
+                 * @description Error message
+                 * 
+                 * If the address already has an NCC token, this will error, if the address is
+                 * not yet funded, this will fund it and return the funded success message
+                 */
+                message: string;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
   "/user/deregister": {
     /**
      * DeregisterUser 
@@ -994,11 +1168,17 @@ export interface paths {
      * @description Register a user account
      */
     post: {
+      parameters: {
+        header: {
+          /** @description Valid NCC access token */
+          accessToken: string;
+          /** @description One of "TESTNET" || "MAINNET" */
+          whichNet: string;
+        };
+      };
       requestBody: {
         content: {
           "application/json": {
-            /** @description Valid NCC access token */
-            accessToken: string;
             /** @description Active NCC user uuid */
             uuid: string;
             /** @description Algorand address of creator */
