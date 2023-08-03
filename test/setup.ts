@@ -16,7 +16,7 @@ jest.mock('../src/constants', () => ({
     NCC_TOKEN_AUTH_APP_INDEX: 106807887,
     NCC_TOKEN_INDEX: 101088863,
     NCC_SLA_INDEX: 110525806,
-    APIRootURI: 'https://dapis-testnet.thencc.workers.dev',
+    APIRootURI: 'https://dapis.thencc.workers.dev',
 }));
 
 
