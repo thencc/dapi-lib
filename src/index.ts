@@ -12,6 +12,7 @@ import {
 } from './model';
 import { postRequest } from './utils';
 import { documentation } from '../output/documentation';
+import { Rodeo } from './dapis/Rodeo';
 
 export class Dapi {
     constructor() {
@@ -22,6 +23,7 @@ export class Dapi {
         this.bricks = new Bricks();
         this.impression = new Impression();
         this.linr = new LiNR();
+        this.rodeo = new Rodeo();
         this.docs = documentation;
     }
 
@@ -31,6 +33,7 @@ export class Dapi {
     bricks: Bricks;
     impression: Impression;
     linr: LiNR;
+    rodeo: Rodeo;
     docs: ApiDocs;
 
     /** TOKEN */

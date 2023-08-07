@@ -656,9 +656,9 @@ export interface paths {
             /** @description Description of organization */
             description: string;
             /** @description Number of total members */
-            totalMembers: string;
+            totalMembers: number;
             /** @description Number of total admins */
-            totalAdmins: string;
+            totalAdmins: number;
             /** @description Valid NCC access token */
             accessToken: string;
             /** @description Algorand address of organization creator */

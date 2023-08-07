@@ -1,4 +1,4 @@
-import { ParamsTuple, ValidUrl, AccessTokenParams, PeelsCreateParams, PeelsListParams, PeelsMintParams, PeelsGrantParams, PeelsFundUserParams, PeelsGrantTokensParams, UserRegisterParams, UserDeregisterParams, UserOptIntoAppParams, UserOptIntoTokenParams, PeelsListMineParams, PeelsGetParams, ListAccountsParams, TTMSendParams, TTMReceiveParams } from "./model";
+import { ParamsTuple, ValidUrl, AccessTokenParams, PeelsCreateParams, PeelsListParams, PeelsMintParams, PeelsGrantParams, PeelsFundUserParams, PeelsGrantTokensParams, UserRegisterParams, UserDeregisterParams, UserOptIntoAppParams, UserOptIntoTokenParams, PeelsListMineParams, PeelsGetParams, ListAccountsParams, TTMSendParams, TTMReceiveParams, RodeoOrgCreateParams } from "./model";
 import { NCCdAPIs } from "./setup";
 
 /** Type validation functions */
@@ -67,6 +67,9 @@ export function validateParams(endpoint: string, params: any): ParamsTuple {
         case '/ttm/receive':
             validatedParams.valid = true;
             validatedParams.params = params as TTMReceiveParams;
+        case '/rodeo/org/create':
+            validatedParams.valid = true;
+            validatedParams.params = params as RodeoOrgCreateParams;
         default:
             break;
     }

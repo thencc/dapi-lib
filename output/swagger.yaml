@@ -985,10 +985,10 @@ paths:
                   type: "string"
                   description: "Description of organization"
                 totalMembers:
-                  type: "string"
+                  type: "number"
                   description: "Number of total members"
                 totalAdmins:
-                  type: "string"
+                  type: "number"
                   description: "Number of total admins"
                 accessToken:
                   type: "string"
