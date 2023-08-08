@@ -1062,16 +1062,12 @@ paths:
                 accessToken:
                   type: "string"
                   description: "Valid NCC access token"
-                route:
-                  type: "string"
-                  description: "The route value of this endpoint is 'fetchByAppId'"
                 uuid:
                   type: "string"
                   description: "UUID of active NCC user"
               type: "object"
               required:
                 - "accessToken"
-                - "route"
                 - "uuid"
       responses:
         200:

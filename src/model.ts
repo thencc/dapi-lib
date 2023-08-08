@@ -99,27 +99,7 @@ export type ImpressionUpdateAllParams = ExtractRequestBody<paths, '/impression/u
 export type LinrMediaParams = ExtractRequestBody<paths, '/linr/media'>;
 export type LinrMusicParams = ExtractRequestBody<paths, '/linr/music'>;
 
-export type ValidParams = AccessTokenParams | ListAccountsParams |
-    /** Peels */
-    PeelsCreateParams | PeelsListParams | PeelsMintParams | PeelsGrantParams | PeelsFundUserParams | PeelsGrantTokensParams | PeelsGetParams | PeelsListMineParams | // do I need to do this
-    /** Users */
-    UserRegisterParams | UserDeregisterParams | UserOptIntoAppParams | UserOptIntoTokenParams |
-    /** TTM */
-    TTMSendParams | TTMReceiveParams |
-    /** Bricks */
-    // BricksCreateParams | BricksFundUserParams | BricksGrantParams | BricksListAllParams | BricksListParams | BricksMintParams |
-    /** Rodeo */
-    RodeoOrgCreateParams | RodeoOrgFetchAllParams | RodeoOrgAddAdminParams | RodeoOrgAddMemberParams | RodeoOrgEditParams | RodeoOrgFetchParams | RodeoOrgMintParams | RodeoOrgSuperAdminParams | RodeoOrgTestAdminParams | RodeoOrgTestMemberParams |
-    /** Impression */
-    ImpressionCreateParams | ImpressionUpdateAllParams | ImpressionUpdateOneParams |
-    /** LiNR */
-    LinrMediaParams | LinrMusicParams;
 export type ValidUrl = keyof paths;
-
-export type ParamsTuple = {
-    valid: boolean,
-    params: ValidParams | null
-}
 
 export type ApiDocs = {
     data: any[];

@@ -706,8 +706,6 @@ export interface paths {
           "application/json": {
             /** @description Valid NCC access token */
             accessToken: string;
-            /** @description The route value of this endpoint is 'fetchByAppId' */
-            route: string;
             /** @description UUID of active NCC user */
             uuid: string;
           };
