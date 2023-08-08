@@ -16,6 +16,11 @@ type ExtractSuccessResponse<T extends paths, P extends keyof T> =
     ? R
     : never;
 
+type ExtractRequestQuery<T extends paths, P extends keyof T> =
+    T[P] extends { post: { parameters: { query: infer Q } } }
+    ? Q
+    : never;
+
 /** Token */
 export type AccessTokenParams = ExtractRequestBody<paths, '/get-access-token'>;
 export type AccessTokenSuccessResponse = ExtractSuccessResponse<paths, '/get-access-token'>;
@@ -66,6 +71,24 @@ export type UserOptIntoTokenParams = ExtractRequestBody<paths, '/user/opt-into-t
  */
 export type RodeoOrgCreateParams = ExtractRequestBody<paths, '/rodeo/org/create'>;
 export type RodeoOrgCreateSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/create'>;
+export type RodeoOrgFetchAllParams = ExtractRequestBody<paths, '/rodeo/org/all'>;
+export type RodeoOrgFetchAllSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/all'>;
+export type RodeoOrgAddAdminParams = ExtractRequestBody<paths, '/rodeo/org/{id}/add-admin'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/add-admin'>;;
+export type RodeoOrgAddAdminSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/add-admin'>;
+export type RodeoOrgAddMemberParams = ExtractRequestBody<paths, '/rodeo/org/{id}/add-member'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/add-member'>;;
+export type RodeoOrgAddMemberSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/add-member'>;
+export type RodeoOrgEditParams = ExtractRequestBody<paths, '/rodeo/org/{id}/edit'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/edit'>;
+export type RodeoOrgEditSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/edit'>;
+export type RodeoOrgFetchParams = ExtractRequestBody<paths, '/rodeo/org/{id}/get'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/get'>;
+export type RodeoOrgFetchSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/get'>;
+export type RodeoOrgMintParams = ExtractRequestBody<paths, '/rodeo/org/{id}/mint'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/mint'>;;
+export type RodeoOrgMintSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/mint'>;
+export type RodeoOrgSuperAdminParams = ExtractRequestBody<paths, '/rodeo/org/{id}/super-admin'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/super-admin'>;;
+export type RodeoOrgSuperAdminSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/super-admin'>;
+export type RodeoOrgTestAdminParams = ExtractRequestBody<paths, '/rodeo/org/{id}/test-admin'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/test-admin'>;;
+export type RodeoOrgTestAdminSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/test-admin'>;
+export type RodeoOrgTestMemberParams = ExtractRequestBody<paths, '/rodeo/org/{id}/test-member'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/test-member'>;;
+export type RodeoOrgTestMemberSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/test-member'>;
 
 /** Impressions */
 export type ImpressionCreateParams = ExtractRequestBody<paths, '/impression/create'>;
@@ -76,27 +99,7 @@ export type ImpressionUpdateAllParams = ExtractRequestBody<paths, '/impression/u
 export type LinrMediaParams = ExtractRequestBody<paths, '/linr/media'>;
 export type LinrMusicParams = ExtractRequestBody<paths, '/linr/music'>;
 
-export type ValidParams = AccessTokenParams | ListAccountsParams |
-    /** Peels */
-    PeelsCreateParams | PeelsListParams | PeelsMintParams | PeelsGrantParams | PeelsFundUserParams | PeelsGrantTokensParams | PeelsGetParams | PeelsListMineParams | // do I need to do this
-    /** Users */
-    UserRegisterParams | UserDeregisterParams | UserOptIntoAppParams | UserOptIntoTokenParams |
-    /** TTM */
-    TTMSendParams | TTMReceiveParams |
-    /** Bricks */
-    // BricksCreateParams | BricksFundUserParams | BricksGrantParams | BricksListAllParams | BricksListParams | BricksMintParams |
-    /** Rodeo */
-    RodeoOrgCreateParams |
-    /** Impression */
-    ImpressionCreateParams | ImpressionUpdateAllParams | ImpressionUpdateOneParams |
-    /** LiNR */
-    LinrMediaParams | LinrMusicParams;
 export type ValidUrl = keyof paths;
-
-export type ParamsTuple = {
-    valid: boolean,
-    params: ValidParams | null
-}
 
 export type ApiDocs = {
     data: any[];
