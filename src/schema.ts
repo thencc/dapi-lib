@@ -1433,10 +1433,6 @@ export interface paths {
             uuid: string;
             /** @description Last blockchain round to search */
             lastRound: number;
-            config: {
-              /** @description TTM config, TODO fix this; Swagger needs nested objects to be defined */
-              todo: string;
-            };
           };
         };
       };
@@ -1484,12 +1480,20 @@ export interface paths {
           "application/json": {
             /** @description Valid NCC access token */
             accessToken: string;
-            /** @description UUID of active NCC user */
-            uuid: string;
+            /** @description Type of message */
+            type: string;
             /** @description ASA ID of token to target */
-            tokenToTarget: number;
+            tokens: number;
             /** @description Message to send */
             message: string;
+            /** @description TTM files */
+            files: string;
+            /** @description TTM part */
+            part: number;
+            /** @description TTM uri */
+            uri: string;
+            /** @description UUID of active NCC user */
+            uuid: string;
           };
         };
       };

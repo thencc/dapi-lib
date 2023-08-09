@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from '@jest/globals';
 import { algonautTest } from './algonaut';
 import TestGlobals from './setup';
-import { RodeoOrgAddMemberParams, RodeoOrgCreateParams, RodeoOrgFetchParams, RodeoOrgMintParams, TTMSendParams } from '../src/model';
+import { RodeoOrgAddMemberParams, RodeoOrgCreateParams, RodeoOrgFetchParams, RodeoOrgMintParams, TTMReceiveParams, TTMSendParams } from '../src/model';
 
 /** Rodeo */
 describe('Rodeo tests ', () => {
@@ -88,13 +88,27 @@ describe('Rodeo tests ', () => {
             const ttmParams: TTMSendParams = {
                 accessToken,
                 uuid: accountInfo.createdAccountUUID,
-                tokenToTarget: memberAsset,
-                message: testGlobal.generateRandomString(20)
+                tokens: memberAsset,
+                message: testGlobal.generateRandomString(20),
+                type: 'H',
+                files: '',
+                part: 1,
+                uri: ''
             };
             const sendResult = await testGlobal.dapiObj.ttm.send(ttmParams);
-            console.log(`this is send result: ${JSON.stringify(sendResult)}`);
             expect(sendResult.status).toEqual("success");
-        });
-        it.todo('user receives a TTM from Rodeo organization');
+        }, 20000);
+        it('user receives a TTM from Rodeo organization', async () => {
+            const relayResult = await testGlobal.dapiObj.ttm.relay();
+            const ttmParams: TTMReceiveParams = {
+                accessToken,
+                uuid: accountInfo.createdAccountUUID,
+                lastRound: 0
+            };
+            const receiveResult = await testGlobal.dapiObj.ttm.receive(ttmParams);
+            console.log(`this is receive result: ${JSON.stringify(receiveResult)}`);
+            expect(receiveResult.status).toEqual("success");
+            expect(receiveResult.result.length).toBeGreaterThan(0);
+        }, 20000);
     })
 });
