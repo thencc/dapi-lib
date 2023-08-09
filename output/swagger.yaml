@@ -2170,20 +2170,11 @@ paths:
                 lastRound:
                   type: "number"
                   description: "Last blockchain round to search"
-                config:
-                  type: "object"
-                  properties:
-                    todo:
-                      type: "string"
-                      description: "TTM config, TODO fix this; Swagger needs nested objects to be defined"
-                  required:
-                    - "todo"
               type: "object"
               required:
                 - "accessToken"
                 - "uuid"
                 - "lastRound"
-                - "config"
       responses:
         200:
           description: "A successful response"
@@ -2248,21 +2239,37 @@ paths:
                 accessToken:
                   type: "string"
                   description: "Valid NCC access token"
-                uuid:
+                type:
                   type: "string"
-                  description: "UUID of active NCC user"
-                tokenToTarget:
+                  description: "Type of message"
+                tokens:
                   type: "number"
                   description: "ASA ID of token to target"
                 message:
                   type: "string"
                   description: "Message to send"
+                files:
+                  type: "string"
+                  description: "TTM files"
+                part:
+                  type: "number"
+                  description: "TTM part"
+                uri:
+                  type: "string"
+                  description: "TTM uri"
+                uuid:
+                  type: "string"
+                  description: "UUID of active NCC user"
               type: "object"
               required:
                 - "accessToken"
-                - "uuid"
-                - "tokenToTarget"
+                - "type"
+                - "tokens"
                 - "message"
+                - "files"
+                - "part"
+                - "uri"
+                - "uuid"
       responses:
         200:
           description: "A successful response"

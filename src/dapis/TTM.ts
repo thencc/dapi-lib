@@ -14,4 +14,9 @@ export class TTM {
         const path: ValidUrl = '/ttm/receive';
         return await postRequest(path, params);
     }
+
+    public async relay() {
+        const path: ValidUrl = '/ttm/relay';
+        return await postRequest(path, {});
+    }
 }
