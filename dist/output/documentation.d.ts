@@ -44,102 +44,7 @@ export declare const documentation: {
         filename: string;
         groupTitle: string;
         query?: undefined;
-    } | {
-        type: string;
-        url: string;
-        title: string;
-        description: string;
-        name: string;
-        group: string;
-        version: string;
-        success: {
-            fields: {
-                "Success 200": ({
-                    group: string;
-                    type: string;
-                    optional: boolean;
-                    field: string;
-                    isArray: boolean;
-                    description: string;
-                    parentNode?: undefined;
-                } | {
-                    group: string;
-                    type: string;
-                    optional: boolean;
-                    parentNode: {
-                        path: string;
-                        field: string;
-                        type: string;
-                        isArray: boolean;
-                    };
-                    field: string;
-                    isArray: boolean;
-                    description: string;
-                })[];
-            };
-        };
-        filename: string;
-        groupTitle: string;
-        body?: undefined;
-        query?: undefined;
-    } | {
-        type: string;
-        url: string;
-        title: string;
-        description: string;
-        name: string;
-        group: string;
-        version: string;
-        body: ({
-            group: string;
-            type: string;
-            optional: boolean;
-            field: string;
-            isArray: boolean;
-            description: string;
-            parentNode?: undefined;
-        } | {
-            group: string;
-            type: string;
-            optional: boolean;
-            parentNode: {
-                path: string;
-                field: string;
-                type: string;
-                isArray: boolean;
-            };
-            field: string;
-            isArray: boolean;
-            description: string;
-        })[];
-        success: {
-            fields: {
-                "Success 200": {
-                    group: string;
-                    type: string;
-                    optional: boolean;
-                    field: string;
-                    isArray: boolean;
-                    description: string;
-                }[];
-            };
-        };
-        filename: string;
-        groupTitle: string;
-        query?: undefined;
-    } | {
-        type: string;
-        url: string;
-        title: string;
-        description: string;
-        name: string;
-        group: string;
-        version: string;
-        filename: string;
-        groupTitle: string;
-        body?: undefined;
-        success?: undefined;
-        query?: undefined;
+        header?: undefined;
     } | {
         type: string;
         url: string;
@@ -192,6 +97,117 @@ export declare const documentation: {
         };
         filename: string;
         groupTitle: string;
+        header?: undefined;
+    } | {
+        type: string;
+        url: string;
+        title: string;
+        description: string;
+        name: string;
+        group: string;
+        version: string;
+        success: {
+            fields: {
+                "Success 200": ({
+                    group: string;
+                    type: string;
+                    optional: boolean;
+                    field: string;
+                    isArray: boolean;
+                    description: string;
+                    parentNode?: undefined;
+                } | {
+                    group: string;
+                    type: string;
+                    optional: boolean;
+                    parentNode: {
+                        path: string;
+                        field: string;
+                        type: string;
+                        isArray: boolean;
+                    };
+                    field: string;
+                    isArray: boolean;
+                    description: string;
+                })[];
+            };
+        };
+        filename: string;
+        groupTitle: string;
+        body?: undefined;
+        query?: undefined;
+        header?: undefined;
+    } | {
+        type: string;
+        url: string;
+        title: string;
+        description: string;
+        name: string;
+        group: string;
+        version: string;
+        filename: string;
+        groupTitle: string;
+        body?: undefined;
+        success?: undefined;
+        query?: undefined;
+        header?: undefined;
+    } | {
+        type: string;
+        url: string;
+        title: string;
+        description: string;
+        name: string;
+        group: string;
+        version: string;
+        header: {
+            fields: {
+                Header: {
+                    group: string;
+                    type: string;
+                    optional: boolean;
+                    field: string;
+                    isArray: boolean;
+                    description: string;
+                }[];
+            };
+        };
+        body: {
+            group: string;
+            type: string;
+            optional: boolean;
+            field: string;
+            isArray: boolean;
+            description: string;
+        }[];
+        success: {
+            fields: {
+                "Success 200": ({
+                    group: string;
+                    type: string;
+                    optional: boolean;
+                    field: string;
+                    isArray: boolean;
+                    description: string;
+                    parentNode?: undefined;
+                } | {
+                    group: string;
+                    type: string;
+                    optional: boolean;
+                    parentNode: {
+                        path: string;
+                        field: string;
+                        type: string;
+                        isArray: boolean;
+                    };
+                    field: string;
+                    isArray: boolean;
+                    description: string;
+                })[];
+            };
+        };
+        filename: string;
+        groupTitle: string;
+        query?: undefined;
     })[];
     project: {
         name: string;
@@ -215,6 +231,534 @@ export declare const documentation: {
             description: string;
         };
         paths: {
+            "/bricks/buy": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        amount: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/bricks/buy-ricks": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        amount: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/bricks/create": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        bricksId: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        mediaUuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        meta: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        price: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        publicPerformancePrice: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/bricks/list": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/bricks/rick-play": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        mediaUuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/bricks/send": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        mediaUuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/bricks/send-rick": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        mediaUuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
             "/impression/create": {
                 post: {
                     tags: string[];
@@ -570,6 +1114,831 @@ export declare const documentation: {
                                         respLength: {
                                             type: string;
                                             description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/rodeo/org/all": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/rodeo/org/{id}/add-admin": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: {
+                        in: string;
+                        name: string;
+                        description: string;
+                        required: boolean;
+                        schema: {
+                            type: string;
+                        };
+                    }[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        adminUUID: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/rodeo/org/{id}/add-member": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: {
+                        in: string;
+                        name: string;
+                        description: string;
+                        required: boolean;
+                        schema: {
+                            type: string;
+                        };
+                    }[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        memberUUID: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/rodeo/org/create": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        orgName: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        url: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        description: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        totalMembers: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        totalAdmins: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        creatorAddress: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/rodeo/org/{id}/get": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: {
+                        in: string;
+                        name: string;
+                        description: string;
+                        required: boolean;
+                        schema: {
+                            type: string;
+                        };
+                    }[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/rodeo/org/{id}/mint": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: {
+                        in: string;
+                        name: string;
+                        description: string;
+                        required: boolean;
+                        schema: {
+                            type: string;
+                        };
+                    }[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/rodeo/org/{id}/super-admin": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: {
+                        in: string;
+                        name: string;
+                        description: string;
+                        required: boolean;
+                        schema: {
+                            type: string;
+                        };
+                    }[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        adminUUID: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/rodeo/org/{id}/test-admin": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: {
+                        in: string;
+                        name: string;
+                        description: string;
+                        required: boolean;
+                        schema: {
+                            type: string;
+                        };
+                    }[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        adminUUID: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/rodeo/org/{id}/test-member": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: {
+                        in: string;
+                        name: string;
+                        description: string;
+                        required: boolean;
+                        schema: {
+                            type: string;
+                        };
+                    }[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        memberUUID: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/rodeo/org/{id}/edit": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: {
+                        in: string;
+                        name: string;
+                        description: string;
+                        required: boolean;
+                        schema: {
+                            type: string;
+                        };
+                    }[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        edits: {
+                                            type: string;
+                                            properties: {};
+                                            required: never[];
                                         };
                                     };
                                     type: string;
@@ -1205,8 +2574,11 @@ export declare const documentation: {
                                             description: string;
                                         };
                                         contractIds: {
+                                            items: {
+                                                type: string;
+                                                description: string;
+                                            };
                                             type: string;
-                                            description: string;
                                         };
                                     };
                                     type: string;
@@ -1502,16 +2874,6 @@ export declare const documentation: {
                                             type: string;
                                             description: string;
                                         };
-                                        config: {
-                                            type: string;
-                                            properties: {
-                                                todo: {
-                                                    type: string;
-                                                    description: string;
-                                                };
-                                            };
-                                            required: string[];
-                                        };
                                     };
                                     type: string;
                                     required: string[];
@@ -1599,15 +2961,117 @@ export declare const documentation: {
                                             type: string;
                                             description: string;
                                         };
-                                        uuid: {
+                                        type: {
                                             type: string;
                                             description: string;
                                         };
-                                        tokenToTarget: {
+                                        tokens: {
                                             type: string;
                                             description: string;
                                         };
                                         message: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        files: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        part: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uri: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {};
+                                                required: never[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {};
+                                                required: never[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/ttm/send-by-token": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        type: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        tokens: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        message: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        files: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        part: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uri: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
                                             type: string;
                                             description: string;
                                         };
@@ -1712,6 +3176,73 @@ export declare const documentation: {
                                                     };
                                                 };
                                                 required: string[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {
+                                                    message: {
+                                                        type: string;
+                                                        description: string;
+                                                    };
+                                                };
+                                                required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/invite/refeemm": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        address: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        invite: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {};
+                                                required: never[];
                                             };
                                             error: {
                                                 type: string;
@@ -2046,17 +3577,21 @@ export declare const documentation: {
                     tags: string[];
                     summary: string;
                     description: string;
-                    parameters: never[];
+                    parameters: {
+                        in: string;
+                        name: string;
+                        description: string;
+                        required: boolean;
+                        schema: {
+                            type: string;
+                        };
+                    }[];
                     requestBody: {
                         required: boolean;
                         content: {
                             "application/json": {
                                 schema: {
                                     properties: {
-                                        accessToken: {
-                                            type: string;
-                                            description: string;
-                                        };
                                         uuid: {
                                             type: string;
                                             description: string;
@@ -2106,6 +3641,169 @@ export declare const documentation: {
                                                     };
                                                 };
                                                 required: string[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/ttm/deregister": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {};
+                                                required: never[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {};
+                                                required: never[];
+                                            };
+                                        };
+                                        type: string;
+                                        required: string[];
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };
+            };
+            "/ttm/dns": {
+                get: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {};
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            schema: {
+                                properties: {};
+                                type: string;
+                                required: never[];
+                            };
+                        };
+                    };
+                };
+            };
+            "/geo/register": {
+                post: {
+                    tags: string[];
+                    summary: string;
+                    description: string;
+                    parameters: never[];
+                    requestBody: {
+                        required: boolean;
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    properties: {
+                                        accessToken: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        uuid: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        wallet: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        url: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        coordinates: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                        NORAD: {
+                                            type: string;
+                                            description: string;
+                                        };
+                                    };
+                                    type: string;
+                                    required: string[];
+                                };
+                            };
+                        };
+                    };
+                    responses: {
+                        "200": {
+                            description: string;
+                            content: {
+                                "application/json": {
+                                    schema: {
+                                        properties: {
+                                            status: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            message: {
+                                                type: string;
+                                                description: string;
+                                            };
+                                            result: {
+                                                type: string;
+                                                properties: {};
+                                                required: never[];
+                                            };
+                                            error: {
+                                                type: string;
+                                                properties: {};
+                                                required: never[];
                                             };
                                         };
                                         type: string;

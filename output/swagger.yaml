@@ -1922,8 +1922,10 @@ paths:
                   type: "string"
                   description: "Valid NCC access token"
                 contractIds:
-                  type: "string"
-                  description: "Contract IDs"
+                  items:
+                    type: "number"
+                    description: "Contract IDs"
+                  type: "array"
               type: "object"
               required:
                 - "accessToken"
@@ -2224,6 +2226,80 @@ paths:
             type: "object"
             required: []
   /ttm/send:
+    post:
+      tags:
+        - "TTM"
+      summary: "SendTTM"
+      description: "Send TTM"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                accessToken:
+                  type: "string"
+                  description: "Valid NCC access token"
+                type:
+                  type: "string"
+                  description: "Type of message"
+                tokens:
+                  type: "number"
+                  description: "ASA ID of token to target"
+                message:
+                  type: "string"
+                  description: "Message to send"
+                files:
+                  type: "string"
+                  description: "TTM files"
+                part:
+                  type: "number"
+                  description: "TTM part"
+                uri:
+                  type: "string"
+                  description: "TTM uri"
+                uuid:
+                  type: "string"
+                  description: "UUID of active NCC user"
+              type: "object"
+              required:
+                - "accessToken"
+                - "type"
+                - "tokens"
+                - "message"
+                - "files"
+                - "part"
+                - "uri"
+                - "uuid"
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties: {}
+                    required: []
+                  error:
+                    type: "object"
+                    properties: {}
+                    required: []
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
+  /ttm/send-by-token:
     post:
       tags:
         - "TTM"
@@ -2737,6 +2813,139 @@ paths:
                         description: "Message of error, TODO fix this nested obj"
                     required:
                       - "message"
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
+  /ttm/deregister:
+    post:
+      tags:
+        - "geo"
+      summary: "DeregisterGeo"
+      description: "Deregister Geo identity"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                accessToken:
+                  type: "string"
+                  description: "Valid NCC access token"
+                uuid:
+                  type: "string"
+                  description: "UUID of active NCC user"
+              type: "object"
+              required:
+                - "accessToken"
+                - "uuid"
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties: {}
+                    required: []
+                  error:
+                    type: "object"
+                    properties: {}
+                    required: []
+                type: "object"
+                required:
+                  - "status"
+                  - "message"
+                  - "result"
+                  - "error"
+  /ttm/dns:
+    get:
+      tags:
+        - "geo"
+      summary: "Geo DNS"
+      description: "Geo DNS Records"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json: {}
+      responses:
+        200:
+          schema:
+            properties: {}
+            type: "object"
+            required: []
+  /geo/register:
+    post:
+      tags:
+        - "geo"
+      summary: "RegisterGeo"
+      description: "Register an identity on geo"
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                accessToken:
+                  type: "string"
+                  description: "Valid NCC access token"
+                uuid:
+                  type: "string"
+                  description: "UUID of active NCC user"
+                wallet:
+                  type: "string"
+                  description: "address of NCC user"
+                url:
+                  type: "string"
+                  description: "of NCC user's website"
+                coordinates:
+                  type: "string"
+                  description: "of NCC user's location"
+                NORAD:
+                  type: "string"
+                  description: "ID of NCC user's favorite satellite"
+              type: "object"
+              required:
+                - "accessToken"
+                - "uuid"
+                - "wallet"
+                - "url"
+                - "coordinates"
+                - "NORAD"
+      responses:
+        200:
+          description: "A successful response"
+          content:
+            application/json:
+              schema:
+                properties:
+                  status:
+                    type: "string"
+                    description: "Status of response, either 'success' or 'fail"
+                  message:
+                    type: "string"
+                    description: "Message of response"
+                  result:
+                    type: "object"
+                    properties: {}
+                    required: []
+                  error:
+                    type: "object"
+                    properties: {}
+                    required: []
                 type: "object"
                 required:
                   - "status"

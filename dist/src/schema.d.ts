@@ -3,6 +3,291 @@
  * Do not make direct changes to the file.
  */
 export interface paths {
+    "/bricks/buy": {
+        /**
+         * BricksBuy
+         * @description Buy bricks
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of user */
+                        uuid: string;
+                        /** @description Amount (USDC is 6 decimals, e.g. 1 is 1000000) */
+                        amount: number;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/bricks/buy-ricks": {
+        /**
+         * BricksBuyRicks
+         * @description Buy ricks
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of user */
+                        uuid: string;
+                        /** @description Amount (1 rick is 1000) */
+                        amount: number;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/bricks/create": {
+        /**
+         * BricksCreate
+         * @description Create a media contract
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description ID of Bricks */
+                        bricksId: string;
+                        /** @description UUID for media contract */
+                        mediaUuid: string;
+                        /** @description Metadata */
+                        meta: string;
+                        /** @description Price */
+                        price: number;
+                        /** @description Public performance price */
+                        publicPerformancePrice: number;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/bricks/list": {
+        /**
+         * BricksList
+         * @description List media contracts
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/bricks/rick-play": {
+        /**
+         * BricksRickPlay
+         * @description Play a rick
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of dapi user */
+                        uuid: string;
+                        /** @description UUID of media contract */
+                        mediaUuid: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/bricks/send": {
+        /**
+         * BricksSend
+         * @description Send a brick
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of media contract */
+                        mediaUuid: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/bricks/send-rick": {
+        /**
+         * BricksSendRick
+         * @description Send a rick
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of media contract */
+                        mediaUuid: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
     "/impression/create": {
         /**
          * CreateImpression
@@ -214,6 +499,463 @@ export interface paths {
                             };
                             error: {
                                 /** @description Message of error, TODO fix this nested obj */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/rodeo/org/all": {
+        /**
+         * FetchAllOrgs
+         * @description Get all orgs
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/rodeo/org/{id}/add-admin": {
+        /**
+         * OrgAddAdmin
+         * @description Adds an admin to an existing organization
+         */
+        post: {
+            parameters: {
+                query: {
+                    /** @description App index of organization to add admin */
+                    id: string;
+                };
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
+                        /** @description UUID of NCC user to add as admin */
+                        adminUUID: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/rodeo/org/{id}/add-member": {
+        /**
+         * OrgAddMember
+         * @description Adds a member to an existing organization
+         */
+        post: {
+            parameters: {
+                query: {
+                    /** @description App index of organization to add member */
+                    id: string;
+                };
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
+                        /** @description UUID of NCC user to add as member */
+                        memberUUID: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/rodeo/org/create": {
+        /**
+         * OrgCreate
+         * @description Create new Rodeo organization
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Name of organization */
+                        orgName: string;
+                        /** @description Url of organization */
+                        url: string;
+                        /** @description Description of organization */
+                        description: string;
+                        /** @description Number of total members */
+                        totalMembers: number;
+                        /** @description Number of total admins */
+                        totalAdmins: number;
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description Algorand address of organization creator */
+                        creatorAddress: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/rodeo/org/{id}/get": {
+        /**
+         * OrgFetchByAppId
+         * @description Fetch organization by app ID
+         */
+        post: {
+            parameters: {
+                query: {
+                    /** @description App index of organization to fetch */
+                    id: string;
+                };
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/rodeo/org/{id}/mint": {
+        /**
+         * OrgMint
+         * @description Mints an existing organization
+         */
+        post: {
+            parameters: {
+                query: {
+                    /** @description App index of organization to mint */
+                    id: string;
+                };
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/rodeo/org/{id}/super-admin": {
+        /**
+         * OrgSetSuperAdmin
+         * @description Sets an NCC user as super admin, if eligible
+         */
+        post: {
+            parameters: {
+                query: {
+                    /** @description App index of organization to set sole admin */
+                    id: string;
+                };
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
+                        /** @description UUID of eligible NCC user to be sole admin */
+                        adminUUID: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/rodeo/org/{id}/test-admin": {
+        /**
+         * OrgTestAdmin
+         * @description Validates if NCC user is an admin
+         */
+        post: {
+            parameters: {
+                query: {
+                    /** @description App index of organization to check */
+                    id: string;
+                };
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
+                        /** @description UUID of NCC user to add as admin */
+                        adminUUID: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/rodeo/org/{id}/test-member": {
+        /**
+         * OrgTestMember
+         * @description Validates if NCC user is a member
+         */
+        post: {
+            parameters: {
+                query: {
+                    /** @description App index of organization to check */
+                    id: string;
+                };
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of NCC user to add as member */
+                        memberUUID: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/rodeo/org/{id}/edit": {
+        /**
+         * OrgUpdate
+         * @description Updates an existing organization
+         */
+        post: {
+            parameters: {
+                query: {
+                    /** @description App index of organization to update */
+                    id: string;
+                };
+            };
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
+                        edits: Record<string, never>;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: {
+                                /** @description Message of result, TODO update this to be accurate */
+                                message: string;
+                            };
+                            error: {
+                                /** @description Message of error, TODO update this to be accurate */
                                 message: string;
                             };
                         };
@@ -532,8 +1274,7 @@ export interface paths {
                     "application/json": {
                         /** @description Valid NCC access token */
                         accessToken: string;
-                        /** @description Contract IDs */
-                        contractIds: string;
+                        contractIds: (number)[];
                     };
                 };
             };
@@ -689,10 +1430,6 @@ export interface paths {
                         uuid: string;
                         /** @description Last blockchain round to search */
                         lastRound: number;
-                        config: {
-                            /** @description TTM config, TODO fix this; Swagger needs nested objects to be defined */
-                            todo: string;
-                        };
                     };
                 };
             };
@@ -740,12 +1477,65 @@ export interface paths {
                     "application/json": {
                         /** @description Valid NCC access token */
                         accessToken: string;
-                        /** @description UUID of active NCC user */
-                        uuid: string;
+                        /** @description Type of message */
+                        type: string;
                         /** @description ASA ID of token to target */
-                        tokenToTarget: number;
+                        tokens: number;
                         /** @description Message to send */
                         message: string;
+                        /** @description TTM files */
+                        files: string;
+                        /** @description TTM part */
+                        part: number;
+                        /** @description TTM uri */
+                        uri: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: Record<string, never>;
+                            error: Record<string, never>;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/ttm/send-by-token": {
+        /**
+         * SendTTM
+         * @description Send TTM
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description Type of message */
+                        type: string;
+                        /** @description ASA ID of token to target */
+                        tokens: number;
+                        /** @description Message to send */
+                        message: string;
+                        /** @description TTM files */
+                        files: string;
+                        /** @description TTM part */
+                        part: number;
+                        /** @description TTM uri */
+                        uri: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
                     };
                 };
             };
@@ -807,6 +1597,47 @@ export interface paths {
                                  *
                                  * MainNet NCC token is: 1089370737
                                  * MainNet SLA is: 1090801931
+                                 */
+                                message: string;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/invite/refeemm": {
+        /**
+         * RedeemPortalInvite
+         * @description Redeem invite code for NCC Memember Token
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Algorand address of user */
+                        address: string;
+                        /** @description The invite code */
+                        invite: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: Record<string, never>;
+                            error: {
+                                /**
+                                 * @description Error message
+                                 *
+                                 * If the address already has an NCC token, this will error, if the address is
+                                 * not yet funded, this will fund it and return the funded success message
                                  */
                                 message: string;
                             };
@@ -992,11 +1823,17 @@ export interface paths {
          * @description Register a user account
          */
         post: {
+            parameters: {
+                header: {
+                    /** @description Valid NCC access token */
+                    accessToken: string;
+                    /** @description One of "TESTNET" || "MAINNET" */
+                    whichNet: string;
+                };
+            };
             requestBody: {
                 content: {
                     "application/json": {
-                        /** @description Valid NCC access token */
-                        accessToken: string;
                         /** @description Active NCC user uuid */
                         uuid: string;
                         /** @description Algorand address of creator */
@@ -1021,6 +1858,96 @@ export interface paths {
                                 /** @description Message of error, TODO fix this nested obj */
                                 message: string;
                             };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/ttm/deregister": {
+        /**
+         * DeregisterGeo
+         * @description Deregister Geo identity
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: Record<string, never>;
+                            error: Record<string, never>;
+                        };
+                    };
+                };
+            };
+        };
+    };
+    "/ttm/dns": {
+        /**
+         * Geo DNS
+         * @description Geo DNS Records
+         */
+        get: {
+            requestBody: {
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            responses: {
+                200: never;
+            };
+        };
+    };
+    "/geo/register": {
+        /**
+         * RegisterGeo
+         * @description Register an identity on geo
+         */
+        post: {
+            requestBody: {
+                content: {
+                    "application/json": {
+                        /** @description Valid NCC access token */
+                        accessToken: string;
+                        /** @description UUID of active NCC user */
+                        uuid: string;
+                        /** @description address of NCC user */
+                        wallet: string;
+                        /** @description of NCC user's website */
+                        url: string;
+                        /** @description of NCC user's location */
+                        coordinates: string;
+                        /** @description ID of NCC user's favorite satellite */
+                        NORAD: string;
+                    };
+                };
+            };
+            responses: {
+                /** @description A successful response */
+                200: {
+                    content: {
+                        "application/json": {
+                            /** @description Status of response, either 'success' or 'fail */
+                            status: string;
+                            /** @description Message of response */
+                            message: string;
+                            result: Record<string, never>;
+                            error: Record<string, never>;
                         };
                     };
                 };

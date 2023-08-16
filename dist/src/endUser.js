@@ -37,3 +37,26 @@ export async function promptAccessToken(algonaut) {
         return params;
     }
 }
+/** RODEO */
+export const rodeo = {
+    org: {
+        amIAdmin: async (algonaut, appId) => {
+            try {
+                let isAdmin = await algonaut.callApp({
+                    appIndex: appId,
+                    appArgs: ['am_i_admin']
+                });
+                console.log(`is admin: ${JSON.stringify(isAdmin)}`);
+                return {
+                    amIAdmin: isAdmin
+                };
+            }
+            catch (er) {
+                console.log('there was an error ', er);
+                return {
+                    amIAdmin: false
+                };
+            }
+        }
+    }
+};

@@ -1,64 +1,113 @@
-import { paths } from './schema.js';
+import { paths } from './schema';
+type ExtractRequestBody<T extends paths, P extends keyof T> = T[P] extends {
+    post: {
+        requestBody: {
+            content: {
+                'application/json': infer R;
+            };
+        };
+    };
+} ? R : never;
+type ExtractRequestHeader<T extends paths, P extends keyof T> = T[P] extends {
+    post: {
+        parameters: {
+            header: {
+                accessToken: string;
+                whichNet: string;
+            };
+        };
+    };
+} ? Omit<T[P]['post']['parameters']['header'], 'whichNet'> & {
+    whichNet?: string;
+} : never;
+type ExtractSuccessResponse<T extends paths, P extends keyof T> = T[P] extends {
+    post: {
+        responses: {
+            200: {
+                content: {
+                    'application/json': infer R;
+                };
+            };
+        };
+    };
+} ? R : never;
+type ExtractRequestQuery<T extends paths, P extends keyof T> = T[P] extends {
+    post: {
+        parameters: {
+            query: infer Q;
+        };
+    };
+} ? Q : never;
 /** Token */
-export type AccessTokenParams = paths["/get-access-token"]["post"]["requestBody"]["content"]["application/json"];
-export type AccessTokenSuccessResponse = paths["/get-access-token"]["post"]["responses"]["200"]["content"]["application/json"];
+export type AccessTokenParams = ExtractRequestBody<paths, '/get-access-token'>;
+export type AccessTokenSuccessResponse = ExtractSuccessResponse<paths, '/get-access-token'>;
 /** List Accounts */
-export type ListAccountsParams = paths["/list-accounts"]["post"]["requestBody"]["content"]["application/json"];
-export type ListAccountsSuccessResponse = paths["/list-accounts"]["post"]["responses"]["200"]["content"]["application/json"];
+export type ListAccountsParams = ExtractRequestBody<paths, '/list-accounts'>;
+export type ListAccountsSuccessResponse = ExtractSuccessResponse<paths, '/list-accounts'>;
 /** TTM */
-export type TTMSendParams = paths["/ttm/send"]["post"]["requestBody"]["content"]["application/json"];
-export type TTMReceiveParams = paths["/ttm/receive"]["post"]["requestBody"]["content"]["application/json"];
-export type TTMSendSuccessResponse = paths["/ttm/send"]["post"]["responses"]["200"]["content"]["application/json"];
-export type TTMReceiveSuccessResponse = paths["/ttm/receive"]["post"]["responses"]["200"]["content"]["application/json"];
+export type TTMSendParams = ExtractRequestBody<paths, '/ttm/send'>;
+export type TTMReceiveParams = ExtractRequestBody<paths, '/ttm/receive'>;
+export type TTMSendSuccessResponse = ExtractSuccessResponse<paths, '/ttm/send'>;
+export type TTMReceiveSuccessResponse = ExtractSuccessResponse<paths, '/ttm/receive'>;
 /** Peels */
-export type PeelsCreateParams = paths["/peels/create"]["post"]["requestBody"]["content"]["application/json"];
-export type PeelsFundUserParams = paths["/peels/fund-user"]["post"]["requestBody"]["content"]["application/json"];
-export type PeelsGrantParams = paths["/peels/grant"]["post"]["requestBody"]["content"]["application/json"];
-export type PeelsListParams = paths["/peels/list"]["post"]["requestBody"]["content"]["application/json"];
-export type PeelsMintParams = paths["/peels/mint"]["post"]["requestBody"]["content"]["application/json"];
-export type PeelsGrantTokensParams = paths["/peels/grant-tokens"]["post"]["requestBody"]["content"]["application/json"];
-export type PeelsGetParams = paths["/peels/get"]["post"]["requestBody"]["content"]["application/json"];
-export type PeelsListMineParams = paths["/peels/list-mine"]["post"]["requestBody"]["content"]["application/json"];
-export type PeelsCreateSuccessResponse = paths["/peels/create"]["post"]["responses"]["200"]["content"]["application/json"];
-export type PeelsFundUserSuccessResponse = paths["/peels/fund-user"]["post"]["responses"]["200"]["content"]["application/json"];
-export type PeelsGrantSuccessResponse = paths["/peels/grant"]["post"]["responses"]["200"]["content"]["application/json"];
-export type PeelsListSuccessResponse = paths["/peels/list"]["post"]["responses"]["200"]["content"]["application/json"];
-export type PeelsMintSuccessResponse = paths["/peels/mint"]["post"]["responses"]["200"]["content"]["application/json"];
-export type PeelsGrantTokensSuccessResponse = paths["/peels/grant-tokens"]["post"]["responses"]["200"]["content"]["application/json"];
-export type PeelsGetSuccessResponse = paths["/peels/get"]["post"]["responses"]["200"]["content"]["application/json"];
-export type PeelsListMineSuccessResponse = paths["/peels/list-mine"]["post"]["responses"]["200"]["content"]["application/json"];
+export type PeelsCreateParams = ExtractRequestBody<paths, '/peels/create'>;
+export type PeelsFundUserParams = ExtractRequestBody<paths, '/peels/fund-user'>;
+export type PeelsGrantParams = ExtractRequestBody<paths, '/peels/grant'>;
+export type PeelsListParams = ExtractRequestBody<paths, '/peels/list'>;
+export type PeelsMintParams = ExtractRequestBody<paths, '/peels/mint'>;
+export type PeelsGrantTokensParams = ExtractRequestBody<paths, '/peels/grant-tokens'>;
+export type PeelsGetParams = ExtractRequestBody<paths, '/peels/get'>;
+export type PeelsListMineParams = ExtractRequestBody<paths, '/peels/list-mine'>;
+export type PeelsCreateSuccessResponse = ExtractSuccessResponse<paths, '/peels/create'>;
+export type PeelsFundUserSuccessResponse = ExtractSuccessResponse<paths, '/peels/fund-user'>;
+export type PeelsGrantSuccessResponse = ExtractSuccessResponse<paths, '/peels/grant'>;
+export type PeelsListSuccessResponse = ExtractSuccessResponse<paths, '/peels/list'>;
+export type PeelsMintSuccessResponse = ExtractSuccessResponse<paths, '/peels/mint'>;
+export type PeelsGrantTokensSuccessResponse = ExtractSuccessResponse<paths, '/peels/grant-tokens'>;
+export type PeelsGetSuccessResponse = ExtractSuccessResponse<paths, '/peels/get'>;
+export type PeelsListMineSuccessResponse = ExtractSuccessResponse<paths, '/peels/list-mine'>;
 /** Users */
-export type UserRegisterParams = paths["/user/register"]["post"]["requestBody"]["content"]["application/json"];
-export type UserDeregisterParams = paths["/user/deregister"]["post"]["requestBody"]["content"]["application/json"];
-export type UserOptIntoAppParams = paths["/user/opt-into-app"]["post"]["requestBody"]["content"]["application/json"];
-export type UserOptIntoTokenParams = paths["/user/opt-into-token"]["post"]["requestBody"]["content"]["application/json"];
+export type UserRegisterParams = ExtractRequestBody<paths, '/user/register'> & ExtractRequestHeader<paths, '/user/register'>;
+export type UserDeregisterParams = ExtractRequestBody<paths, '/user/deregister'>;
+export type UserOptIntoAppParams = ExtractRequestBody<paths, '/user/opt-into-app'>;
+export type UserOptIntoTokenParams = ExtractRequestBody<paths, '/user/opt-into-token'>;
 /** Bricks */
+/** Rodeo */
+/**
+ * - put generated schema in somewhere shared, separate
+ * - write a function that simplifies paths
+ */
+export type RodeoOrgCreateParams = ExtractRequestBody<paths, '/rodeo/org/create'>;
+export type RodeoOrgCreateSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/create'>;
+export type RodeoOrgFetchAllParams = ExtractRequestBody<paths, '/rodeo/org/all'>;
+export type RodeoOrgFetchAllSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/all'>;
+export type RodeoOrgAddAdminParams = ExtractRequestBody<paths, '/rodeo/org/{id}/add-admin'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/add-admin'>;
+export type RodeoOrgAddAdminSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/add-admin'>;
+export type RodeoOrgAddMemberParams = ExtractRequestBody<paths, '/rodeo/org/{id}/add-member'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/add-member'>;
+export type RodeoOrgAddMemberSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/add-member'>;
+export type RodeoOrgEditParams = ExtractRequestBody<paths, '/rodeo/org/{id}/edit'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/edit'>;
+export type RodeoOrgEditSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/edit'>;
+export type RodeoOrgFetchParams = ExtractRequestBody<paths, '/rodeo/org/{id}/get'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/get'>;
+export type RodeoOrgFetchSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/get'>;
+export type RodeoOrgMintParams = ExtractRequestBody<paths, '/rodeo/org/{id}/mint'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/mint'>;
+export type RodeoOrgMintSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/mint'>;
+export type RodeoOrgSuperAdminParams = ExtractRequestBody<paths, '/rodeo/org/{id}/super-admin'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/super-admin'>;
+export type RodeoOrgSuperAdminSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/super-admin'>;
+export type RodeoOrgTestAdminParams = ExtractRequestBody<paths, '/rodeo/org/{id}/test-admin'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/test-admin'>;
+export type RodeoOrgTestAdminSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/test-admin'>;
+export type RodeoOrgTestMemberParams = ExtractRequestBody<paths, '/rodeo/org/{id}/test-member'> & ExtractRequestQuery<paths, '/rodeo/org/{id}/test-member'>;
+export type RodeoOrgTestMemberSuccessResponse = ExtractSuccessResponse<paths, '/rodeo/org/{id}/test-member'>;
 /** Impressions */
-export type ImpressionCreateParams = paths["/impression/create"]["post"]["requestBody"]["content"]["application/json"];
-export type ImpressionUpdateOneParams = paths["/impression/update-one"]["post"]["requestBody"]["content"]["application/json"];
-export type ImpressionUpdateAllParams = paths["/impression/update-all"]["post"]["requestBody"]["content"]["application/json"];
+export type ImpressionCreateParams = ExtractRequestBody<paths, '/impression/create'>;
+export type ImpressionUpdateOneParams = ExtractRequestBody<paths, '/impression/update-one'>;
+export type ImpressionUpdateAllParams = ExtractRequestBody<paths, '/impression/update-all'>;
 /** LiNR */
-export type LinrMediaParams = paths["/linr/media"]["post"]["requestBody"]["content"]["application/json"];
-export type LinrMusicParams = paths["/linr/music"]["post"]["requestBody"]["content"]["application/json"];
-export type ValidParams = AccessTokenParams | ListAccountsParams | 
-/** Peels */
-PeelsCreateParams | PeelsListParams | PeelsMintParams | PeelsGrantParams | PeelsFundUserParams | PeelsGrantTokensParams | PeelsGetParams | PeelsListMineParams | // do I need to do this
-/** Users */
-UserRegisterParams | UserDeregisterParams | UserOptIntoAppParams | UserOptIntoTokenParams | 
-/** TTM */
-TTMSendParams | TTMReceiveParams | 
-/** Bricks */
-/** Impression */
-ImpressionCreateParams | ImpressionUpdateAllParams | ImpressionUpdateOneParams | 
-/** LiNR */
-LinrMediaParams | LinrMusicParams;
+export type LinrMediaParams = ExtractRequestBody<paths, '/linr/media'>;
+export type LinrMusicParams = ExtractRequestBody<paths, '/linr/music'>;
 export type ValidUrl = keyof paths;
-export type ParamsTuple = {
-    valid: boolean;
-    params: ValidParams | null;
-};
 export type ApiDocs = {
     data: any[];
     project: any;
     swagDoc: any;
 };
+export {};
