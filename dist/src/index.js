@@ -6,6 +6,7 @@ import { TTM } from './dapis/TTM';
 import { User } from './dapis/User';
 import { postRequest } from './utils';
 import { documentation } from '../output/documentation';
+import { Rodeo } from './dapis/Rodeo';
 export class Dapi {
     constructor() {
         console.log('Initializing Dapi object');
@@ -15,6 +16,7 @@ export class Dapi {
         this.bricks = new Bricks();
         this.impression = new Impression();
         this.linr = new LiNR();
+        this.rodeo = new Rodeo();
         this.docs = documentation;
     }
     peels;
@@ -23,6 +25,7 @@ export class Dapi {
     bricks;
     impression;
     linr;
+    rodeo;
     docs;
     /** TOKEN */
     async getAccessToken(params) {

@@ -25,7 +25,6 @@ export const NCCdAPIs = {
         let jsn = {};
         let response = {};
         try {
-            // in 2023, i feel like we can just go with Fetch.
             if (method && method.toLowerCase() == 'get') {
                 response = await fetch(`${APIRootURI}/${version}/${apiEndpoint}`, {
                     // TBD: we can make a map of API calls and their methods and look that up here
@@ -37,15 +36,37 @@ export const NCCdAPIs = {
                 });
             }
             else {
-                response = await fetch(`${APIRootURI}/${version}/${apiEndpoint}`, {
+                // Add access token
+                let headers;
+                // Testing with user/register first
+                if (middlewareEnabled(apiEndpoint) && data.accessToken) {
+                    headers = {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${data.accessToken}`
+                    };
+                    delete data.accessToken;
+                }
+                else {
+                    headers = {
+                        'Content-Type': 'application/json'
+                    };
+                }
+                // Add whichNet
+                let whichNet = data.whichNet ? data.whichNet.toUpperCase() : "TESTNET";
+                if (whichNet !== "MAINNET" && whichNet !== "TESTNET") {
+                    whichNet = "TESTNET";
+                }
+                headers['Which-Net'] = whichNet;
+                if (data.whichNet)
+                    delete data.whichNet;
+                let request = {
                     // TBD: we can make a map of API calls and their methods and look that up here
                     method: method ? method : 'POST',
                     cache: 'no-cache',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers,
                     body: JSON.stringify(data)
-                });
+                };
+                response = await fetch(`${APIRootURI}/${version}/${apiEndpoint}`, request);
             }
             jsn = await response.json();
             console.log('NCCdAPIs.ts: got response!', jsn);
@@ -94,3 +115,9 @@ export const NCCdAPIs = {
         }
     }
 };
+function middlewareEnabled(apiEndpoint) {
+    const boolean = apiEndpoint == "user/register" ||
+        apiEndpoint.includes("rodeo/org");
+    console.log(`boolean enabled is ${boolean}`);
+    return boolean;
+}

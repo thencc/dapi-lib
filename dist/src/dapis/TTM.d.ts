@@ -4,4 +4,5 @@ export declare class TTM {
     /** TTM */
     send(params: TTMSendParams): Promise<any>;
     receive(params: TTMReceiveParams): Promise<any>;
+    relay(): Promise<any>;
 }

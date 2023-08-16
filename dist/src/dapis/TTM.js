@@ -10,4 +10,8 @@ export class TTM {
         const path = '/ttm/receive';
         return await postRequest(path, params);
     }
+    async relay() {
+        const path = '/ttm/relay';
+        return await postRequest(path, {});
+    }
 }

@@ -1,6 +1,3 @@
-import { ParamsTuple } from "./model";
-/** Type validation functions */
-export declare function validateParams(endpoint: string, params: any): ParamsTuple;
 /**
  * Util functions
  */

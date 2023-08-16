@@ -1276,8 +1276,7 @@ export interface paths {
           "application/json": {
             /** @description Valid NCC access token */
             accessToken: string;
-            /** @description Contract IDs */
-            contractIds: string;
+            contractIds: (number)[];
           };
         };
       };
@@ -1470,6 +1469,51 @@ export interface paths {
     };
   };
   "/ttm/send": {
+    /**
+     * SendTTM 
+     * @description Send TTM
+     */
+    post: {
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Valid NCC access token */
+            accessToken: string;
+            /** @description Type of message */
+            type: string;
+            /** @description ASA ID of token to target */
+            tokens: number;
+            /** @description Message to send */
+            message: string;
+            /** @description TTM files */
+            files: string;
+            /** @description TTM part */
+            part: number;
+            /** @description TTM uri */
+            uri: string;
+            /** @description UUID of active NCC user */
+            uuid: string;
+          };
+        };
+      };
+      responses: {
+        /** @description A successful response */
+        200: {
+          content: {
+            "application/json": {
+              /** @description Status of response, either 'success' or 'fail */
+              status: string;
+              /** @description Message of response */
+              message: string;
+              result: Record<string, never>;
+              error: Record<string, never>;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/ttm/send-by-token": {
     /**
      * SendTTM 
      * @description Send TTM
@@ -1816,6 +1860,96 @@ export interface paths {
                 /** @description Message of error, TODO fix this nested obj */
                 message: string;
               };
+            };
+          };
+        };
+      };
+    };
+  };
+  "/ttm/deregister": {
+    /**
+     * DeregisterGeo 
+     * @description Deregister Geo identity
+     */
+    post: {
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Valid NCC access token */
+            accessToken: string;
+            /** @description UUID of active NCC user */
+            uuid: string;
+          };
+        };
+      };
+      responses: {
+        /** @description A successful response */
+        200: {
+          content: {
+            "application/json": {
+              /** @description Status of response, either 'success' or 'fail */
+              status: string;
+              /** @description Message of response */
+              message: string;
+              result: Record<string, never>;
+              error: Record<string, never>;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/ttm/dns": {
+    /**
+     * Geo DNS 
+     * @description Geo DNS Records
+     */
+    get: {
+      requestBody: {
+        content: {
+          "application/json": unknown;
+        };
+      };
+      responses: {
+        200: never;
+      };
+    };
+  };
+  "/geo/register": {
+    /**
+     * RegisterGeo 
+     * @description Register an identity on geo
+     */
+    post: {
+      requestBody: {
+        content: {
+          "application/json": {
+            /** @description Valid NCC access token */
+            accessToken: string;
+            /** @description UUID of active NCC user */
+            uuid: string;
+            /** @description address of NCC user */
+            wallet: string;
+            /** @description of NCC user's website */
+            url: string;
+            /** @description of NCC user's location */
+            coordinates: string;
+            /** @description ID of NCC user's favorite satellite */
+            NORAD: string;
+          };
+        };
+      };
+      responses: {
+        /** @description A successful response */
+        200: {
+          content: {
+            "application/json": {
+              /** @description Status of response, either 'success' or 'fail */
+              status: string;
+              /** @description Message of response */
+              message: string;
+              result: Record<string, never>;
+              error: Record<string, never>;
             };
           };
         };
